@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة إنترنت | الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* متغيرات الألوان */
+        :root {
+            --primary: #101010;
+            --secondary: #efb730;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --transition: all 0.3s ease;
+        }
+
+        /* إعادة تعيين الأنماط */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        body[dir="rtl"] {
+            text-align: right;
+        }
+
+        body[dir="ltr"] {
+            text-align: left;
+        }
+
+        /* أنماط الهيدر */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .languages {
+            display: flex;
+            margin-left: 20px;
+        }
+
+        .languages button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .languages button:hover {
+            background-color: var(--light);
+        }
+
+        .languages button.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* أنماط السلايدر - تم إصلاح الخلفيات هنا */
+        .slider-section {
+            margin-top: 80px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.8s ease;
+        }
+
+        .slide {
+            flex: 1;
+            min-width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .slide-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* تم إصلاح روابط الصور هنا */
+        .slide-1 {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+
+        .slide-2 {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+
+        .slide-3 {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: white;
+            transform: sScale(1.3);
+        }
+
+        /* أنماط قسم المنتجات */
+        .products-section {
+            padding: 80px 0%;
+            background-color: white;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .products-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .product {
+            width: 250px;
+            height: 300px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: var(--transition);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .product:hover {
+            transform: translateY(-10px) rotateY(10deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #f8f9fa;
+        }
+
+        .product-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .product p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* تم إضافة زر المزيد هنا */
+        .more-products {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .more-products .btn {
+            background-color: var(--primary);
+            padding: 12px 40px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .floating-animation {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        /* أنماط قسم الباقات */
+        .paket-section {
+            padding: 80px 5%;
+            background-color: #f0f5ff;
+        }
+
+        .paket-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .paket-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 350px;
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid var(--secondary);
+        }
+
+        .paket-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .paket-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        .paket-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .paket-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .paket-price span {
+            font-size: 1.2rem;
+            font-weight: normal;
+        }
+
+        .paket-features {
+            padding: 25px;
+        }
+
+        .paket-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .paket-features li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .paket-features li:last-child {
+            border-bottom: none;
+        }
+
+        .paket-features li i {
+            color: var(--secondary);
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        .paket-action {
+            padding: 0 25px 25px;
+            text-align: center;
+        }
+
+        .paket-action .btn {
+            width: 100%;
+            background-color: var(--primary);
+            padding: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .paket-action .btn i {
+            margin-left: 10px;
+        }
+
+        /* أنماط قسم من نحن */
+        .about-section {
+            padding: 80px 5%;
+            background-color: #f8f9fa;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            transition: var(--transition);
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* أنماط قسم التواصل */
+        .contact-section {
+            padding: 80px 5%;
+            background-color: white;
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .contact-details p {
+            color: #666;
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* أنماط الفوتر */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 5% 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo p {
+            color: #ddd;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-right: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* أنماط متجاوبة */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .slide-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .paket-container {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                margin: 5px 10px;
+                font-size: 1rem;
+            }
+            
+            .products-container {
+                gap: 20px;
+            }
+            
+            .product {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+            
+            .slide-content p {
+                font-size: 1rem;
+            }
+            
+            .stat {
+                padding: 15px;
+            }
+            
+            .stat h3 {
+                font-size: 2rem;
+            }
+            
+            .paket-item {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .slider-section {
+                height: 400px;
+            }
+            
+            .paket-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .paket-price {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <!-- الهيدر -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-placeholder" style="width: 50px; height: 50px; background: var(--secondary); display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-left: 15px;">
+                    <span style="color: white; font-weight: bold; font-size: 1.2rem;">GN</span>
+                </div>
+                <h1 id="companyName">GOLDEN<span> NET</span></h1>
+            </div>
+            <div class="nav-links">
+                <div class="languages">
+                    <button class="lang-btn active" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
+                <a href="#products" id="navProducts">منتجاتنا</a>
+                <a href="#paket" id="navPaket">باقاتنا</a>
+                <a href="#about" id="navAbout">من نحن</a>
+                <a href="#contact" id="navContact">التواصل</a>
+            
+            </div>
+        </div>
+    </header>
+
+    <!-- السلايدر -->
+    <section class="slider-section">
+        <div class="slides">
+            <div class="slide slide-1" >
+                <div class="slide-content">
+                    <h2 id="slide1Title">حلول إنترنت متقدمة</h2>
+                    <p id="slide1Desc">نقدم أفضل حلول الإنترنت لجميع احتياجاتك الشخصية والتجارية بسرعات فائقة واستقرار متميز</p>
+                    <a href="#products" class="btn" id="slide1Btn">اكتشف منتجاتنا</a>
+                </div>
+            </div>
+            <div class="slide slide-2">
+                <div class="slide-content">
+                    <h2 id="slide2Title">خدمة عملاء على مدار الساعة</h2>
+                    <p id="slide2Desc">فريق دعم فني متاح 24/7 لحل جميع مشاكلك الفنية وتقديم المساعدة الفورية</p>
+                    <a href="#contact" class="btn" id="slide2Btn">تواصل معنا</a>
+                </div>
+            </div>
+            <div class="slide slide-3">
+                <div class="slide-content">
+                    <h2 id="slide3Title">أسرع شبكة إنترنت في المنطقة</h2>
+                    <p id="slide3Desc">استمتع بأسرع اتصال بالإنترنت مع تقنيات الجيل الجديد وأعلى معدلات الاستقرار</p>
+                    <a href="#about" class="btn" id="slide3Btn">تعرف علينا</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-nav">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section id="products" class="products-section">
+        <div class="section-title">
+            <h2 id="productsTitle">منتجاتنا</h2>
+        </div>
+        <div class="products-container">
+            <div class="product floating-animation">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="product-content">
+                    <h3 id="product1Title">إنترنت المنزل</h3>
+                    <p id="product1Desc">حلول إنترنت عالية السرعة للمنازل مع خيارات متنوعة تناسب جميع الاحتياجات</p>
+                </div>
+            </div>
+            <div class="product floating-animation delay-1">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="product-content">
+                    <h3 id="product2Title">إنترنت الشركات</h3>
+                    <p id="product2Desc">حلول متكاملة للشركات مع سرعات عالية وتقنيات متقدمة للاستخدام المكثف</p>
+                </div>
+            </div>
+            <div class="product floating-animation delay-2">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="product-content">
+                    <h3 id="product3Title">خدمات الألياف البصرية</h3>
+                    <p id="product3Desc">أحدث تقنيات الألياف البصرية لتجربة إنترنت فائقة السرعة والاستقرار</p>
+                </div>
+            </div>
+            <div class="product floating-animation delay-3">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                <div class="product-content">
+                    <h3 id="product4Title">حلول التخزين السحابي</h3>
+                    <p id="product4Desc">خدمات تخزين سحابي آمنة وموثوقة مع مساحات كبيرة وسهولة الوصول</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- تم إضافة زر المزيد هنا -->
+        <div class="more-products">
+            <a href="#paket" class="btn" id="moreProductsBtn">عرض الباقات</a>
+        </div>
+    </section>
+
+    <!-- Paketler Bölümü -->
+    <section id="paket" class="paket-section">
+        <div class="section-title">
+            <h2 id="paketTitle">Paketlerimiz</h2>
+        </div>
+        <div class="paket-container">
+            <div class="paket-item">
+                <div class="paket-header">
+                    <h3 id="paket1Title">Altın Paket</h3>
+                    <p>Yüksek hız arayan aileler için</p>
+                    <div class="paket-price">₺500 <span>/aylık</span></div>
+                </div>
+                <div class="paket-features">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket1Feature1">24 Mbps hız</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket1Feature2">Sınırsız bağlantı</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket1Feature3">7/24 teknik destek</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket1Feature4">Ücretsiz modem cihazları</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket1Feature5">Hizmet önceliği</span></li>
+                    </ul>
+                </div>
+                <div class="paket-action">
+                    <a href="https://wa.me/905522886112?text=Merhaba, Altın Paketi abone olmak istiyorum" class="btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp üzerinden hizmet talep et
+                    </a>
+                </div>
+            </div>
+            
+            <div class="paket-item">
+                <div class="paket-header">
+                    <h3 id="paket2Title">Gümüş Paket</h3>
+                    <p>Orta düzeyde internet kullanan aileler için</p>
+                    <div class="paket-price">₺450 <span>/aylık</span></div>
+                </div>
+                <div class="paket-features">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket2Feature1">16 Mbps hız</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket2Feature2">Sınırsız bağlantı</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket2Feature3">7/24 teknik destek</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket2Feature4">Ücretsiz modem cihazları</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket2Feature5">24 saat içinde teknik hizmet</span></li>
+                    </ul>
+                </div>
+                <div class="paket-action">
+                    <a href="https://wa.me/905522886112?text=Merhaba, Gümüş Paketi abone olmak istiyorum" class="btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp üzerinden hizmet talep et
+                    </a>
+                </div>
+            </div>
+            
+            <div class="paket-item">
+                <div class="paket-header">
+                    <h3 id="paket3Title">Bronz Paket</h3>
+                    <p>Düşük kullanımda olan aileler için</p>
+                    <div class="paket-price">₺400 <span>/aylık</span></div>
+                </div>
+                <div class="paket-features">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket3Feature1">8 Mbps hız</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket3Feature2">Sınırsız bağlantı</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket3Feature3">7/24 teknik destek</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket3Feature4">Ücretsiz modem cihazları</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="paket3Feature5">48 saat içinde teknik hizmet</span></li>
+                    </ul>
+                </div>
+                <div class="paket-action">
+                    <a href="https://wa.me/905522886112?text=Merhaba, Bronz Paketi abone olmak istiyorum" class="btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp üzerinden hizmet talep et
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    ```
+    
+    <!-- قسم من نحن -->
+    <section id="about" class="about-section">
+        <div class="section-title">
+            <h2 id="aboutTitle">من نحن</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h2 id="aboutSubtitle">شركة إنترنت الرائدة في مجال الاتصالات</h2>
+                <p id="aboutDesc1">تأسست شركة إنترنت عام 2010 بهدف تقديم حلول إنترنت متطورة وخدمات اتصالات عالية الجودة للعملاء في جميع أنحاء المنطقة. نحن نؤمن بأن الإنترنت هو حق أساسي للجميع، ونسعى جاهدين لتوفير خدمات متميزة بأسعار تنافسية.</p>
+                <p id="aboutDesc2">مع أكثر من 10 سنوات من الخبرة، استطعنا بناء شبكة قوية وبنية تحتية متطورة تغطي معظم الأماكن في منطقة الريحانية التركية، مما يضمن لعملائنا تجربة إنترنت سلسة ومستقرة على مدار الساعة.</p>
+                <p id="aboutDesc3">فريقنا المؤهل والمدرب يعمل بجد لتقديم أفضل الخدمات والدعم الفني للعملاء، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية.</p>
+                
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p id="stat1Title">سنوات من الخبرة</p>
+                    </div>
+                    <div class="stat">
+                        <h3>700+</h3>
+                        <p id="stat2Title">عميل راضٍ</p>
+                    </div>
+                    <div class="stat">
+                        <h3>95%</h3>
+                        <p id="stat3Title">رضا العملاء</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img"></div>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section id="contact" class="contact-section">
+        <div class="section-title">
+            <h2 id="contactTitle">التواصل معنا</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 id="contactSubtitle">ابقى على تواصل</h2>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 id="contactAddressTitle">العنوان</h3>
+                        <p id="contactAddress">الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 id="contactPhoneTitle">الهاتف</h3>
+                        <p id="contactPhone1">+90 552 288 61 12</p>
+                        <p id="contactPhone2">+90 538 889 99 19</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 id="contactEmailTitle">البريد الإلكتروني</h3>
+                        <p id="contactEmail1">goldennet420420@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 id="contactHoursTitle">ساعات العمل</h3>
+                        <p id="contactHours1">الأثنين - السبت: 10 صباحاً - 6 مساءً</p>
+                        <p id="contactHours2">الأحد : إجازة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3 id="contactFormTitle">أرسل لنا رسالة</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name" id="formNameLabel">الاسم الكامل</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" id="formMessageLabel">الرسالة</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" id="formSubmitBtn">إرسال الرسالة</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h3 id="footerCompanyName">شركة إنترنت</h3>
+                <p id="footerDesc">نقدم حلول إنترنت متطورة وخدمات اتصالات عالية الجودة لعملائنا في جميع أنحاء المنطقة، مع التركيز على الابتكار والتطوير المستمر.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4 id="footerLinks1Title">روابط سريعة</h4>
+                <ul>
+                    <li><a href="#" id="footerHomeLink">الصفحة الرئيسية</a></li>
+                    <li><a href="#products" id="footerProductsLink">منتجاتنا</a></li>
+                    <li><a href="#paket" id="footerPaketLink">باقاتنا</a></li>
+                    <li><a href="#about" id="footerAboutLink">من نحن</a></li>
+                    <li><a href="#contact" id="footerContactLink">التواصل</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4 id="footerLinks2Title">منتجاتنا</h4>
+                <ul>
+                    <li><a href="#" id="footerProduct1Link">إنترنت المنزل</a></li>
+                    <li><a href="#" id="footerProduct2Link">إنترنت الشركات</a></li>
+                    <li><a href="#" id="footerProduct3Link">الألياف البصرية</a></li>
+                    <li><a href="#" id="footerProduct4Link">التخزين السحابي</a></li>
+                    <li><a href="#" id="footerProduct5Link">حلول الأمان</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4 id="footerLinks3Title">الدعم</h4>
+                <ul>
+                    <li><a href="#" id="footerHelpLink">مركز المساعدة</a></li>
+                    <li><a href="#" id="footerSupportLink">الدعم الفني</a></li>
+                    <li><a href="#" id="footerTermsLink">الشروط والأحكام</a></li>
+                    <li><a href="#" id="footerPrivacyLink">سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p id="copyrightText">جميع الحقوق محفوظة &copy; 2023 شركة إنترنت للاتصالات</p>
+        </div>
+    </footer>
+
+    <script>
+        // كائنات الترجمة للغتين
+        const translations = {
+            ar: {
+                navProducts: "منتجاتنا",
+                navPaket: "باقاتنا",
+                navAbout: "من نحن",
+                navContact: "التواصل",
+                slide1Title: "حلول إنترنت متقدمة",
+                slide1Desc: "نقدم أفضل حلول الإنترنت لجميع احتياجاتك الشخصية والتجارية بسرعات فائقة واستقرار متميز",
+                slide1Btn: "اكتشف منتجاتنا",
+                slide2Title: "خدمة عملاء على مدار الساعة",
+                slide2Desc: "فريق دعم فني متاح 24/7 لحل جميع مشاكلك الفنية وتقديم المساعدة الفورية",
+                slide2Btn: "تواصل معنا",
+                slide3Title: "أسرع شبكة إنترنت في المنطقة",
+                slide3Desc: "استمتع بأسرع اتصال بالإنترنت مع تقنيات الجيل الجديد وأعلى معدلات الاستقرار",
+                slide3Btn: "تعرف علينا",
+                productsTitle: "منتجاتنا",
+                product1Title: "إنترنت المنزل",
+                product1Desc: "حلول إنترنت عالية السرعة للمنازل مع خيارات متنوعة تناسب جميع الاحتياجات",
+                product2Title: "إنترنت الشركات",
+                product2Desc: "حلول متكاملة للشركات مع سرعات عالية وتقنيات متقدمة للاستخدام المكثف",
+                product3Title: "خدمات الألياف البصرية",
+                product3Desc: "أحدث تقنيات الألياف البصرية لتجربة إنترنت فائقة السرعة والاستقرار",
+                product4Title: "حلول التخزين السحابي",
+                product4Desc: "خدمات تخزين سحابي آمنة وموثوقة مع مساحات كبيرة وسهولة الوصول",
+                paketTitle: "باقاتنا",
+                paket1Title: "الباقة الذهبية",
+                paket1Feature1: "سرعة 24 ميغابت/ثانية",
+                paket1Feature2: "اتصال غير محدود",
+                paket1Feature3: "دعم فني على مدار الساعة",
+                paket1Feature4: "أجهزة راوتر مجانية",
+                paket1Feature5: "أولوية في الخدمة",
+                paket2Title: "الباقة الفضية",
+                paket2Feature1: "سرعة 16 ميغابت/ثانية",
+                paket2Feature2: "اتصال غير محدود",
+                paket2Feature3: "دعم فني على مدار الساعة",
+                paket2Feature4: "أجهزة راوتر مجانية",
+                paket2Feature5: "خدمة فنية في 24 ساعة",
+                paket3Title: "الباقة البرونزية",
+                paket3Feature1: "سرعة 8 ميغابت/ثانية",
+                paket3Feature2: "اتصال غير محدود",
+                paket3Feature3: "دعم فني على مدار الساعة",
+                paket3Feature4: "أجهزة راوتر مجانية",
+                paket3Feature5: "خدمة فنية في 48 ساعة",
+                aboutTitle: "من نحن",
+                aboutSubtitle: "شركة إنترنت الرائدة في مجال الاتصالات",
+                aboutDesc1: "تأسست شركة إنترنت عام 2010 بهدف تقديم حلول إنترنت متطورة وخدمات اتصالات عالية الجودة للعملاء في جميع أنحاء المنطقة. نحن نؤمن بأن الإنترنت هو حق أساسي للجميع، ونسعى جاهدين لتوفير خدمات متميزة بأسعار تنافسية.",
+                aboutDesc2: "مع أكثر من 10 سنوات من الخبرة، استطعنا بناء شبكة قوية وبنية تحتية متطورة تغطي معظم الأماكن في منطقة الريحانية التركية، مما يضمن لعملائنا تجربة إنترنت سلسة ومستقرة على مدار الساعة.",
+                aboutDesc3: "فريقنا المؤهل والمدرب يعمل بجد لتقديم أفضل الخدمات والدعم الفني للعملاء، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية.",
+                stat1Title: "سنوات من الخبرة",
+                stat2Title: "عميل راضٍ",
+                stat3Title: "رضا العملاء",
+                contactTitle: "التواصل معنا",
+                contactSubtitle: "ابقى على تواصل",
+                contactAddressTitle: "العنوان",
+                contactAddress: "الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.",
+                contactPhoneTitle: "الهاتف",
+                contactPhone1: "+90 552 288 61 12",
+                contactPhone2: "+90 538 889 99 19",
+                contactEmailTitle: "البريد الإلكتروني",
+                contactEmail1: "goldennet420420@gmail.com",
+                contactHoursTitle: "ساعات العمل",
+                contactHours1: "الأثنين - السبت: 10 صباحاً - 6 مساءً",
+                contactHours2: "الأحد : إجازة",
+                contactFormTitle: "أرسل لنا رسالة",
+                formNameLabel: "الاسم الكامل",
+                formEmailLabel: "البريد الإلكتروني",
+                formPhoneLabel: "رقم الهاتف",
+                formMessageLabel: "الرسالة",
+                formSubmitBtn: "إرسال الرسالة",
+                footerCompanyName: "شركة إنترنت",
+                footerDesc: "نقدم حلول إنترنت متطورة وخدمات اتصالات عالية الجودة لعملائنا في جميع أنحاء المنطقة، مع التركيز على الابتكار والتطوير المستمر.",
+                footerLinks1Title: "روابط سريعة",
+                footerHomeLink: "الصفحة الرئيسية",
+                footerProductsLink: "منتجاتنا",
+                footerPaketLink: "باقاتنا",
+                footerAboutLink: "من نحن",
+                footerContactLink: "التواصل",
+                footerLinks2Title: "منتجاتنا",
+                footerProduct1Link: "إنترنت المنزل",
+                footerProduct2Link: "إنترنت الشركات",
+                footerProduct3Link: "الألياف البصرية",
+                footerProduct4Link: "التخزين السحابي",
+                footerProduct5Link: "حلول الأمان",
+                footerLinks3Title: "الدعم",
+                footerHelpLink: "مركز المساعدة",
+                footerSupportLink: "الدعم الفني",
+                footerTermsLink: "الشروط والأحكام",
+                footerPrivacyLink: "سياسة الخصوصية",
+                copyrightText: "جميع الحقوق محفوظة &copy; 2023 شركة إنترنت للاتصالات",
+                moreProductsBtn: "عرض الباقات"
+            },
+            tr: {
+                navProducts: "Ürünlerimiz",
+                navPaket: "Paketlerimiz",
+                navAbout: "Hakkımızda",
+                navContact: "İletişim",
+                slide1Title: "Gelişmiş İnternet Çözümleri",
+                slide1Desc: "Kişisel ve ticari tüm ihtiyaçlarınız için yüksek hızda ve istikrarlı en iyi internet çözümlerini sunuyoruz",
+                slide1Btn: "Ürünlerimizi Keşfedin",
+                slide2Title: "7/24 Müşteri Hizmetleri",
+                slide2Desc: "Teknik sorunlarınızı çözmek ve anında yardım sağlamak için 7/24 teknik destek ekibimiz hazırdır",
+                slide2Btn: "Bizimle İletişime Geçin",
+                slide3Title: "Bölgenin En Hızlı İnternet Ağı",
+                slide3Desc: "Yeni nesil teknolojiler ve en yüksek istikrar oranlarıyla süper hızlı internet bağlantısının keyfini çıkarın",
+                slide3Btn: "Bizi Tanıyın",
+                productsTitle: "Ürünlerimiz",
+                product1Title: "Ev İnterneti",
+                product1Desc: "Tüm ihtiyaçlara uygun çeşitli seçeneklerle evler için yüksek hızlı internet çözümleri",
+                product2Title: "İş İnterneti",
+                product2Desc: "Yoğun kullanım için yüksek hızlar ve gelişmiş teknolojilerle işletmeler için entegre çözümler",
+                product3Title: "Fiber Optik Hizmetler",
+                product3Desc: "Süper hızlı ve istikrarlı internet deneyimi için en son fiber optik teknolojileri",
+                product4Title: "Bulut Depolama Çözümleri",
+                product4Desc: "Geniş alanlar ve kolay erişimle güvenli ve güvenilir bulut depolama hizmetleri",
+                paketTitle: "Paketlerimiz",
+                paket1Title: "Altın Paket",
+                paket1Feature1: "24 Mbps hız",
+                paket1Feature2: "Sınırsız bağlantı",
+                paket1Feature3: "7/24 teknik destek",
+                paket1Feature4: "Ücretsiz router",
+                paket1Feature5: "Öncelikli servis",
+                paket2Title: "Gümüş Paket",
+                paket2Feature1: "16 Mbps hız",
+                paket2Feature2: "Sınırsız bağlantı",
+                paket2Feature3: "7/24 teknik destek",
+                paket2Feature4: "Ücretsiz router",
+                paket2Feature5: "24 saat içinde servis",
+                paket3Title: "Bronz Paket",
+                paket3Feature1: "8 Mbps hız",
+                paket3Feature2: "Sınırsız bağlantı",
+                paket3Feature3: "7/24 teknik destek",
+                paket3Feature4: "Ücretsiz router",
+                paket3Feature5: "48 saat içinde servis",
+                aboutTitle: "Hakkımızda",
+                aboutSubtitle: "İletişim Sektöründe Lider İnternet Şirketi",
+                aboutDesc1: "İnternet Şirketi, 2010 yılında bölgenin her yerindeki müşterilere gelişmiş internet çözümleri ve yüksek kaliteli iletişim hizmetleri sunmak amacıyla kurulmuştur. İnternetin herkes için temel bir hak olduğuna inanıyoruz ve rekabetçi fiyatlarla üstün hizmetler sunmak için çalışıyoruz.",
+                aboutDesc2: "10 yılı aşkın deneyimimizle, müşterilerimize 7/24 sorunsuz ve istikrarlı bir internet deneyimi sağlayan güçlü bir ağ ve gelişmiş altyapı inşa ettik.",
+                aboutDesc3: "200'den fazla nitelikli ve eğitimli personelden oluşan ekibimiz, yeniliğe ve sürekli gelişime odaklanarak müşterilere en iyi hizmetleri ve teknik desteği sunmak için çalışmaktadır.",
+                stat1Title: "Yıllık Deneyim",
+                stat2Title: "Memnun Müşteri",
+                stat3Title: "Müşteri Memnuniyeti",
+                contactTitle: "Bizimle İletişime Geçin",
+                contactSubtitle: "İletişimde Kalın",
+                contactAddressTitle: "Adres",
+                contactAddress: "Reyhanlı, Hatay, Şok kavşağından sonra ana cadde, Dominos Pizza karşısı",
+                contactPhoneTitle: "Telefon",
+                contactPhone1: "+90 552 288 61 12",
+                contactPhone2: "+90 538 889 99 19",
+                contactEmailTitle: "E-posta",
+                contactEmail1: "goldennet420420@gmail.com",
+                contactHoursTitle: "Çalışma Saatleri",
+                contactHours1: "Pazartesi - Cumartesi: 10:00 - 18:00",
+                contactHours2: "Pazar: Kapalı",
+                contactFormTitle: "Bize Mesaj Gönderin",
+                formNameLabel: "Tam Adınız",
+                formEmailLabel: "E-posta Adresiniz",
+                formPhoneLabel: "Telefon Numaranız",
+                formMessageLabel: "Mesajınız",
+                formSubmitBtn: "Mesajı Gönder",
+                footerCompanyName: "İnternet Şirketi",
+                footerDesc: "Bölgenin her yerindeki müşterilerimize yenilik ve sürekli gelişime odaklanarak gelişmiş internet çözümleri ve yüksek kaliteli iletişim hizmetleri sunuyoruz.",
+                footerLinks1Title: "Hızlı Bağlantılar",
+                footerHomeLink: "Ana Sayfa",
+                footerProductsLink: "Ürünlerimiz",
+                footerPaketLink: "Paketlerimiz",
+                footerAboutLink: "Hakkımızda",
+                footerContactLink: "İletişim",
+                footerLinks2Title: "Ürünlerimiz",
+                footerProduct1Link: "Ev İnterneti",
+                footerProduct2Link: "İş İnterneti",
+                footerProduct3Link: "Fiber Optik",
+                footerProduct4Link: "Bulut Depolama",
+                footerProduct5Link: "Güvenlik Çözümleri",
+                footerLinks3Title: "Destek",
+                footerHelpLink: "Yardım Merkezi",
+                footerSupportLink: "Teknik Destek",
+                footerTermsLink: "Şartlar ve Koşullar",
+                footerPrivacyLink: "Gizlilik Politikası",
+                copyrightText: "Tüm Hakları Saklıdır &copy; 2023 İnternet İletişim Şirketi",
+                moreProductsBtn: "Paketleri Görüntüle"
+            }
+        };
+
+        // دالة تغيير اللغة
+        function changeLanguage(lang) {
+            // تحديث اتجاه الصفحة
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // تحديث أزرار اللغة
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // تحديث جميع النصوص
+            Object.keys(translations[lang]).forEach(key => {
+                const elements = document.querySelectorAll(`[id="${key}"]`);
+                if (elements.length > 0) {
+                    elements.forEach(element => {
+                        element.textContent = translations[lang][key];
+                    });
+                }
+            });
+        }
+
+        // سكريبت السلايدر
+        document.addEventListener('DOMContentLoaded', function() {
+            // عناصر السلايدر
+            const slides = document.querySelector('.slides');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            const slideCount = dots.length;
+            
+            // دالة تغيير الشريحة
+            function goToSlide(slideIndex) {
+                slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[slideIndex].classList.add('active');
+                currentSlide = slideIndex;
+            }
+            
+            // النقر على نقاط التنقل
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToSlide(index));
+            });
+            
+            // تغيير الشريحة تلقائياً كل 5 ثوانٍ
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slideCount;
+                goToSlide(currentSlide);
+            }, 5000);
+            
+            // تأثير التمرير السلس للروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // تغيير اللغة عند النقر على الأزرار
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    changeLanguage(btn.dataset.lang);
+                });
+            });
+            
+            // تهيئة الترجمات
+            changeLanguage('ar');
+        });
+    </script>
+</body>
+</html>
