@@ -1,7 +1,7 @@
 /* متغيرات الألوان */
 :root {
     --primary: #101010;
-    --secondary: #9cb454;
+    --secondary: #efb730;
     --accent: #e74c3c;
     --light: #ecf0f1;
     --dark: #2c3e50;
@@ -712,61 +712,5 @@ footer {
     
     .slider-section {
         height: 400px;
-    }
-
-
-/* Floating WhatsApp Button - Fixed Position */
-.whatsapp-float {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    background-color: var(--secondary) !important;
-    color: white !important;
-    border-radius: 50px !important;
-    padding: 15px 20px !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
-    transition: all 0.3s ease !important;
-    z-index: 1001 !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    max-width: 200px !important;
-    border: none !important;
-}
-
-.whatsapp-float:hover {
-    background-color: #25D366 !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4) !important;
-    color: white !important;
-}
-
-.whatsapp-float i {
-    font-size: 1.2rem !important;
-}
-
-.whatsapp-float span {
-    white-space: nowrap !important;
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-    .whatsapp-float {
-        bottom: 15px !important;
-        right: 15px !important;
-        padding: 0 !important;
-        font-size: 1.2rem !important;
-        border-radius: 50% !important;
-        width: 60px !important;
-        height: 60px !important;
-        justify-content: center !important;
-        max-width: none !important;
-    }
-    
-    .whatsapp-float span {
-        display: none !important;
     }
 }
