@@ -5,7 +5,7 @@
 
 
 
-
+<!--
 
 
 <!DOCTYPE html>
@@ -944,7 +944,7 @@
     </style>
 </head>
 <body dir="rtl">
-    <!-- الهيدر -->
+ 
     <header>
         <div class="header-container">
             <div class="logo">
@@ -964,7 +964,6 @@
         </div>
     </header>
 
-    <!-- السلايدر -->
     <section class="slider-section">
         <div class="slides">
             <div class="slide slide-1" >
@@ -996,7 +995,7 @@
         </div>
     </section>
 
-    <!-- قسم المنتجات -->
+
     <section id="products" class="products-section">
         <div class="section-title">
             <h2 id="productsTitle">منتجاتنا</h2>
@@ -1032,8 +1031,7 @@
             </div>
         </div>
         
-        <!-- تم إضافة زر المزيد هنا -->
-     
+       
         <section id="paket" class="paket-section">
             <div class="section-title">
                 <h2 id="paketTitle">باقاتنا</h2>
@@ -1108,7 +1106,7 @@
         </section>
     
 
-    <!-- قسم من نحن -->
+
     <section id="about" class="about-section">
         <div class="section-title">
             <h2 id="aboutTitle">من نحن</h2>
@@ -1139,7 +1137,7 @@
         </div>
     </section>
 
-    <!-- قسم التواصل -->
+    
     <section id="contact" class="contact-section">
         <div class="section-title">
             <h2 id="contactTitle">التواصل معنا</h2>
@@ -1220,7 +1218,7 @@
         </div>
     </section>
 
-    <!-- الفوتر -->
+   
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
@@ -1273,7 +1271,7 @@
         </div>
     </footer>
 
-    <!-- صفحة المنتجات (مخفية في البداية) -->
+
     <div id="products-page" style="display: none;">
         <section class="page-header">
             <div class="container">
@@ -1708,3 +1706,1719 @@
     </script>
 </body>
 </html>
+
+-->
+
+
+<!DOCTYPE html>
+<h1 data-i18n="companyName">GOLDEN NET</h1>
+<link rel="stylesheet" href="style.css">
+ِ<html lang="ar" dir="rtl">
+
+<head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة إنترنت | الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body dir="rtl">
+    <!-- زر العودة لأعلى الصفحة -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/LOGOG.png" alt="شعار الشركة">
+                <h1 id="companyName">GOLDEN<span> NET</span></h1>
+            </div>
+            <div class="nav-links">
+                <div class="languages">
+                    <button class="lang-btn active" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
+                <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
+                <a href="#products" id="navProducts">منتجاتنا</a>
+                <a href="#about" id="navAbout">من نحن</a>
+                <a href="#contact" id="navContact">التواصل</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- السلايدر -->
+    <section class="slider-section">
+        <div class="slides">
+            <div class="slide slide-1" >
+                <div class="slide-content">
+                    <h2 id="slide1Title">حلول إنترنت متقدمة</h2>
+                    <p id="slide1Desc">نقدم أفضل حلول الإنترنت لجميع احتياجاتك الشخصية والتجارية بسرعات فائقة واستقرار متميز</p>
+                    <a href="#products" class="btn" id="slide1Btn">اكتشف منتجاتنا</a>
+                </div>
+            </div>
+            <div class="slide slide-2">
+                <div class="slide-content">
+                    <h2 id="slide2Title">خدمة عملاء على مدار الساعة</h2>
+                    <p id="slide2Desc">فريق دعم فني متاح 24/7 لحل جميع مشاكلك الفنية وتقديم المساعدة الفورية</p>
+                    <a href="#contact" class="btn" id="slide2Btn">تواصل معنا</a>
+                </div>
+            </div>
+            <div class="slide slide-3">
+                <div class="slide-content">
+                    <h2 id="slide3Title">أسرع شبكة إنترنت في المنطقة</h2>
+                    <p id="slide3Desc">استمتع بأسرع اتصال بالإنترنت مع تقنيات الجيل الجديد وأعلى معدلات الاستقرار</p>
+                    <a href="#about" class="btn" id="slide3Btn">تعرف علينا</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-nav">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section id="products" class="products-section">
+        <div class="section-title">
+            <h2 id="productsTitle">مستلزماتنا</h2>
+        </div>
+        <div class="products-container">
+            <div class="product floating-animation">
+                <div class="product-img" style="background-image: url(images/ubiquiti-lte-m5-23-1.png);"></div>
+                <div class="product-content">
+                    <h3 id="product1Title">صحن UBNT </h3>
+                    <p id="product1Desc">صحن استقبال جديد وعالي الجودة</p>
+                <h4    class="btn" id="fiat"> 2500 ليرة تركية </h4>
+                </div>
+            </div>
+            <div class="product floating-animation delay-1">
+                <div class="product-img" style="background-image: url('images/EWR_F303_05.jpg');"></div>
+                <div class="product-content">
+                    <h3 id="product2Title">راوتر EVEREST</h3>
+                    <p id="product2Desc">موديل حديث مع تغطية قوية</p>
+                     <h4           class="btn"  id="fiat"> 800 ليرة تركية </h4>
+                </div>
+            </div>
+           
+            <div class="product floating-animation delay-3">
+                <div class="product-img" style="background-image: url('images/cat5-data-kablosu-cat5e-1-metre-d1c-03.webp');"></div>
+                <div class="product-content">
+                    <h3 id="product4Title">كبل انترنت KAT6 </h3>
+                    <p id="product4Desc">كابل إنترنت عالي الجودة</p>
+                    <h4  class="btn" id="fiat"> المتر 15 ليرة تركية</h4>
+                </div>
+            </div>
+
+             <div class="product floating-animation delay-2">
+                <div class="product-img" style="background-image: url('images/SPEED.jpg');"></div>
+                <div class="product-content">
+                    <h3 id="product3Title">الاشتراك الشهري</h3>
+                    <p id="product3Desc">اشتراك شهري مفعّل مباشرة بعد التركيب
+                         <h4           class="btn"  id="fiat"> الباقات </h4>
+</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم الباقات -->
+        <section id="paket" class="paket-section">
+            <div class="section-title">
+                <h2 id="paketTitle">الباقات</h2>
+            </div>
+            <div class="paket-container">
+                <div class="paket-item">
+                    <div class="paket-header">
+                        <h3 id="paket1Title">الباقة الذهبية</h3>
+                        <p id="q3">للأسر التي تبحث عن السرعة الفائقة</p>
+                        <div  id="paketprice1" class="paket-price">₺500 <span>/شهرياً</span></div>
+                    </div>
+                    <div class="paket-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket1Feature1">سرعة 24 ميغابت/ثانية</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket1Feature2">اتصال غير محدود</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket1Feature3">دعم فني على مدار الساعة</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket1Feature5">أولوية في الخدمة</span></li>
+                        </ul>
+                    </div>
+                    <div class="paket-action">
+                        <a href="https://wa.me/905522886112?text=مرحبًا، أود الاشتراك في الباقة الذهبية"  id="tr1" class="btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> طلب الخدمة عبر واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="paket-item">
+                    <div class="paket-header">
+                        <h3 id="paket2Title">الباقة الفضية</h3>
+                        <p id="q2">للأسر المتوسطة الاستخدام</p>
+                        <div  id="paketprice2" class="paket-price">₺450 <span>/شهرياً</span></div>
+                    </div>
+                    <div class="paket-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket2Feature1">سرعة 16 ميغابت/ثانية</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket2Feature2">اتصال غير محدود</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket2Feature3">دعم فني على مدار الساعة</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket2Feature5">خدمة فنية في 24 ساعة</span></li>
+                        </ul>
+                    </div>
+                    <div class="paket-action">
+                        <a href="https://wa.me/905522886112?text=مرحبًا، أود الاشتراك في الباقة الفضية"  id="tr3"  class="btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> طلب الخدمة عبر واتساب
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="paket-item">
+                    <div class="paket-header">
+                        <h3 id="paket3Title">الباقة البرونزية</h3>
+                        <p id="q1">للأسر محدودة الاستخدام</p>
+                        <div id="paketprice3" class="paket-price">₺400 <span>/شهرياً</span></div>
+                    </div>
+                    <div class="paket-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket3Feature1">سرعة 8 ميغابت/ثانية</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket3Feature2">اتصال غير محدود</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket3Feature3">دعم فني على مدار الساعة</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="paket3Feature5">خدمة فنية في 48 ساعة</span></li>
+                        </ul>
+                    </div>
+                    <div class="paket-action">
+                        <a href="https://wa.me/905522886112?text=مرحبًا، أود الاشتراك في الباقة البرونزية"  id="tr2" class="btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> طلب الخدمة عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="special-offer" class="special-offer-section">
+    <div class="section-title">
+        <h2 id="specialOfferTitle">عرض خاص من GOLDEN NET</h2>
+    </div>
+    <div class="container">
+        <div class="special-offer-box">
+            <div class="offer-header">
+                <h3 id="offerHeader">تركيب جاهز شامل كل شيء!</h3>
+                
+                <div class="offer-tag">
+                    <span id="offerTag">وفر 1001 ليرة!</span>
+                </div>
+            </div>
+            
+            <div class="offer-content">
+                <div class="offer-features">
+                    <h4 id="offerIncludes">العرض يشمل:</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span id="feature1">صحن استقبال عالي الجودة بقيمة 2500 ليرة</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="feature2">راوتر حديث بتغطية قوية بقيمة 800 ليرة</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="feature3">كابل إنترنت عالي الجودة (حتى 25 متر)</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="feature4">الاشتراك الشهري للإنترنت</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span id="feature5">أجور التركيب مجانية بالكامل</span></li>
+                    </ul>
+                </div>
+                
+                <div class="offer-guarantee">
+                    <p><i class="fas fa-shield-alt"></i> <span id="guaranteeText">جميع الأجهزة جديدة 100% ومضمونة</span></p>
+                </div>
+                <div class="offer-price">
+                    <span id="originalPrice">السعر العادي: 5000 ليرة</span>
+                    <span id="discountPrice">السعر الخاص: 3999 ليرة</span>
+                </div>
+                <div class="offer-cta">
+                    <p class="urgent-message" id="urgentMessage">سارع بالحجز الآن - الكمية محدودة والعرض ساري لفترة قصيرة فقط!</p>
+                    <div class="cta-buttons">
+                        <a href="tel:+905522886112" class="btn call-btn">
+                            <i class="fas fa-phone"></i> <span id="callNow">اتصل الآن</span>
+                        </a>
+                        <a href="https://wa.me/905522886112?text=أود الحصول على العرض الخاص لتركيب الإنترنت                                
+İnternet Kurulumu İçin Özel Teklifi Almak İstiyorum" class="btn whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> <span id="whatsappOrder">اطلب عبر واتساب</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section id="central-network-offer" class="special-offer-section">
+    <div class="section-title">
+        <h2 id="centralOfferTitle">عرض المباني المتصلة بالشبكة المركزية</h2>
+    </div>
+    <div class="container">
+        <div class="special-offer-box network-offer">
+            <div class="offer-header">
+                <h3 id="centralOfferHeader">عرض خاص للمباني المتصلة بشبكتنا المركزية</h3>
+                <div class="offer-price">
+                    
+                </div>
+                <div class="offer-tag">
+                    <span id="centralOfferTag">وفر 401 ليرة!</span>
+                </div>
+            </div>
+            
+            <div class="offer-content">
+                <div class="offer-features">
+                    <h4 id="centralOfferIncludes">الباقة تشمل:</h4>
+                    <ul>
+                        <li><i class="fas fa-wifi"></i> <span id="centralFeature1">راوتر حديث بتغطية قوية</span></li>
+                        <li><i class="fas fa-network-wired"></i> <span id="centralFeature2">كابل إنترنت عالي الجودة (حتى 25 متر)</span></li>
+                        <li><i class="fas fa-calendar-alt"></i> <span id="centralFeature3">اشتراك شهري للإنترنت</span></li>
+                        <li><i class="fas fa-tools"></i> <span id="centralFeature4">تركيب مجاني بالكامل</span></li>
+                        <li><i class="fas fa-times-circle"></i> <span id="centralFeature5">لا حاجة لتركيب صحن استقبال</span></li>
+                    </ul>
+                </div>
+                
+                <div class="offer-guarantee">
+                    <p><i class="fas fa-shield-alt"></i> <span id="centralGuaranteeText">جميع الأجهزة جديدة 100% ومضمونة</span></p>
+                </div>
+                <div class="offer-price">
+                    <span id="originalPrice1">السعر العادي: 2000 ليرة</span>
+                    <span id="discountPrice1">السعر الخاص: 1599 ليرة</span>
+                </div>
+                
+                <div class="offer-notice">
+                    <p><i class="fas fa-info-circle"></i> <span id="centralNoticeText">هذا العرض متاح فقط للمباني المرتبطة بشبكة Golden Net المركزية</span></p>
+                </div>
+                
+                <div class="offer-cta">
+                    <p class="urgent-message" id="centralUrgentMessage">سارع بالاشتراك الآن - العرض حصري للمباني المتصلة!</p>
+                    <div class="cta-buttons">
+                        <a href="tel:+905522886112" class="btn call-btn">
+                            <i class="fas fa-phone"></i> <span id="centralCallNow">اتصل للتحقق من التغطية</span>
+                        </a>
+                        <a href="https://wa.me/905522886112?text=أريد الاشتراك في باقة المباني المتصلة بالشبكة المركزية" class="btn whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> <span id="centralWhatsappOrder">اشترك عبر واتساب</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم خريطة الريحانية -->
+<section id="location-map" class="map-section">
+    <div class="section-title">
+        <h2 id="mapTitle">خريطة تغطيتنا في الريحانية</h2>
+        <p id="mapSubtitle">تعرف على مناطق تغطية شبكتنا وأقرب نقطة خدمة لك</p>
+    </div>
+    
+    <div class="map-container">
+        <div id="reyhanliMap" style="height: 700px; width: 100%; border-radius: 10px;"></div>
+        
+        <div class="map-legend">
+            <div class="legend-item">
+                <span class="legend-icon" style="background-color: #efb730;"></span>
+                <span id="legend1">المكتب الرئيسي</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-icon" style="background-color: #e74c3c;"></span>
+                <span id="legend2">أبراج الإرسال</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-icon" style="background-color: #3498db;"></span>
+                <span id="legend3">المخدم المركزي</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="map-note">
+        <i class="fas fa-info-circle"></i>
+        <p id="mapNote">يمكنك النقر على العلامات لمعرفة تفاصيل النقاط الخدمية</p>
+    </div>
+</section>
+    <!---ttttt--->
+    
+</section>
+</section>
+
+    <!-- قسم الأسئلة الشائعة -->
+    <section id="faq" class="faq-section">
+        <div class="section-title">
+            <h2 id="faqTitle">الأسئلة الشائعة</h2>
+        </div>
+        <div class="container">
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 id="faq1Question">كيف يمكنني الاشتراك في خدمة الإنترنت؟</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq1Answer">يمكنك الاشتراك عن طريق الاتصال بنا على الأرقام المذكورة أو زيارة مقر الشركة. كما يمكنك طلب الخدمة عبر الواتساب من خلال النقر على أيقونة الواتساب في صفحة الباقات.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 id="faq2Question">ما هي مدة تركيب الخدمة بعد الطلب؟</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq2Answer">عادة ما يتم التركيب خلال 24-48 ساعة من تقديم الطلب، حسب توفر الفنيين في منطقتك.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 id="faq3Question">هل هناك عقد ملزم لفترة معينة؟</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq3Answer">لا، خدمتنا شهرية ويمكنك إيقافها في أي وقت دون أي التزامات.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 id="faq4Question">ما هي وسائل الدفع المتاحة؟</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq4Answer">يمكنك الدفع نقداً عند التركيب أو عبر التحويل البنكي. كما نقدم خدمة الدفع الإلكتروني قريباً.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم آراء العملاء -->
+    <section class="testimonials-section">
+        <div class="section-title">
+            <h2 id="testimonialsTitle">آراء عملائنا</h2>
+        </div>
+        <div class="container">
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p id="testimonial1Text">"خدمة ممتازة وسرعة إنترنت عالية جداً مقارنة بالشركات الأخرى في المنطقة. فريق الدعم الفني متجاوب جداً."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="صورة العميل">
+                        <h4>أحمد محمد</h4>
+                        <p>عميل منذ 2020</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p id="testimonial2Text">"أشكر شركة جولدن نت على الخدمة المتميزة والدعم الفني السريع. أنصح الجميع بالتعامل معهم."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="صورة العميل">
+                        <h4>سارة علي</h4>
+                        <p>عميلة منذ 2021</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p id="testimonial3Text">"بعد تجربة عدة شركات، وجدت أن جولدن نت تقدم أفضل خدمة من حيث السرعة والاستقرار في المنطقة."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="صورة العميل">
+                        <h4>خالد عبدالله</h4>
+                        <p>عميل منذ 2019</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم من نحن -->
+    <section id="about" class="about-section">
+        <div class="section-title">
+            <h2 id="aboutTitle">من نحن</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h2 id="aboutSubtitle">شركة إنترنت الرائدة في مجال الاتصالات</h2>
+                <p id="aboutDesc1">تأسست شركة إنترنت عام 2015 بهدف تقديم حلول إنترنت متطورة وخدمات اتصالات عالية الجودة للعملاء في جميع أنحاء المنطقة. نحن نؤمن بأن الإنترنت هو حق أساسي للجميع، ونسعى جاهدين لتوفير خدمات متميزة بأسعار تنافسية.</p>
+                <p id="aboutDesc2">مع أكثر من 10 سنوات من الخبرة، استطعنا بناء شبكة قوية وبنية تحتية متطورة تغطي معظم الأماكن في منطقة الريحانية التركية، مما يضمن لعملائنا تجربة إنترنت سلسة ومستقرة على مدار الساعة.</p>
+                <p id="aboutDesc3">فريقنا المؤهل والمدرب يعمل بجد لتقديم أفضل الخدمات والدعم الفني للعملاء، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية.</p>
+                
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p id="stat1Title">سنوات من الخبرة</p>
+                    </div>
+                    <div class="stat">
+                        <h3>700+</h3>
+                        <p id="stat2Title">عميل راضٍ</p>
+                    </div>
+                    <div class="stat">
+                        <h3>95%</h3>
+                        <p id="stat3Title">رضا العملاء</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img"></div>
+        </div>
+    </section>
+ <!-- قسم التواصل -->
+<section id="contact" class="contact-section">
+    <div class="section-title">
+        <h2 id="contactTitle">التواصل معنا</h2>
+    </div>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2 id="contactSubtitle">ابقى على تواصل</h2>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactAddressTitle">العنوان</h3>
+                    <p id="contactAddress">
+                        <a href="https://maps.google.com?q=36.252439,36.569930" target="_blank" class="contact-link map-link">
+                            <span id="addressText">الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.</span>
+                            <i class="fas fa-external-link-alt external-icon"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactPhoneTitle">الهاتف</h3>
+                    <div class="phone-links">
+                        <p id="contactPhone1">
+                            <a href="tel:+905522886112" class="contact-link phone-link">
+                                <span id="phone1Text">+90 552 288 61 12</span>
+                                <i class="fas fa-phone phone-icon"></i>
+                            </a>
+                            <a href="https://wa.me/905522886112" class="contact-link whatsapp-link" target="_blank">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span class="link-label">Whatsapp</span>
+                            </a>
+                        </p>
+                        <p id="contactPhone2">
+                            <a href="tel:+905388899919" class="contact-link phone-link">
+                                <span id="phone2Text">+90 538 889 99 19</span>
+                                <i class="fas fa-phone phone-icon"></i>
+                            </a>
+                            <a href="https://wa.me/905388899919" class="contact-link whatsapp-link" target="_blank">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span class="link-label">Whatsapp</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactEmailTitle">البريد الإلكتروني</h3>
+                    <p id="contactEmail1">
+                        <a href="mailto:goldennet420420@gmail.com" class="contact-link email-link">
+                            <span>goldennet420420@gmail.com</span>
+                            <i class="fas fa-envelope email-icon"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactHoursTitle">ساعات العمل</h3>
+                    <p id="contactHours1">الأثنين - السبت: 10 صباحاً - 6 مساءً</p>
+                    <p id="contactHours2">الأحد: إجازة</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h3 id="contactFormTitle">أرسل لنا رسالة</h3>
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="name" id="formNameLabel">الاسم الكامل</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
+                    <input type="tel" id="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" id="formMessageLabel">الرسالة</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn" id="formSubmitBtn">
+                    <span>إرسال الرسالة</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h3 id="footerCompanyName">شركة إنترنت</h3>
+                <p id="footerDesc">نقدم حلول إنترنت متطورة وخدمات اتصالات عالية الجودة لعملائنا في جميع أنحاء المنطقة، مع التركيز على الابتكار والتطوير المستمر.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4 id="footerLinks1Title">روابط سريعة</h4>
+                <ul>
+                    <li><a href="#faq" id="footerFaqLink">الأسئلة الشائعة</a></li>
+                    <li><a href="#products" id="footerProductsLink">مستلزماتنا</a></li>
+                    <li><a href="#about" id="footerAboutLink">من نحن</a></li>
+                    <li><a href="#contact" id="footerContactLink">التواصل</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4 id="footerLinks2Title">منتجاتنا</h4>
+                <ul>
+                    <li><a href="#" id="footerProduct1Link">صحن UBNT </a></li>
+                    <li><a href="#" id="footerProduct2Link">إنترنت الشركات</a></li>
+                    <li><a href="#" id="footerProduct3Link">الألياف البصرية</a></li>
+                    <li><a href="#" id="footerProduct4Link">التخزين السحابي</a></li>
+                    <li><a href="#" id="footerProduct5Link">حلول الأمان</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4 id="footerLinks3Title">الدعم</h4>
+                <ul>
+                    <li><a href="#" id="footerHelpLink">مركز المساعدة</a></li>
+                    <li><a href="#" id="footerSupportLink">الدعم الفني</a></li>
+                    <li><a href="#" id="footerTermsLink">الشروط والأحكام</a></li>
+                    <li><a href="#" id="footerPrivacyLink">سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p id="copyrightText">جميع الحقوق محفوظة &copy; 2023 شركة إنترنت للاتصالات</p>
+        </div>
+    </footer>
+
+    <!-- صفحة المنتجات (مخفية في البداية) -->
+    <div id="products-page" style="display: none;">
+        <section class="page-header">
+            <div class="container">
+                <h1 id="pageTitle">منتجاتنا</h1>
+                <p id="pageSubtitle">اكتشف جميع حلولنا المبتكرة والخدمات المتميزة</p>
+            </div>
+        </section>
+
+        <section class="products-page-section">
+            <div class="container">
+                <div class="products-grid">
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/ubiquiti-lte-m5-23-1.png');"></div>
+                        <div class="product-details">
+                            <h3 id="product1TitlePage">صحن UBNT</h3>
+                            <p id="product1DescPage">صحن استقبال جديد وعالي الجودة</p>
+                            <div class="product-price">$29.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/EWR_F303_05.jpg');"></div>
+                        <div class="product-details">
+                            <h3 id="product2TitlePage">إنترنت الشركات</h3>
+                            <p id="product2DescPage">حلول متكاملة للشركات مع سرعات عالية وتقنيات متقدمة للاستخدام المكثف</p>
+                            <div class="product-price">$79.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/Mimosa-N5-X25-Antenna-Image.png');"></div>
+                        <div class="product-details">
+                            <h3 id="product3TitlePage">خدمات الألياف البصرية</h3>
+                            <p id="product3DescPage">أحدث تقنيات الألياف البصرية لتجربة إنترنت فائقة السرعة والاستقرار</p>
+                            <div class="product-price">$49.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/cat5-data-kablosu-cat5e-1-metre-d1c-03.webp');"></div>
+                        <div class="product-details">
+                            <h3 id="product4TitlePage">حلول التخزين السحابي</h3>
+                            <p id="product4DescPage">خدمات تخزين سحابي آمنة وموثوقة مع مساحات كبيرة وسهولة الوصول</p>
+                            <div class="product-price">$19.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/network-security.jpg');"></div>
+                        <div class="product-details">
+                            <h3 id="product5TitlePage">حلول الأمن السيبراني</h3>
+                            <p id="product5DescPage">حماية شاملة لشبكتك وبياناتك من التهديدات الإلكترونية والاختراقات</p>
+                            <div class="product-price">$59.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/wifi-solutions.jpg');"></div>
+                        <div class="product-details">
+                            <h3 id="product6TitlePage">حلول الواي فاي المتقدمة</h3>
+                            <p id="product6DescPage">تغطية واسعة وأداء عالي للشبكات اللاسلكية في المنازل والشركات</p>
+                            <div class="product-price">$39.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/vpn.jpg');"></div>
+                        <div class="product-details">
+                            <h3 id="product7TitlePage">خدمات VPN المخصصة</h3>
+                            <p id="product7DescPage">اتصالات آمنة ومشفرة للوصول إلى المواقع والخدمات المحظورة</p>
+                            <div class="product-price">$14.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-img" style="background-image: url('images/backup.jpg');"></div>
+                        <div class="product-details">
+                            <h3 id="product8TitlePage">حلول النسخ الاحتياطي</h3>
+                            <p id="product8DescPage">حماية بياناتك الهامة مع حلول النسخ الاحتياطي الآلي والاستعادة</p>
+                            <div class="product-price">$24.99/شهرياً</div>
+                            <a href="#" class="btn">طلب الخدمة</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+
+    // تهيئة روابط الهاتف
+    document.querySelectorAll('.phone-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if(window.innerWidth <= 768) {
+                // على الجوال، اترك الرابط يعمل بشكل طبيعي
+                return true;
+            } else {
+                // على سطح المكتب، عرض رسالة بدلاً من الاتصال المباشر
+                e.preventDefault();
+                const phoneNumber = this.querySelector('span').textContent;
+                alert(`سيتم الاتصال بالرقم: ${phoneNumber}\n\nاضغط موافق للمتابعة أو انسخ الرقم للاتصال يدوياً.`);
+                return false;
+            }
+        });
+    });
+    
+    // إرسال النموذج
+    document.getElementById('messageForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // هنا يمكنك إضافة كود إرسال النموذج
+        alert('تم استلام رسالتك بنجاح، سنتواصل معك قريباً.');
+        this.reset();
+    });
+    
+    
+
+    
+// دالة تغيير اللغة مع تحسينات للروابط
+function changeLanguage(lang) {
+    // تحديث اتجاه الصفحة
+    document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    
+    // تحديث أزرار اللغة
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    
+    // تحديث جميع النصوص
+    Object.keys(translations[lang]).forEach(key => {
+        const element = document.getElementById(key);
+        if (element) {
+            element.textContent = translations[lang][key];
+        }
+    });
+    
+    // تحديث روابط الواتساب بناء على اللغة
+    document.querySelectorAll('.whatsapp-link').forEach(link => {
+        const number = link.dataset.number;
+        const message = lang === 'ar' ? 'مرحبًا، أود الاستفسار عن خدماتكم' : 
+                                      'Merhaba, hizmetleriniz hakkında bilgi almak istiyorum';
+        link.href = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    });
+}
+
+        
+ // دالة تغيير اللغة مع إعادة تحميل للغة العربية
+function changeLanguage(lang) {
+    // إذا كانت اللغة العربية، أعد تحميل الصفحة
+    if (lang === 'ar') {
+        window.location.reload();
+        return;
+    }
+    
+    // للغات الأخرى (مثل التركية)، استمر بدون إعادة تحميل
+    document.body.dir = 'ltr'; // اتجاه LTR للتركية
+    
+    // تحديث أزرار اللغة
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    
+    // تحديث النصوص من ملفات الترجمة
+    Object.keys(translations[lang]).forEach(key => {
+        const element = document.getElementById(key);
+        if (element) {
+            element.textContent = translations[lang][key];
+        }
+    });
+}
+
+
+        // دالة عرض صفحة المنتجات
+        function showProductsPage() {
+            document.getElementById('products-page').style.display = 'block';
+            document.querySelector('.slider-section').style.display = 'none';
+            document.querySelector('.products-section').style.display = 'none';
+            document.querySelector('.about-section').style.display = 'none';
+            document.querySelector('.contact-section').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            
+            // تحديث الترجمات لصفحة المنتجات
+            const lang = document.querySelector('.lang-btn.active').dataset.lang;
+            changeLanguage(lang);
+            
+            // التمرير لأعلى الصفحة
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        // دالة العودة للصفحة الرئيسية
+        function goToHomePage() {
+            document.getElementById('products-page').style.display = 'none';
+            document.querySelector('.slider-section').style.display = 'block';
+            document.querySelector('.products-section').style.display = 'block';
+            document.querySelector('.about-section').style.display = 'block';
+            document.querySelector('.contact-section').style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
+            
+            // التمرير لأعلى الصفحة
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // سكريبت السلايدر
+        document.addEventListener('DOMContentLoaded', function() {
+            // عناصر السلايدر
+            const slides = document.querySelector('.slides');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            const slideCount = dots.length;
+            
+            // دالة تغيير الشريحة
+            function goToSlide(slideIndex) {
+                slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[slideIndex].classList.add('active');
+                currentSlide = slideIndex;
+            }
+            
+            // النقر على نقاط التنقل
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToSlide(index));
+            });
+            
+            // تغيير الشريحة تلقائياً كل 5 ثوانٍ
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slideCount;
+                goToSlide(currentSlide);
+            }, 5000);
+            
+            // تأثير التمرير السلس للروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // تغيير اللغة عند النقر على الأزرار
+            // ربط أزرار تغيير اللغة
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        changeLanguage(btn.dataset.lang);
+    });
+});
+            
+            // إضافة زر العودة للصفحة الرئيسية في صفحة المنتجات
+            const productsHeader = document.querySelector('#products-page .page-header');
+            const backButton = document.createElement('a');
+            backButton.href = '#';
+            backButton.className = 'btn back-btn';
+            backButton.innerHTML = '<i class="fas fa-arrow-left"></i> العودة للصفحة الرئيسية';
+            backButton.style.position = 'absolute';
+            backButton.style.top = '20px';
+            backButton.style.left = '20px';
+            backButton.style.zIndex = '10';
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToHomePage();
+            });
+            productsHeader.appendChild(backButton);
+            
+            // تأثيرات الظهور عند التمرير
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // تأثير الهيدر عند التمرير
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // كود زر العودة لأعلى الصفحة
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+
+
+
+
+
+            const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.pageYOffset;
+  
+  // تأثير Parallax للخلفيات
+  document.querySelectorAll('.parallax-bg').forEach(el => {
+    const speed = parseFloat(el.dataset.speed) || 0.3;
+    const yPos = -(scrollPosition * speed);
+    el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+  });
+  
+  // تأثير Parallax للعناصر
+  parallaxElements.forEach(el => {
+    const speed = parseFloat(el.dataset.parallax);
+    const offset = el.offsetTop;
+    const height = el.offsetHeight;
+    const progress = (scrollPosition - offset + window.innerHeight) / (window.innerHeight + height);
+    
+    if (progress >= 0 && progress <= 1) {
+      const moveY = progress * 100 * speed;
+      const rotateY = progress * 20 * speed;
+      const scale = 1 + (progress * 0.1 * speed);
+      
+      el.style.transform = `perspective(1000px) translateY(${moveY}px) rotateY(${rotateY}deg) scale(${scale})`;
+    }
+  });
+});
+
+document.addEventListener('mousemove', (e) => {
+  document.documentElement.style.setProperty('--light-x', `${e.clientX}px`);
+  document.documentElement.style.setProperty('--light-y', `${e.clientY}px`);
+  
+  // تحديث تأثير الضوء على العناصر
+  document.querySelectorAll('.product, .paket-item, .testimonial').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    el.style.setProperty('--mouse-x', `${x}px`);
+    el.style.setProperty('--mouse-y', `${y}px`);
+  });
+});
+
+
+
+
+
+// تحسين أداء تأثيرات 3D
+function optimize3DPerformance() {
+  // تفعيل تسريع الأجهزة
+  document.querySelectorAll('[data-3d]').forEach(el => {
+    el.style.transformStyle = 'preserve-3d';
+    el.style.backfaceVisibility = 'hidden';
+    el.style.willChange = 'transform';
+  });
+  
+  // تقليل تأثيرات 3D عند فقدان التركيز
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      document.body.style.transformStyle = 'flat';
+    } else {
+      document.body.style.transformStyle = 'preserve-3d';
+    }
+  });
+  
+  // اكتشاف دعم WebGL
+  const canvas = document.createElement('canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  
+  if (!gl) {
+    console.log('WebGL غير مدعوم، تقليل تأثيرات 3D');
+    document.body.classList.add('no-webgl');
+  }
+}
+
+// أنماط للبدائل عند عدم دعم WebGL
+const fallbackStyles = document.createElement('style');
+fallbackStyles.innerHTML = `
+  .no-webgl [data-3d] {
+    transform: none !important;
+  }
+  
+  .no-webgl .product-3d .product-back {
+    display: none;
+  }
+  
+  .no-webgl .product-3d:hover .product-front {
+    transform: none !important;
+  }
+`;
+document.head.appendChild(fallbackStyles);
+
+
+
+
+
+
+
+
+
+
+
+
+    // كود تهيئة الخريطة
+    document.addEventListener('DOMContentLoaded', function() {
+        // إحداثيات مركز الريحانية
+        const reyhanliCoords = [36.2675, 36.5674];
+        
+        // تهيئة الخريطة
+       // في قسم تهيئة الخريطة
+const map = L.map('reyhanliMap', {
+    zoomControl: true,
+    maxZoom: 18,
+    minZoom: 12,
+    preferCanvas: true,
+    inertia: true,
+    inertiaDeceleration: 3000
+}).setView([36.255, 36.58], 13);
+
+// إضافة تأثيرات 3D للعلامات
+transmissionTowers.forEach(tower => {
+    const marker = L.marker(tower.coords, {
+        icon: L.divIcon({
+            className: 'custom-marker-3d',
+            html: `<div class="marker-container">
+                     <div class="marker-base"></div>
+                     <div class="marker-icon"><i class="fas fa-broadcast-tower"></i></div>
+                   </div>`,
+            iconSize: [40, 40]
+        }),
+        riseOnHover: true
+    }).addTo(map);
+    
+    // تأثير عند التمرير
+    marker.on('mouseover', function() {
+        this.setZIndexOffset(1000);
+        this._icon.classList.add('marker-hover');
+    });
+    
+    marker.on('mouseout', function() {
+        this._icon.classList.remove('marker-hover');
+    });
+});
+
+// أنماط العلامات 3D
+const style = document.createElement('style');
+style.innerHTML = `
+    .custom-marker-3d {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+    
+    .marker-container {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        transform-style: preserve-3d;
+        transition: all 0.3s ease;
+    }
+    
+    .marker-base {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: white;
+        border-radius: 50%;
+        bottom: 0;
+        left: 5px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transform: translateZ(-5px);
+    }
+    
+    .marker-icon {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #e74c3c;
+        font-size: 1.2em;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        transform: translateZ(5px);
+        transition: all 0.3s ease;
+    }
+    
+    .marker-hover .marker-icon {
+        transform: translateZ(10px) scale(1.2);
+        color: #efb730;
+    }
+`;
+
+});
+document.head.appendChild(style);
+    // في نهاية document ready
+window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    
+    // تأثير Parallax للخلفيات
+    document.querySelectorAll('.slide').forEach((slide, index) => {
+        slide.style.backgroundPositionY = `${50 - (scrollPosition - slide.offsetTop) * 0.1}%`;
+    });
+    
+    // تأثير Parallax للعناصر
+    document.querySelectorAll('.product, .paket-item').forEach((item, index) => {
+        const itemPosition = item.getBoundingClientRect().top;
+        const rotation = (itemPosition / window.innerHeight) * 10;
+        item.style.transform = `perspective(1000px) rotateY(${rotation}deg) translateY(-${rotation/2}px)`;
+    });
+});
+   
+
+
+   
+
+            
+            // كود لتشغيل قسم الأسئلة الشائعة
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // إغلاق جميع العناصر الأخرى
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // تبديل الحالة للعنصر الحالي
+                item.classList.toggle('active');
+            });
+        });
+
+            
+            // تهيئة الترجمات
+            changeLanguage('ar');
+        });
+    </script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+
+<script>
+
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            
+            // تأثيرات خاصة لكل قسم
+            if (entry.target.classList.contains('products-section')) {
+                entry.target.querySelectorAll('.product').forEach((product, i) => {
+                    product.style.transitionDelay = `${i * 0.1}s`;
+                    product.classList.add('float-in');
+                });
+            }
+            
+            if (entry.target.classList.contains('testimonials-section')) {
+                entry.target.querySelectorAll('.testimonial').forEach((testimonial, i) => {
+                    testimonial.style.transitionDelay = `${i * 0.15}s`;
+                    testimonial.classList.add('slide-in');
+                });
+            }
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+// إضافة أنماط للحركات
+const animationStyles = document.createElement('style');
+animationStyles.innerHTML = `
+    @keyframes floatIn {
+        0% { transform: translateY(50px) rotateY(30deg); opacity: 0; }
+        100% { transform: translateY(0) rotateY(0); opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+        0% { transform: translateX(50px) scale(0.9); opacity: 0; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    
+    .float-in {
+        animation: floatIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    
+    .slide-in {
+        animation: slideIn 0.6s ease-out forwards;
+    }
+    
+    section.animate-in {
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+`;
+
+
+
+// تأثيرات عند التمرير فوق العناصر
+document.querySelectorAll('a, button, .btn').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        element.style.transform = 'translateY(-3px) scale(1.05)';
+        element.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+    });
+    
+    element.addEventListener('mouseleave', () => {
+        element.style.transform = '';
+        element.style.boxShadow = '';
+    });
+});
+
+// تأثيرات الكتابة للعناوين
+function typeWriterEffect(element, text, speed) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// تطبيق تأثير الكتابة على العناوين الرئيسية
+document.querySelectorAll('.section-title h2').forEach(title => {
+    const text = title.textContent;
+    typeWriterEffect(title, text, 100);
+});
+
+
+// تأثيرات عند التمرير فوق العناصر
+document.querySelectorAll('a, button, .btn').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        element.style.transform = 'translateY(-3px) scale(1.05)';
+        element.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+    });
+    
+    element.addEventListener('mouseleave', () => {
+        element.style.transform = '';
+        element.style.boxShadow = '';
+    });
+});
+
+// تأثيرات الكتابة للعناوين
+function typeWriterEffect(element, text, speed) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// تطبيق تأثير الكتابة على العناوين الرئيسية
+document.querySelectorAll('.section-title h2').forEach(title => {
+    const text = title.textContent;
+    typeWriterEffect(title, text, 100);
+});
+
+document.head.appendChild(animationStyles);
+   // كود تهيئة الخريطة مع الإحداثيات المحدثة
+    document.addEventListener('DOMContentLoaded', function() {
+        // إحداثيات المكتب الرئيسي
+        const mainOfficeCoords = [36.252439, 36.569930];
+        
+        // تهيئة الخريطة
+        const map = L.map('reyhanliMap', {
+            zoomControl: true,
+            maxZoom: 18,
+            minZoom: 12
+        }).setView([36.255, 36.58], 13);
+        
+        // إضافة طبقة الخريطة الأساسية
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // إضافة علامة المكتب الرئيسي (تفتح عند النقر فقط)
+        const mainOffice = L.marker(mainOfficeCoords, {
+            icon: L.divIcon({
+                className: 'custom-marker',
+                html: '<i class="fas fa-building" style="color: #efb730; font-size: 1.3em;"></i>',
+                iconSize: [32, 32]
+            }),
+            title: "المكتب الرئيسي - Golden Net",
+            zIndexOffset: 1000
+        }).addTo(map);
+        
+        mainOffice.bindPopup(`
+            <div style="text-align: right; direction: rtl;">
+                <b style="font-size: 1.2em;">المكتب الرئيسي - Golden Net</b><br>
+                <hr style="margin: 8px 0;">
+                <i class="fas fa-map-marker-alt"></i> <b>العنوان:</b><br>
+                Yeni, Atatürk Cd. No:150A<br>
+                31500 Reyhanlı/Hatay<br><br>
+                <i class="fas fa-phone"></i> <b>الهاتف:</b> 0552 288 6112<br><br>
+                <a href="https://maps.google.com?q=36.252439,36.569930" target="_blank" style="display: inline-block; margin-top: 8px; background: #f8f9fa; padding: 5px 10px; border-radius: 5px;">
+                    <i class="fas fa-directions"></i> افتح في خرائط جوجل
+                </a>
+            </div>
+        `);
+        
+        // أبراج الإرسال (تغطية قوية)
+        const transmissionTowers = [
+            // الأبراج الأصلية
+            {
+                coords: [36.250968, 36.573972],
+                title: "برج الإرسال الشمالي",
+                description: "برج اتصالات رئيسي يغطي المنطقة الشمالية من الريحانية",
+                capacity: "500+ عميل",
+                speed: "100Mbps"
+            },
+            {
+                coords: [36.245606, 36.570603],
+                title: "برج الإرسال الجنوبي",
+                description: "برج اتصالات رئيسي يغطي المنطقة الجنوبية من الريحانية",
+                capacity: "450+ عميل",
+                speed: "100Mbps"
+            },
+            
+            // الأبراج المضافة الجديدة
+            {
+                coords: [36.242215, 36.493584],
+                title: "برج الإرسال الغربي 1",
+                description: "برج اتصالات يغطي المنطقة الغربية من الريحانية"
+            },
+            {
+                coords: [36.243803, 36.555925],
+                title: "برج الإرسال الجنوبي الغربي",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الغربية"
+            },
+            {
+                coords: [36.239959, 36.561026],
+                title: "برج الإرسال الجنوبي الأوسط",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الوسطى"
+            },
+            {
+                coords: [36.252002, 36.569905],
+                title: "برج الإرسال المركزي 1",
+                description: "برج اتصالات يغطي المنطقة المركزية"
+            },
+            {
+                coords: [36.257438, 36.568829],
+                title: "برج الإرسال المركزي 2",
+                description: "برج اتصالات يغطي المنطقة المركزية"
+            },
+            {
+                coords: [36.255941, 36.562129],
+                title: "برج الإرسال الجنوبي الشرقي",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الشرقية"
+            },
+            {
+                coords: [36.2577601, 36.5609221],
+                title: "برج الإرسال الشرقي 1",
+                description: "برج اتصالات يغطي المنطقة الشرقية"
+            },
+            {
+                coords: [36.2596088, 36.5662356],
+                title: "برج الإرسال الشرقي 2",
+                description: "برج اتصالات يغطي المنطقة الشرقية"
+            },
+            {
+                coords: [36.260030, 36.558520],
+                title: "برج الإرسال الشرقي 3",
+                description: "برج اتصالات يغطي المنطقة الشرقية"
+            },
+            {
+                coords: [36.260352, 36.559218],
+                title: "برج الإرسال الشرقي 4",
+                description: "برج اتصالات يغطي المنطقة الشرقية"
+            },
+            {
+                coords: [36.271181, 36.550912],
+                title: "برج الإرسال الشمالي الشرقي",
+                description: "برج اتصالات يغطي المنطقة الشمالية الشرقية"
+            },
+            {
+                coords: [36.254300, 36.574021],
+                title: "برج الإرسال الشمالي 1",
+                description: "برج اتصالات يغطي المنطقة الشمالية"
+            },
+            {
+                coords: [36.254873, 36.578152],
+                title: "برج الإرسال الشمالي 2",
+                description: "برج اتصالات يغطي المنطقة الشمالية"
+            },
+            {
+                coords: [36.256456, 36.576333],
+                title: "برج الإرسال الشمالي 3",
+                description: "برج اتصالات يغطي المنطقة الشمالية"
+            },
+            {
+                coords: [36.2617327, 36.5776305],
+                title: "برج الإرسال الشمالي الشرقي 1",
+                description: "برج اتصالات يغطي المنطقة الشمالية الشرقية"
+            },
+            {
+                coords: [36.267903, 36.579358],
+                title: "برج الإرسال الشمالي الشرقي 2",
+                description: "برج اتصالات يغطي المنطقة الشمالية الشرقية"
+            },
+            {
+                coords: [36.261503, 36.598312],
+                title: "برج الإرسال الشمالي البعيد",
+                description: "برج اتصالات يغطي المنطقة الشمالية البعيدة"
+            },
+            {
+                coords: [36.224720, 36.609548],
+                title: "برج الإرسال الجنوبي الغربي البعيد",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الغربية البعيدة"
+            },
+            {
+                coords: [36.228346, 36.609505],
+                title: "برج الإرسال الجنوبي الغربي 1",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الغربية"
+            },
+            {
+                coords: [36.228211, 36.611214],
+                title: "برج الإرسال الجنوبي الغربي 2",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الغربية"
+            },
+            {
+                coords: [36.228409, 36.613252],
+                title: "برج الإرسال الجنوبي الغربي 3",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الغربية"
+            },
+            {
+                coords: [36.232808, 36.603099],
+                title: "برج الإرسال الجنوبي 1",
+                description: "برج اتصالات يغطي المنطقة الجنوبية"
+            },
+            {
+                coords: [36.239122, 36.607603],
+                title: "برج الإرسال الجنوبي 2",
+                description: "برج اتصالات يغطي المنطقة الجنوبية"
+            },
+            {
+                coords: [36.246435, 36.611590],
+                title: "برج الإرسال الجنوبي الشرقي البعيد",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الشرقية البعيدة"
+            },
+            {
+                coords: [36.248690, 36.616191],
+                title: "برج الإرسال الجنوبي الشرقي 1",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الشرقية"
+            },
+            {
+                coords: [36.260042, 36.620011],
+                title: "برج الإرسال الشرقي البعيد",
+                description: "برج اتصالات يغطي المنطقة الشرقية البعيدة"
+            },
+            {
+                coords: [36.263206, 36.631934],
+                title: "برج الإرسال الشرقي النائي",
+                description: "برج اتصالات يغطي المنطقة الشرقية النائية"
+            },
+            {
+                coords: [36.267444, 36.626166],
+                title: "برج الإرسال الشمالي الشرقي البعيد",
+                description: "برج اتصالات يغطي المنطقة الشمالية الشرقية البعيدة"
+            },
+            {
+                coords: [36.267274, 36.650537],
+                title: "برج الإرسال الشمالي النائي",
+                description: "برج اتصالات يغطي المنطقة الشمالية النائية"
+            },
+            {
+                coords: [36.297183, 36.549257],
+                title: "برج الإرسال الشمالي الشرقي 1",
+                description: "برج اتصالات يغطي المنطقة الشمالية الشرقية"
+           },
+            {
+                coords: [36.247152, 36.564666],
+                title: "برج الإرسال الجنوبي الغربي",
+                description: "برج اتصالات يغطي المنطقة الجنوبية الغربية"
+            },
+        ];
+        
+        transmissionTowers.forEach(tower => {
+            const marker = L.marker(tower.coords, {
+                icon: L.divIcon({
+                    className: 'custom-marker',
+                    html: '<i class="fas fa-broadcast-tower" style="color: #e74c3c; font-size: 1.1em;"></i>',
+                    iconSize: [32, 32]
+                }),
+                title: tower.title
+            }).addTo(map);
+            
+            marker.bindPopup(`
+                <div style="text-align: right; direction: rtl;">
+                    <b style="font-size: 1.1em;">${tower.title}</b><br>
+                    <hr style="margin: 8px 0;">
+                    ${tower.description}<br><br>
+                    <i class="fas fa-tachometer-alt"></i> <b>السرعة:</b> ${tower.speed || "100Mbps"}<br>
+                    <i class="fas fa-users"></i> <b>السعة:</b> ${tower.capacity || "300+ عميل"}<br>
+                    <i class="fas fa-wifi"></i> <b>نوع الخدمة:</b> تغطية لاسلكية قوية
+                </div>
+            `);
+        });
+        
+        // المخدم المركزي للإنترنت
+        const centralServer = {
+            coords: [36.2555495, 36.5702952],
+            title: "المخدم المركزي للإنترنت",
+            description: "مركز البيانات الرئيسي الذي يوزع خدمات الإنترنت على كامل المنطقة",
+            capacity: "50|Mbps",
+            servers: "24 خادم"
+        };
+        
+        const serverMarker = L.marker(centralServer.coords, {
+            icon: L.divIcon({
+                className: 'custom-marker',
+                html: '<i class="fas fa-server" style="color: #3498db; font-size: 1.1em;"></i>',
+                iconSize: [32, 32]
+            }),
+            zIndexOffset: 900
+        }).addTo(map);
+        
+        serverMarker.bindPopup(`
+            <div style="text-align: right; direction: rtl;">
+                <b style="font-size: 1.1em;">${centralServer.title}</b><br>
+                <hr style="margin: 8px 0;">
+                ${centralServer.description}<br><br>
+                <i class="fas fa-network-wired"></i> <b>السعة:</b> ${centralServer.capacity}<br>
+                <i class="fas fa-server"></i> <b>عدد الخوادم:</b> ${centralServer.servers}<br>
+                <i class="fas fa-shield-alt"></i> <b>الحماية:</b> جدار حماية متقدم
+            </div>
+        `);
+    });
+    // إضافة النصوص للترجمة
+    translations.ar.mapTitle = "خريطة تغطيتنا في الريحانية";
+    translations.ar.mapSubtitle = "تعرف على مناطق تغطية شبكتنا وأقرب نقطة خدمة لك";
+    translations.ar.legend1 = "المكتب الرئيسي";
+    translations.ar.legend2 = "أبراج الإرسال";
+    translations.ar.legend3 = "المخدم المركزي";
+    translations.ar.mapNote = "يمكنك النقر على العلامات لمعرفة تفاصيل النقاط الخدمية";
+    
+    translations.tr.mapTitle = "Reyhanlı'daki Kapsama Haritamız";
+    translations.tr.mapSubtitle = "Ağımızın kapsama alanlarını ve size en yakın servis noktasını öğrenin";
+    translations.tr.legend1 = "Ana Ofis";
+    translations.tr.legend2 = "Vericiler";
+    translations.tr.legend3 = "Merkezi Sunucu";
+    translations.tr.mapNote = "Servis noktaları hakkında detaylı bilgi için işaretleyicilere tıklayabilirsiniz";
+</script>
+<!-- قبل نهاية body -->
+<script>
+  async function loadLanguage(lang) {
+    const res = await fetch(`lang/${lang}.json`);
+    const data = await res.json();
+    applyTranslations(data);
+    localStorage.setItem('language', lang);
+  }
+
+  function applyTranslations(translations) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const keys = el.dataset.i18n.split('.');
+      let value = translations;
+      keys.forEach(k => {
+        if (value) value = value[k];
+      });
+      if (value) el.textContent = value;
+    });
+  }
+
+  // تحميل اللغة المحفوظة أو الافتراضية
+  const savedLang = localStorage.getItem('language') || 'ar';
+  loadLanguage(savedLang);
+
+  // ربط أزرار تغيير اللغة
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      loadLanguage(btn.dataset.lang);
+    });
+  });
+</script>
+
+<script>
+  function applyTranslation(langData) {
+    for (const key in langData) {
+      const element = document.getElementById(key);
+      if (element) {
+        element.innerText = langData[key];
+      }
+    }
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedLang = btn.getAttribute('data-lang');
+      if (selectedLang === 'tr') {
+        applyTranslation(tr);
+      }
+      // يمكن إضافة شرط للغة العربية هنا
+    });
+  });
+</script>
+
+
+
+
+
+<script src="lang/ar.js" ></script>
+<script src="lang/tr.js" ></script>
+</body>
+</html>
+
+
+</body>
+</html>
+
+
+
+
+
