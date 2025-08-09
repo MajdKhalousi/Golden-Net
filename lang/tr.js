@@ -156,8 +156,8 @@ const tr = {
                 urgentMessage: "Hemen rezervasyon yaptırın - Stoklar sınırlı ve teklif kısa sürelidir!",
                 callNow: "Hemen Ara",
                 whatsappOrder: "WhatsApp'tan Sipariş Ver",
-centralOfferTitle: "Merkezi Ağa Bağlı Binalar için Özel Teklif",            
-    centralOfferHeader: "Merkezi Ağımıza Bağlı Binalar İçin Özel Teklif",
+                centralOfferTitle: "Merkezi Ağa Bağlı Binalar için Özel Teklif",            
+               centralOfferHeader: "Merkezi Ağımıza Bağlı Binalar İçin Özel Teklif",
                 originalPrice1: "Normal Fiyat: 2000 TL",
                 discountPrice1: "Özel Fiyat: 1599 TL",
                 centralOfferTag: "401 TL Kazanın!",
@@ -173,7 +173,11 @@ centralOfferTitle: "Merkezi Ağa Bağlı Binalar için Özel Teklif",
                 centralCallNow: "Kapsamayı kontrol etmek için arayın",
                 centralWhatsappOrder: "WhatsApp'tan Abone Ol",
 
-                
+               
+  title: "Gelişmiş İnternet Çözümleri",
+  description: "Kişisel ve ticari tüm ihtiyaçlarınız için yüksek hız ve istikrarla en iyi internet çözümlerini sunuyoruz.",
+  buttonText: "Ürünlerimizi Keşfedin",
+
              mapTitle : "Reyhanlı'daki Kapsama Haritamız",
    
              mapSubtitle : "Ağımızın kapsama alanlarını ve size en yakın servis noktasını öğrenin",
@@ -189,10 +193,71 @@ centralOfferTitle: "Merkezi Ağa Bağlı Binalar için Özel Teklif",
         contactPhoneTitle: "Telefon",
         /* phone1Text: "+90 552 288 61 12", */
        /*  phone2Text: "+90 538 889 99 19", */
+product1Price: "₺2500",
+product2Price: "₺800",
+product3Price: "Paketler",
+product4Price: "Metre başına ₺15",
+
+       
+  aboutTitle: "Hakkımızda",
+  aboutSubtitle: "İnternet alanında lider iletişim şirketi",
+  aboutDesc1: "İnternet Şirketi 2015 yılında, gelişmiş internet çözümleri ve yüksek kaliteli iletişim hizmetleri sunmak amacıyla kurulmuştur.",
+  aboutDesc2: "10 yılı aşkın tecrübemizle, Hatay Reyhanlı bölgesinde güçlü bir altyapı kurarak kesintisiz internet sunuyoruz.",
+  aboutDesc3: "Uzman ekibimiz, teknik destek ve yenilikçi çözümler sunmak için sürekli çalışmaktadır.",
+  stat1Title: "Yıllık deneyim",
+  stat2Title: "Mutlu müşteri",
+  stat3Title: "Müşteri memnuniyeti",
+  productsTitle: "Hizmetlerimiz",
+  faqTitle: "Sıkça Sorulan Sorular",
+  contactTitle: "Bize Ulaşın",
+
            
            paketprice1: "₺500",
                 paketprice2: "₺450",
                 paketprice3: "₺400",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 servicesTitle: "Entegre Hizmetlerimiz",
+                 servicesDesc: "GOLDEN NET olarak, tüm teknik ve ticari ihtiyaçlarınızı karşılayan yüksek kaliteli ve olağanüstü bir deneyim sunuyoruz.",
+
+                   internetTitle: "Yüksek Hızlı İnternet Hizmetleri",
+                   internetSubtitle: "Sürekli teknik destekle sınırsız internet deneyimi",
+                   internetFeature1: "Reyhanlı ve çevre bölgelerde kapsamlı kapsama alanı",
+                   internetFeature2: "100Mbps'ye kadar hızlar",
+                   internetFeature3: "7/24 teknik destek",
+                   internetFeature4: "24 saat içinde profesyonel kurulum",
+                   internetBtn: "Hemen Abone Ol",
+
+                   tradeTitle: "Genel Ticaret Hizmetleri",
+                   tradeSubtitle: "İşinizi kolay ve güvenli bir şekilde büyütmek için entegre çözümler",
+                   tradeFeature1: "Yüksek kaliteli ağ ekipmanlarının ithalatı ve dağıtımı",
+                   tradeFeature2: "Kapınıza kadar hızlı kargo ve teslimat",
+                   tradeFeature3: "Rekabetçi fiyatlar ve özel bayi teklifleri",
+                   tradeFeature4: "Ticaretinizi küresel ölçekte genişletmek için lojistik çözümler",
+                   tradeBtn: "Detayları İste",
+
+                   webdevTitle: "Web ve Mobil Uygulama Tasarımı",
+                  webdevSubtitle: "Fikrinizi profesyonel bir dijital projeye dönüştürün",
+                  webdevFeature1: "Tüm ekranlara duyarlı modern web tasarımı",
+                  webdevFeature2: "Mobil uygulama geliştirme (Android ve iOS)",
+                  webdevFeature3: "Hızlı ve güvenli bulut barındırma",
+                  webdevFeature4: "İşinizi çevrimiçi büyütmek için teknik danışmanlık",
+                  webdevBtn: "Hemen Hizmet Al",
+                         gazal:"hgjhgkhj hjhggjfj"
+
             };
         
 
