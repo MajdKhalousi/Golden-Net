@@ -1,3 +1,24 @@
+
+
+
+#companyName {
+  color: #dbae34;
+  all: unset;                 /* شطب أي أنماط موروثة */
+  display: inline;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; /* منع تمييز اللمس على الموبايل */
+  user-select: none;
+}
+#companyName::before, #companyName::after { content: none !important; }
+
+#companyName .GOLDEN-text {
+  color: #efb730; /* اللون الذهبي */
+  font-weight: bold;
+}
+
+
 /* ------------------------------------- */
 /* 🎨 المتغيرات العامة للألوان والتحولات */
 /* ------------------------------------- */
@@ -245,9 +266,36 @@
 
 
 
+/* إعادة ضبط كاملة لرابط الشعار */
+#companyName {
+  all: unset;                /* إزالة كل الخصائص الموروثة أو الافتراضية */
+  display: inline;           /* رجوع لسلوك النص */
+  font-size: 28px;            /* إعادة تحديد الحجم */
+  font-weight: bold;          /* سمك الخط لو تريده */
+  cursor: pointer;            /* شكل المؤشر */
+  color: inherit;             /* نفس لون النص المحيط */
+}
 
+/* منع أي تأثير عند الضغط أو التحديد */
+#companyName:active,
+#companyName:focus,
+#companyName:hover {
+  all: unset;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: inherit;
+}
 
+/* إلغاء أي عناصر وهمية على الرابط */
+#companyName::before,
+#companyName::after {
+  content: none !important;
+}
 
+#companyName {
+  -webkit-tap-highlight-color: transparent;
+}
 
 
 /* ------------------------------------------------ */
@@ -562,9 +610,9 @@ header.scrolled {
 }
 
 .logo img {
-  height: 50px;
-  margin-left: 15px;
-  margin-top: 10px;
+      height: 60px;
+    margin-left: 2px;
+    margin-top: 5px;
 }
 
 .logo h1 {
@@ -574,7 +622,7 @@ header.scrolled {
 }
 
 .logo span {
-  color: var(--primary);
+  color: var(--secondary);
 }
 
 /* روابط التنقل */
@@ -1004,7 +1052,7 @@ header.scrolled {
 
 
 
-
+/*
 
 /* --------------------------------------------------------- */
 /* 🎁 قسم الباقات - لعرض عروض أو خطط التسعير في شكل بطاقات */
@@ -1071,11 +1119,18 @@ header.scrolled {
 /* قائمة الخصائص */
 .paket-features {
   padding: 25px;
+  padding-left: 10px;
+}
+
+
+.internetFeature1{
+  padding: 20px;
+
 }
 
 .paket-features ul {
   list-style: none;
-  padding: 0;
+  padding: 10px;
 }
 
 .paket-features li {
@@ -2729,3 +2784,21 @@ footer::before {
 .cta-buttons .btn:hover::before {
   transform: translateZ(-10px);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
