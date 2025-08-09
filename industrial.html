@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة الصناعات الغذائية والكيميائية | الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* أنماط CSS المعدلة */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #efb730;
+            --food-color: #27ae60;
+            --chemical-color: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --text: #333;
+            --transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* الهيدر */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0 5%;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-left: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* الأقسام الرئيسية */
+        .main-section {
+            padding: 100px 5% 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding: 15px 0;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        /* السلايدر */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('images/5.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* الأزرار */
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-food {
+            background-color: var(--food-color);
+        }
+
+        .btn-chemical {
+            background-color: var(--chemical-color);
+        }
+
+        /* قسم الصناعات الغذائية */
+        .food-section {
+            background-color: white;
+        }
+
+        /* قسم الصناعات الكيميائية */
+        .chemical-section {
+            background-color: #f8f9fa;
+        }
+
+        /* بطاقات المنتجات */
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 350px;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-details h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .food-badge {
+            background-color: var(--food-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .chemical-badge {
+            background-color: var(--chemical-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* قسم من نحن */
+        .about-section {
+            padding: 80px 5%;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .about-img {
+            flex: 1;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* قسم التواصل */
+        .contact-section {
+            padding: 80px 5%;
+            background-color: #f8f9fa;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+
+        .contact-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .contact-details p, .contact-details a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+        }
+
+        /* الفوتر */
+        footer {
+            background: linear-gradient(135deg, var(--primary), #000);
+            color: white;
+            padding: 40px 5% 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo p {
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-right: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            color: #aaa;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* زر العودة لأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* تأثيرات الظهور */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* أنماط متجاوبة */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .product-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .stat {
+                padding: 15px;
+            }
+
+            .stat h3 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .about-stats {
+                flex-direction: column;
+            }
+        }
+a#companyName{
+ font-size: 28px;
+   text-decoration: none;  /* إزالة الخط */
+  color: black;  
+  font-weight: 700; 
+          /* تغيير اللون إلى أسود */
+
+}
+    </style>
+</head>
+<body dir="rtl">
+    <!-- زر العودة لأعلى الصفحة -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- الهيدر -->
+
+
+    <!-- الهيدر -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/LOGOG.png" alt="شعار الشركة">
+              <a href="index.html"  id="companyName">GOLDEN<span> NET</span></a>
+            </div>
+            <div class="nav-links">
+                <div class="languages">
+                    <button class="lang-btn active" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
+                <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
+                <a href="#products" id="navProducts">منتجاتنا</a>
+                <a href="#about" id="navAbout">من نحن</a>
+                <a href="#contact" id="navContact">التواصل</a>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <!-- قسم الهيرو -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>رواد في الصناعات الغذائية والكيميائية</h1>
+            <p>جودة عالية. ابتكار دائم. التزام بمعايير التصنيع العالمية</p>
+            <a href="#food" class="btn">استكشف منتجاتنا</a>
+        </div>
+    </section>
+
+    <!-- قسم الصناعات الغذائية -->
+    <section id="food" class="main-section food-section">
+        <div class="section-title">
+            <h2>الصناعات الغذائية</h2>
+            <p>منتجات غذائية عالية الجودة تلبي أعلى المعايير الصحية</p>
+        </div>
+        <div class="products-container">
+            <!-- منتج 1 -->
+            <div class="product-card">
+                <img src="images/jubn1.jpg" alt="شيبس" class="product-image">
+                <div class="product-details">
+                    <span class="food-badge">صناعات غذائية</span>
+                    <h3>شيبس بنكهة الجبنة</h3>
+                   <p>  شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.</p>
+                    <a href="#contact" class="btn btn-food">اطلب الآن</a>
+                </div>
+            </div>
+
+            <!-- منتج 2 -->
+            <div class="product-card">
+                <img src="images/shibs.jpg" alt="شيبس بنكهات" class="product-image">
+                <div class="product-details">
+                    <span class="food-badge">صناعات غذائية</span>
+                    <h3>شيبس بنكهة الديربي</h3>
+                    <p>شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.</p>
+             
+                    <a href="#contact" class="btn btn-food">اطلب الآن</a>
+                </div>
+            </div>
+
+            <!-- منتج 3 -->
+            <div class="product-card">
+                <img src="images/khal.jpg" alt="مقرمشات" class="product-image">
+                <div class="product-details">
+                    <span class="food-badge">صناعات غذائية</span>
+                    <h3>شيبس بنكهة الخل</h3>
+                    <p>شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.</p>
+                    
+                    <a href="#contact" class="btn btn-food">اطلب الآن</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الصناعات الكيميائية -->
+    <section id="chemical" class="main-section chemical-section">
+        <div class="section-title">
+            <h2>الصناعات الكيميائية</h2>
+            <p>منتجات كيميائية عالية الجودة لتلبية احتياجات الصناعة والبناء</p>
+        </div>
+        <div class="products-container">
+            <!-- منتج 1 -->
+            <div class="product-card">
+                <img src="images/8.jpg" alt="طلاء داخلي" class="product-image">
+                <div class="product-details">
+                    <span class="chemical-badge">صناعات كيميائية</span>
+                    <h3>طلاء داخلي عالي الجودة</h3>
+                    <p>طلاء داخلي صديق للبيئة، مقاوم للعفن والعوامل الجوية، متوفر بألوان متعددة</p>
+                   
+                    <a href="#contact" class="btn btn-chemical">اطلب الآن</a>
+                </div>
+            </div>
+
+            <!-- منتج 2 -->
+            <div class="product-card">
+                <img src="images/9.png" alt="طلاء خارجي" class="product-image">
+                <div class="product-details">
+                    <span class="chemical-badge">صناعات كيميائية</span>
+                    <h3>طلاء خارجي مقاوم</h3>
+                    <p>طلاء خارجي عالي الجودة مقاوم لأشعة الشمس والتغيرات الجوية، يدوم لسنوات</p>
+                    
+                    <a href="#contact" class="btn btn-chemical">اطلب الآن</a>
+                </div>
+            </div>
+
+            <!-- منتج 3 -->
+            <div class="product-card">
+                <img src="images/8.jpg" alt="مواد كيميائية" class="product-image">
+                <div class="product-details">
+                    <span class="chemical-badge">صناعات كيميائية</span>
+                    <h3>مواد كيميائية للصناعة</h3>
+                    <p>توفير مواد كيميائية عالية الجودة لاستخدامات الصناعات المختلفة</p>
+             
+                    <a href="#contact" class="btn btn-chemical">اطلب الآن</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم من نحن -->
+    <section id="about" class="about-section">
+        <div class="section-title">
+            <h2>من نحن</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h2>شركة رائدة في الصناعات الغذائية والكيميائية</h2>
+                <p>تأسست شركة "Golden Net" عام 2010 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.</p>
+                <p>نمتلك مصنعين منفصلين، واحد مخصص للصناعات الغذائية وآخر للصناعات الكيميائية، لضمان عدم وجود أي تداخل أو تلوث بين خطوط الإنتاج.</p>
+                <p>فريقنا من المهندسين والخبراء يعملون بجد لتقديم أفضل المنتجات، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية في مجال الصناعات.</p>
+                
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>7+</h3>
+                        <p>سنوات من الخبرة</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>عميل في الشرق الأوسط</p>
+                    </div>
+                    <div class="stat">
+                        <h3>98%</h3>
+                        <p>رضا العملاء</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img"></div>
+        </div>
+    </section>
+
+  <section id="contact" class="contact-section">
+    <div class="section-title">
+        <h2 id="contactTitle">التواصل معنا</h2>
+    </div>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2 id="contactSubtitle">ابقى على تواصل</h2>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactAddressTitle">العنوان</h3>
+                    <p id="contactAddress">
+                        <a href="https://maps.google.com?q=36.252439,36.569930" target="_blank" class="contact-link map-link">
+                            <span id="addressText">الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.</span>
+                            <i class="fas fa-external-link-alt external-icon"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactPhoneTitle">الهاتف</h3>
+                    <div class="phone-links">
+                        <p id="contactPhone1">
+                            <a href="tel:+905522886112" class="contact-link phone-link">
+                                <span id="phone1Text">+90 552 288 61 12</span>
+                                <i class="fas fa-phone phone-icon"></i>
+                            </a>
+                            <a href="https://wa.me/905522886112" class="contact-link whatsapp-link" target="_blank">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span class="link-label">Whatsapp</span>
+                            </a>
+                        </p>
+                        <p id="contactPhone2">
+                            <a href="tel:+905388899919" class="contact-link phone-link">
+                                <span id="phone2Text">+90 538 889 99 19</span>
+                                <i class="fas fa-phone phone-icon"></i>
+                            </a>
+                            <a href="https://wa.me/905388899919" class="contact-link whatsapp-link" target="_blank">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span class="link-label">Whatsapp</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactEmailTitle">البريد الإلكتروني</h3>
+                    <p id="contactEmail1">
+                        <a href="mailto:info@golde-net.com" class="contact-link email-link">
+                            <span>info@golde-net.com</span>
+                            <i class="fas fa-envelope email-icon"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactHoursTitle">ساعات العمل</h3>
+                    <p id="contactHours1">الأثنين - السبت: 10 صباحاً - 6 مساءً</p>
+                    <p id="contactHours2">الأحد: إجازة</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h3 id="contactFormTitle">أرسل لنا رسالة</h3>
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="name" id="formNameLabel">الاسم الكامل</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
+                    <input type="tel" id="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" id="formMessageLabel">الرسالة</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn" id="formSubmitBtn">
+                    <span>إرسال الرسالة</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    </section>
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h3>Golden Net</h3>
+                <p>شركة رائدة في مجال الصناعات الغذائية والكيميائية، نقدم منتجات عالية الجودة للأسواق المحلية والإقليمية بمعايير عالمية.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#food">الصناعات الغذائية</a></li>
+                    <li><a href="#chemical">الصناعات الكيميائية</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#contact">التواصل</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>منتجاتنا</h4>
+                <ul>
+                    <li><a href="#">شيبس المتقن</a></li>
+                    <li><a href="#">مقرمشات المتقن</a></li>
+                    <li><a href="#">طلاء داخلي</a></li>
+                    <li><a href="#">طلاء خارجي</a></li>
+                    <li><a href="#">مواد كيميائية</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>الدعم</h4>
+                <ul>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">شروط الاستخدام</a></li>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2023 صناعات المتقن</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // كود JavaScript
+        document.addEventListener("DOMContentLoaded", () => {
+            // تأثير التمرير السلس
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // زر العودة لأعلى الصفحة
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // تأثير الهيدر عند التمرير
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // تأثير الظهور عند التمرير
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+          sections.forEach(section => {
+observer.observe(section);
+});
+
+  // تغيير اللغة (وظيفة أساسية)
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // هنا يمكنك إضافة كود تغيير اللغة الفعلي
+                const lang = this.dataset.lang;
+                console.log('تم اختيار اللغة:', lang);
+                // يمكنك إضافة المزيد من الكود هنا لتحميل ملفات اللغة أو تغيير النصوص
+            });
+        });
+    });
+
+    // تأثيرات إضافية للبطاقات عند التحويم
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+             element.style.transform = 'translateY(-3px) scale(1.05)';
+        element.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+    });
+    
+    element.addEventListener('mousemove', () => {
+        element.style.transform = '';
+        element.style.boxShadow = '';
+    });
+    });
+</script>
