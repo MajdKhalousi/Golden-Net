@@ -578,6 +578,23 @@
             transition: var(--transition);
             z-index: 999;
         }
+.soon-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.product-card {
+    position: relative; /* ضروري لظهور الـ badge داخل البطاقة */
+}
 
         .back-to-top:hover {
             background-color: var(--primary);
@@ -687,6 +704,7 @@ a#companyName{
                     <button class="lang-btn" data-lang="tr">TR</button>
                 </div>
                 <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
+                <a href="industrial.html" id="navFaq">الخدمات الرئيسية</a>
                 <a href="#products" id="navProducts">منتجاتنا</a>
                 <a href="#about" id="navAbout">من نحن</a>
                 <a href="#contact" id="navContact">التواصل</a>
@@ -713,40 +731,48 @@ a#companyName{
             <p>منتجات غذائية عالية الجودة تلبي أعلى المعايير الصحية</p>
         </div>
         <div class="products-container">
-            <!-- منتج 1 -->
-            <div class="product-card">
-                <img src="images/jubn1.jpg" alt="شيبس" class="product-image">
-                <div class="product-details">
-                    <span class="food-badge">صناعات غذائية</span>
-                    <h3>شيبس بنكهة الجبنة</h3>
-                   <p>  شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.</p>
-                    <a href="#contact" class="btn btn-food">اطلب الآن</a>
-                </div>
-            </div>
 
-            <!-- منتج 2 -->
-            <div class="product-card">
-                <img src="images/shibs.jpg" alt="شيبس بنكهات" class="product-image">
+           <!-- منتج 1 -->
+              <div class="product-card">
+                <img src="images/shibs.jpg" alt="مقرمشات" class="product-image">
                 <div class="product-details">
                     <span class="food-badge">صناعات غذائية</span>
-                    <h3>شيبس بنكهة الديربي</h3>
-                    <p>شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.</p>
-             
-                    <a href="#contact" class="btn btn-food">اطلب الآن</a>
-                </div>
-            </div>
-
-            <!-- منتج 3 -->
-            <div class="product-card">
-                <img src="images/khal.jpg" alt="مقرمشات" class="product-image">
-                <div class="product-details">
-                    <span class="food-badge">صناعات غذائية</span>
-                    <h3>شيبس بنكهة الخل</h3>
-                    <p>شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.</p>
                     
-                    <a href="#contact" class="btn btn-food">اطلب الآن</a>
+                     <h3>شيبس بنكهة الديربي</h3>
+                    <p>شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.</p>
+                    
+                    
+                    <a href="https://wa.me/905388899919" class="btn btn-food">اطلب الآن</a>
                 </div>
             </div>
+             <!-- منتج 2 -->
+           <!-- منتج 2 -->
+<div class="product-card">
+    <div class="soon-badge">قريباً</div> <!-- هنا -->
+    <img src="images/jubn1.jpg" alt="شيبس" class="product-image">
+    <div class="product-details">
+        <span class="food-badge">صناعات غذائية</span>
+        <h3>شيبس بنكهة الجبنة</h3>
+                     <p>  شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.</p>
+        <a href="https://wa.me/905388899919" class="btn btn-food">اطلب الآن</a>
+    </div>
+</div>
+
+<!-- منتج 3 -->
+<div class="product-card">
+    <div class="soon-badge">قريباً</div> <!-- هنا -->
+    <img src="images/khal.jpg" alt="شيبس بنكهات" class="product-image">
+    <div class="product-details">
+        <span class="food-badge">صناعات غذائية</span>
+       <h3>شيبس بنكهة الخل</h3>
+<p>شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.</p>
+        <a href="https://wa.me/905388899919" class="btn btn-food">اطلب الآن</a>
+    </div>
+</div>
+
+
+            
+          
         </div>
     </section>
 
@@ -765,7 +791,7 @@ a#companyName{
                     <h3>طلاء داخلي عالي الجودة</h3>
                     <p>طلاء داخلي صديق للبيئة، مقاوم للعفن والعوامل الجوية، متوفر بألوان متعددة</p>
                    
-                    <a href="#contact" class="btn btn-chemical">اطلب الآن</a>
+                    <a href="https://wa.me/905388899919" class="btn btn-chemical">اطلب الآن</a>
                 </div>
             </div>
 
@@ -777,7 +803,7 @@ a#companyName{
                     <h3>طلاء خارجي مقاوم</h3>
                     <p>طلاء خارجي عالي الجودة مقاوم لأشعة الشمس والتغيرات الجوية، يدوم لسنوات</p>
                     
-                    <a href="#contact" class="btn btn-chemical">اطلب الآن</a>
+                    <a href="https://wa.me/905388899919" class="btn btn-chemical">اطلب الآن</a>
                 </div>
             </div>
 
@@ -789,7 +815,7 @@ a#companyName{
                     <h3>مواد كيميائية للصناعة</h3>
                     <p>توفير مواد كيميائية عالية الجودة لاستخدامات الصناعات المختلفة</p>
              
-                    <a href="#contact" class="btn btn-chemical">اطلب الآن</a>
+                    <a href="https://wa.me/905388899919" class="btn btn-chemical">اطلب الآن</a>
                 </div>
             </div>
         </div>
