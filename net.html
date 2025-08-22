@@ -52,35 +52,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openSidebar(){
       sidebar.classList.add('open');
-      overlay.hidden = false;
-      // تأخير صغير لإظهار تلاشي الطبقة
-      requestAnimationFrame(()=> overlay.classList.add('show'));
+      if (overlay) {
+        overlay.hidden = false;
+        requestAnimationFrame(()=> overlay.classList.add('show'));
+      }
       document.body.classList.add('body-lock');
       sidebar.setAttribute('aria-hidden','false');
+      menuToggle?.setAttribute('aria-expanded','true');
     }
+
     function closeSidebar(){
       sidebar.classList.remove('open');
-      overlay.classList.remove('show');
+      if (overlay) {
+        overlay.classList.remove('show');
+        setTimeout(()=> overlay.hidden = true, 250);
+      }
       document.body.classList.remove('body-lock');
       sidebar.setAttribute('aria-hidden','true');
-      setTimeout(()=> overlay.hidden = true, 250);
+      menuToggle?.setAttribute('aria-expanded','false');
+      menuToggle?.focus();
     }
 
     menuToggle?.addEventListener('click', openSidebar);
     closeBtn?.addEventListener('click', closeSidebar);
     overlay?.addEventListener('click', closeSidebar);
-
-    // أغلق عند الضغط على ESC
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar();
-    });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar(); });
 
     // أغلق القائمة بعد اختيار رابط
-    document.querySelectorAll('#sidebar .sidebar-links a').forEach(a=>{
-      a.addEventListener('click', closeSidebar);
-    });
+    document.querySelectorAll('#sidebar .sidebar-links a').forEach(a=> a.addEventListener('click', closeSidebar));
   })();
 </script>
+
 
 
 
@@ -89,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
     <button id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
 <header>
   <div class="header-container header-swapped">
     <!-- اللوغو يسار -->
@@ -1840,6 +1841,7 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
+
 
 
 
