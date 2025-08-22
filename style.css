@@ -1,158 +1,116 @@
-/* زر القائمة */
-.menu-toggle {
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: var(--primary);
-}
-
-/* القائمة الجانبية */
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: -260px;
-  width: 260px;
-  height: 100%;
-  background-color: var(--primary);
-  color: white;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-  transition: right 0.4s ease;
-  z-index: 2000;
-  padding: 20px;
-}
-
-.sidebar ul {
-  list-style: none;
-  margin-top: 50px;
-}
-
-.sidebar ul li {
-  margin: 20px 0;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.sidebar ul li a:hover {
-  color: var(--secondary);
-}
-
-/* زر الإغلاق */
-.close-btn {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-/* اجعل ترتيب عناصر الهيدر LTR لضمان: اللوغو يسار وزر القائمة يمين */
-
-
-
-.site-header .header-container {
-  direction: ltr;
-  display: flex;
-  align-items: center;
+/* قلب اتجاه ترتيب عناصر الهيدر فقط مع بقاء الصفحة RTL */
+.header-container.header-swapped {
+  direction: ltr; /* يجعل اليسار=بداية السطر داخل الهيدر فقط */
   justify-content: space-between;
-  height: 80px;
-  padding: 0 5%;
-  background: #fff;
-  position: fixed;
-  top: 0;
-  inset-inline: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
-/* أعد RTL لمحتوى اللوغو الداخلي ليتوافق مع العربية بصريًا */
-.site-header .logo { direction: rtl; display:flex; align-items:center; gap:10px; }
-.site-header .logo img { height:50px; margin-left:15px; }
-
-/* مجموعة الإجراءات يمين: أزرار اللغة + زر القائمة */
+/* مجموعة يمين الهيدر: أزرار اللغة + زر البرجر */
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.languages .lang-btn {
-  border: 1px solid #ddd;
-  background: #fff;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.languages .lang-btn.active { border-color: var(--secondary); color: var(--secondary); }
-
-/* زر القائمة */
+/* زر القائمة (البرجر) */
 .menu-toggle {
+  background: none;
+  border: 0;
   font-size: 1.6rem;
-  line-height: 1;
-  border: none;
-  background: transparent;
   cursor: pointer;
-  color: var(--primary);
-  width: 42px; height: 42px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  line-height: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: var(--transition);
 }
+.menu-toggle:hover { background: var(--light); }
 
-/* القائمة الجانبية */
+/* إخفاء روابط الهيدر القديمة (سنستخدم القائمة الجانبية) */
+.nav-links { display: none !important; }
+
+/* —————————— القائمة الجانبية —————————— */
 .sidebar {
   position: fixed;
   top: 0;
-  right: -280px;            /* خارج الشاشة */
-  width: 280px;
+  right: 0;                 /* تنزلق من اليمين */
+  width: min(82vw, 340px);
   height: 100vh;
-  background: var(--primary);
-  color: #fff;
-  z-index: 2000;
-  padding: 20px 16px 24px;
-  box-shadow: -2px 0 16px rgba(0,0,0,0.25);
-  transition: right .35s ease;
+  background: #fff;
+  box-shadow: -10px 0 25px rgba(0,0,0,.12);
+  transform: translateX(100%);
+  transition: transform .35s ease;
+  z-index: 1100;
+  padding: 18px 18px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
-.sidebar.open { right: 0; }
-.sidebar .close-btn{
-  position: absolute;
-  top: 14px; left: 14px;
-  width: 40px; height: 40px;
-  display:flex; align-items:center; justify-content:center;
-  border: none; border-radius: 10px; background: rgba(255,255,255,0.12);
-  color: #fff; cursor: pointer;
-}
-.sidebar-links { list-style: none; margin-top: 58px; padding: 0; }
-.sidebar-links li { margin: 14px 0; }
-.sidebar-links a{
-  color: #fff; text-decoration: none; font-weight: 600; font-size: 1.05rem;
-  display: block; padding: 10px 12px; border-radius: 10px;
-  transition: background .25s ease;
-}
-.sidebar-links a:hover{ background: rgba(255,255,255,0.12); }
+.sidebar.open { transform: translateX(0); }
 
-/* طبقة خلفية */
-.sidebar-overlay{
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 1500;
-  opacity: 0; transition: opacity .25s ease;
-}
-.sidebar-overlay.show{ opacity: 1; }
-
-/* قفل تمرير الجسم عند فتح القائمة */
-.body-lock { overflow: hidden; }
-
-/* توافق الجوال */
-@media (max-width: 480px){
-  .sidebar{ width: 88vw; }
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 1090;
 }
 
+/* زر الإغلاق داخل القائمة */
+.close-btn {
+  align-self: flex-start;
+  background: none;
+  border: 0;
+  font-size: 1.4rem;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+.close-btn:hover { background: var(--light); }
 
+/* روابط القائمة الجانبية */
+.sidebar-links {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.sidebar-links a {
+  display: block;
+  padding: 12px 10px;
+  border-radius: 10px;
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.sidebar-links a:hover {
+  background: var(--light);
+  color: var(--secondary);
+}
+
+/* أزرار اللغة داخل القائمة */
+.sidebar-langs {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.sidebar-langs .lang-btn {
+  border: 1px solid #e6e6e6;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.sidebar-langs .lang-btn:hover { background: var(--light); }
+
+/* توافق الهواتف */
+@media (max-width: 768px) {
+  .header-container.header-swapped { padding-inline: 5%; }
+  .languages { display: none; }        /* أبقِ أزرار اللغة في القائمة لمنع الازدحام */
+  .sidebar-langs { display: flex; }    /* فعّلها داخل القائمة */
+}
 
 #companyName {
   color: #dbae34;
@@ -2937,6 +2895,7 @@ footer::before {
 .cta-buttons .btn:hover::before {
   transform: translateZ(-10px);
 }
+
 
 
 
