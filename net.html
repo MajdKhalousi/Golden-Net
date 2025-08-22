@@ -43,46 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-<script>
-  (function(){
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar    = document.getElementById('sidebar');
-    const closeBtn   = document.getElementById('closeSidebar');
-    const overlay    = document.getElementById('sidebarOverlay');
-
-    function openSidebar(){
-      sidebar.classList.add('open');
-      if (overlay) {
-        overlay.hidden = false;
-        requestAnimationFrame(()=> overlay.classList.add('show'));
-      }
-      document.body.classList.add('body-lock');
-      sidebar.setAttribute('aria-hidden','false');
-      menuToggle?.setAttribute('aria-expanded','true');
-    }
-
-    function closeSidebar(){
-      sidebar.classList.remove('open');
-      if (overlay) {
-        overlay.classList.remove('show');
-        setTimeout(()=> overlay.hidden = true, 250);
-      }
-      document.body.classList.remove('body-lock');
-      sidebar.setAttribute('aria-hidden','true');
-      menuToggle?.setAttribute('aria-expanded','false');
-      menuToggle?.focus();
-    }
-
-    menuToggle?.addEventListener('click', openSidebar);
-    closeBtn?.addEventListener('click', closeSidebar);
-    overlay?.addEventListener('click', closeSidebar);
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar(); });
-
-    // أغلق القائمة بعد اختيار رابط
-    document.querySelectorAll('#sidebar .sidebar-links a').forEach(a=> a.addEventListener('click', closeSidebar));
-  })();
-</script>
-
 
 
 
@@ -91,51 +51,26 @@ document.addEventListener("DOMContentLoaded", () => {
     <button id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
-<header>
-  <div class="header-container header-swapped">
-    <!-- اللوغو يسار -->
-    <div class="logo">
-      <img src="images/LOGOG.png" alt="شعار الشركة">
-      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
-    </div>
-
-    <!-- يمين: أزرار اللغة + زر القائمة -->
-    <div class="header-actions">
-      <div class="languages">
-        <button class="lang-btn active" data-lang="ar" aria-label="العربية">AR</button>
-        <button class="lang-btn" data-lang="tr" aria-label="Türkçe">TR</button>
-      </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-controls="sidebar" aria-expanded="false">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- القائمة الجانبية -->
-<nav id="sidebar" class="sidebar" aria-hidden="true">
-  <button class="close-btn" id="closeSidebar" aria-label="إغلاق القائمة">
-    <i class="fas fa-times"></i>
-  </button>
-
-  <!-- أزرار اللغة داخل القائمة (للشاشات الصغيرة) -->
-  <div class="sidebar-langs">
-    <button class="lang-btn" data-lang="ar">AR</button>
-    <button class="lang-btn" data-lang="tr">TR</button>
-  </div>
-
-  <ul class="sidebar-links">
-    <li><a href="#faq">الأسئلة الشائعة</a></li>
-    <li><a href="industrial.html">الخدمات الرئيسية</a></li>
-    <li><a href="#products">منتجاتنا</a></li>
-    <li><a href="#about">من نحن</a></li>
-    <li><a href="#contact">التواصل</a></li>
-    <li><a href="#brands">علاماتنا</a></li>
-  </ul>
-</nav>
-
-<!-- الغطاء -->
-<div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+  <!-- الهيدر -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img  src="images/LOGOG.png" alt="شعار الشركة">
+               <span id="companyName" role="link" tabindex="0">GOLDEN <span>NET</span></span>
+            </div>
+            <div class="nav-links">
+                <div class="languages">
+                    <button class="lang-btn active" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
+                <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
+                 <a href="industrial.html" id="navFaq">الخدمات الرئيسية</a>
+                <a href="#products" id="navProducts">منتجاتنا</a>
+                <a href="#about" id="navAbout">من نحن</a>
+                <a href="#contact" id="navContact">التواصل</a>
+            </div>
+        </div>
+    </header>
 
 
 
@@ -1841,6 +1776,7 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
+
 
 
 
