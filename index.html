@@ -53,44 +53,26 @@ document.addEventListener("DOMContentLoaded", () => {
     </button>
 
   <!-- الهيدر الجديد -->
-<header class="site-header">
-  <div class="header-container">
-    <!-- اللوغو (يبقى يسار) -->
-    <div class="logo">
-      <img src="images/LOGOG.png" alt="شعار الشركة">
-      <h1 id="companyName">GOLDEN<span> NET</span></h1>
-    </div>
-
-    <!-- منطقة الإجراءات يمين: أزرار اللغة + زر القائمة -->
-    <div class="header-actions">
-      <div class="languages">
-        <button class="lang-btn active" data-lang="ar">AR</button>
-        <button class="lang-btn" data-lang="tr">TR</button>
-      </div>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" title="القائمة">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- القائمة الجانبية -->
-<nav id="sidebar" class="sidebar" aria-hidden="true">
-  <button class="close-btn" id="closeSidebar" aria-label="إغلاق"><i class="fas fa-times"></i></button>
-  <ul class="sidebar-links">
-    <li><a href="#faq">الأسئلة الشائعة</a></li>
-    <li><a href="industrial.html">الخدمات الرئيسية</a></li>
-    <li><a href="#products">منتجاتنا</a></li>
-    <li><a href="#about">من نحن</a></li>
-    <li><a href="#contact">التواصل</a></li>
-    <li><a href="#brands">علاماتنا</a></li>
-  </ul>
-</nav>
-
-<!-- طبقة خلفية للقائمة -->
-<div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
-
+ <!-- الهيدر -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/LOGOG.png" alt="شعار الشركة">
+                <h1 id="companyName">GOLDEN<span> NET</span></h1>
+            </div>
+            <div class="nav-links">
+                <div class="languages">
+                    <button class="lang-btn active" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
+                <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
+                 <a href="industrial.html" id="navFaq">الخدمات الرئيسية</a>
+                <a href="#products" id="navProducts">منتجاتنا</a>
+                <a href="#about" id="navAbout">من نحن</a>
+                <a href="#contact" id="navContact">التواصل</a>
+            </div>
+        </div>
+    </header>
 
 
 
@@ -1636,44 +1618,6 @@ document.head.appendChild(animationStyles);
 
 
 
-<script>
-  (function(){
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar    = document.getElementById('sidebar');
-    const closeBtn   = document.getElementById('closeSidebar');
-    const overlay    = document.getElementById('sidebarOverlay');
-
-    function openSidebar(){
-      sidebar.classList.add('open');
-      overlay.hidden = false;
-      // تأخير صغير لإظهار تلاشي الطبقة
-      requestAnimationFrame(()=> overlay.classList.add('show'));
-      document.body.classList.add('body-lock');
-      sidebar.setAttribute('aria-hidden','false');
-    }
-    function closeSidebar(){
-      sidebar.classList.remove('open');
-      overlay.classList.remove('show');
-      document.body.classList.remove('body-lock');
-      sidebar.setAttribute('aria-hidden','true');
-      setTimeout(()=> overlay.hidden = true, 250);
-    }
-
-    menuToggle?.addEventListener('click', openSidebar);
-    closeBtn?.addEventListener('click', closeSidebar);
-    overlay?.addEventListener('click', closeSidebar);
-
-    // أغلق عند الضغط على ESC
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar();
-    });
-
-    // أغلق القائمة بعد اختيار رابط
-    document.querySelectorAll('#sidebar .sidebar-links a').forEach(a=>{
-      a.addEventListener('click', closeSidebar);
-    });
-  })();
-</script>
 
 
 <script src="lang/ar.js" ></script>
@@ -1684,6 +1628,7 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
+
 
 
 
