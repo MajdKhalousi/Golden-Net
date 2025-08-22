@@ -90,28 +90,40 @@ document.addEventListener("DOMContentLoaded", () => {
         <i class="fas fa-arrow-up"></i>
     </button>
 
-<!-- الهيدر الجديد -->
 <header>
-  <div class="header-container">
-    <!-- اللوغو -->
+  <div class="header-container header-swapped">
+    <!-- اللوغو يسار -->
     <div class="logo">
       <img src="images/LOGOG.png" alt="شعار الشركة">
       <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
     </div>
 
-    <!-- زر القائمة -->
-    <div class="menu-toggle" id="menuToggle">
-      <i class="fas fa-bars"></i>
+    <!-- يمين: أزرار اللغة + زر القائمة -->
+    <div class="header-actions">
+      <div class="languages">
+        <button class="lang-btn active" data-lang="ar" aria-label="العربية">AR</button>
+        <button class="lang-btn" data-lang="tr" aria-label="Türkçe">TR</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-controls="sidebar" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </div>
 </header>
 
 <!-- القائمة الجانبية -->
-<nav id="sidebar" class="sidebar">
-  <div class="close-btn" id="closeSidebar">
+<nav id="sidebar" class="sidebar" aria-hidden="true">
+  <button class="close-btn" id="closeSidebar" aria-label="إغلاق القائمة">
     <i class="fas fa-times"></i>
+  </button>
+
+  <!-- أزرار اللغة داخل القائمة (للشاشات الصغيرة) -->
+  <div class="sidebar-langs">
+    <button class="lang-btn" data-lang="ar">AR</button>
+    <button class="lang-btn" data-lang="tr">TR</button>
   </div>
-  <ul>
+
+  <ul class="sidebar-links">
     <li><a href="#faq">الأسئلة الشائعة</a></li>
     <li><a href="industrial.html">الخدمات الرئيسية</a></li>
     <li><a href="#products">منتجاتنا</a></li>
@@ -120,6 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
     <li><a href="#brands">علاماتنا</a></li>
   </ul>
 </nav>
+
+<!-- الغطاء -->
+<div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
 
 
 
@@ -1824,5 +1840,6 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
+
 
 
