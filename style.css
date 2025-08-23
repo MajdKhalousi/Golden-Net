@@ -2880,3 +2880,56 @@ header .header-container {
 
 
 
+
+
+
+
+/* بطاقة متدرّجة لنفس كتلة النصوص الحالية */
+.about-section .about-text{
+  background: linear-gradient(180deg, var(--primary, #1a66ff) 0%, var(--secondary, #9c39ff) 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: clamp(24px, 3vw, 40px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+/* عناوين وفقرات داخل البطاقة */
+.about-section .about-text h2,
+.about-section .about-text p{ color:#fff; }
+
+/* شبكة الإحصاءات داخل البطاقة */
+.about-section .about-stats{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+.about-section .about-stats .stat{
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  padding: 12px 16px;
+  text-align: center;
+}
+.about-section .about-stats .stat h3{
+  margin: 0;
+  font-size: clamp(22px, 3vw, 32px);
+  color:#fff;
+}
+.about-section .about-stats .stat p{
+  margin: .25rem 0 0;
+  color: rgba(255,255,255,.95);
+}
+
+/* تقليل الحركة لمن يفضّل ذلك */
+@media (prefers-reduced-motion: reduce){
+  .about-section .about-stats .stat{ transition: none; }
+}
+
+
+
+
+
+
+
+
