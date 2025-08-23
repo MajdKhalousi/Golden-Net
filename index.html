@@ -46,38 +46,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const menuToggle = document.getElementById('menuToggle');
+  const closeBtn = document.getElementById('closeSidebar');
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.hidden = false;
+    menuToggle.setAttribute('aria-expanded', 'true');
+    sidebar.setAttribute('aria-hidden', 'false');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.hidden = true;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    sidebar.setAttribute('aria-hidden', 'true');
+  }
+
+  menuToggle?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+  sidebar?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+
+  // ربط أزرار اللغة الموجودة بالهيدر/القائمة
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      // إن كنت تستخدم loadLanguage(...) مع ملفات lang/{ar,tr}.json فاستدعِها هنا:
+      if (typeof loadLanguage === 'function') {
+        loadLanguage(lang);
+      } else if (typeof changeLanguage === 'function') {
+        changeLanguage(lang);
+      }
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b === btn));
+      document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    });
+  });
+});
+</script>
+
+
+
 <body dir="rtl">
     <!-- زر العودة لأعلى الصفحة -->
     <button id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-  <!-- الهيدر الجديد -->
- <!-- الهيدر -->
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="images/LOGOG.png" alt="شعار الشركة">
-                <h1 id="companyName">GOLDEN<span> NET</span></h1>
-            </div>
-            <div class="nav-links">
-                <div class="languages">
+<!-- الهيدر الجديد -->
+<header>
+  <div class="header-container">
+ <div class="languages">
                     <button class="lang-btn active" data-lang="ar">AR</button>
                     <button class="lang-btn" data-lang="tr">TR</button>
                 </div>
-                <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
-                 <a href="industrial.html" id="navFaq">الخدمات الرئيسية</a>
-                <a href="#products" id="navProducts">منتجاتنا</a>
-                <a href="#about" id="navAbout">من نحن</a>
-                <a href="#contact" id="navContact">التواصل</a>
-            </div>
-        </div>
-    </header>
 
+    <!-- اللوغو -->
+    <div class="logo">
+      <img src="images/LOGOG.png" alt="شعار الشركة">
+      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
+    </div>
 
+    <!-- زر القائمة -->
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</header>
+<div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
 
+<!-- القائمة الجانبية -->
+<nav id="sidebar" class="sidebar">
+  <div class="close-btn" id="closeSidebar">
+    <i class="fas fa-times"></i>
+  </div>
+  <ul>
+    <li><a href="industrial.html">الخدمات الرئيسية</a></li>
+    <li><a href="#products">منتجاتنا</a></li>
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#contact">التواصل</a></li>
+    <li><a href="#brands">علاماتنا</a></li>
+    <li><a href="#faq">الأسئلة الشائعة</a></li>
 
-
+  </ul>
+</nav>
 
 
 
@@ -1628,7 +1687,6 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
-
 
 
 
