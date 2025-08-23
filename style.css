@@ -2786,8 +2786,84 @@ footer::before {
 
 
 
+/* اجعل ترتيب عناصر الهيدر من اليسار لليمين فقط داخل الهيدر */
+header .header-container {
+  direction: ltr;            /* هذا يضمن ظهور أول عنصر يساراً */
+  justify-content: space-between;
+}
+
+/* شكل زر القائمة كما هو */
+.menu-toggle {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
 
 
+/* زر القائمة */
+.menu-toggle {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+/* القائمة الجانبية */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background-color: var(--primary);
+  color: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-top: 50px;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  color: var(--secondary);
+}
+
+/* زر الإغلاق */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* إظهار القائمة عند الفتح */
+.sidebar.open { right: 0; }
+
+/* قناع الخلفية */
+.sidebar-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 1500; /* أقل من الـ sidebar (2000) وأعلى من الصفحة */
+}
 
 
 
