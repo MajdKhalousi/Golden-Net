@@ -59,10 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                <span id="companyName" role="link" tabindex="0">GOLDEN <span>NET</span></span>
             </div>
             <div class="nav-links">
-                <div class="languages">
-                    <button class="lang-btn active" data-lang="ar">AR</button>
-                    <button class="lang-btn" data-lang="tr">TR</button>
-                </div>
+               
                 <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
                  <a href="industrial.html" id="navFaq">الخدمات الرئيسية</a>
                 <a href="#products" id="navProducts">منتجاتنا</a>
@@ -73,6 +70,44 @@ document.addEventListener("DOMContentLoaded", () => {
     </header>
 
 
+
+<!-- الهيدر الجديد -->
+<header>
+  <div class="header-container">
+ <div class="languages">
+                    <button class="lang-btn active" data-lang="ar">AR</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
+
+    <!-- اللوغو -->
+    <div class="logo">
+      <img src="images/LOGOG.png" alt="شعار الشركة">
+      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
+    </div>
+
+    <!-- زر القائمة -->
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</header>
+<div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+<!-- القائمة الجانبية -->
+<nav id="sidebar" class="sidebar">
+  <div class="close-btn" id="closeSidebar">
+    <i class="fas fa-times"></i>
+  </div>
+  <ul>
+    <li><a href="industrial.html">الخدمات الرئيسية</a></li>
+    <li><a href="#products">منتجاتنا</a></li>
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#contact">التواصل</a></li>
+    <li><a href="#brands">علاماتنا</a></li>
+    <li><a href="#faq">الأسئلة الشائعة</a></li>
+
+  </ul>
+</nav>
 
 
 
@@ -1776,7 +1811,6 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
-
 
 
 
