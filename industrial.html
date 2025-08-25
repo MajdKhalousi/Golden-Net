@@ -630,8 +630,7 @@
 
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
-                height: auto;
+               
                 padding: 15px 0;
             }
 
@@ -701,6 +700,7 @@ header .header-container {
 }
 
 
+
 /* زر القائمة */
 .menu-toggle {
   font-size: 1.8rem;
@@ -752,6 +752,60 @@ header .header-container {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+
+
+/* تأثير التمرير على الهيدر */
+header.scrolled {
+  background: #fff;                 /* يثبت الخلفية لو الصفحة شفافة */
+  box-shadow: 0 2px 15px rgba(0,0,0,0.12);
+}
+
+header.scrolled .header-container {
+  height: 64px;                     /* تصغير ارتفاع الهيدر عند التمرير */
+  transition: var(--transition);
+}
+
+header.scrolled .logo img {
+  height: 42px;                     /* تصغير اللوغو بسلاسة */
+  transition: var(--transition);
+}
+
+/* Hover لزر القائمة */
+.menu-toggle:hover {
+  color: var(--secondary);
+  transform: scale(1.06);
+}
+
+/* زر القائمة أصلاً عليه cursor:pointer عندك — ممتاز */
+
+/* تحسين أزرار اللغة + حالة hover/active */
+.languages .lang-btn {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 6px 10px;
+  margin: 0 4px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.languages .lang-btn:hover,
+.languages .lang-btn.active {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: #fff;
+}
+
+/* رابط اسم الشركة في الهيدر (لو حابب تفاعل بسيط) */
+#companyName:hover {
+  color: var(--secondary);
+}
+
+
+
 
 
 
@@ -976,7 +1030,7 @@ header .header-container {
                     <div class="phone-links">
                         <p id="contactPhone1">
                             <a href="tel:+905522886112" class="contact-link phone-link">
-                                <span id="phone1Text">+90 552 288 61 12</span>
+                                <span id="phone1Text" dir="ltr">+90 552 288 61 12</span>
                                 <i class="fas fa-phone phone-icon"></i>
                             </a>
                             <a href="https://wa.me/905522886112" class="contact-link whatsapp-link" target="_blank">
@@ -986,7 +1040,7 @@ header .header-container {
                         </p>
                         <p id="contactPhone2">
                             <a href="tel:+905388899919" class="contact-link phone-link">
-                                <span id="phone2Text">+90 538 889 99 19</span>
+                                <span id="phone2Text" dir="ltr">+90 538 889 99 19</span>
                                 <i class="fas fa-phone phone-icon"></i>
                             </a>
                             <a href="https://wa.me/905388899919" class="contact-link whatsapp-link" target="_blank">
