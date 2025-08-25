@@ -2788,7 +2788,7 @@ footer::before {
 
 /* اجعل ترتيب عناصر الهيدر من اليسار لليمين فقط داخل الهيدر */
 header .header-container {
-  direction: ltr;            /* هذا يضمن ظهور أول عنصر يساراً */
+  direction: rtl;            /* هذا يضمن ظهور أول عنصر يساراً */
   justify-content: space-between;
 }
 
@@ -2880,10 +2880,6 @@ header .header-container {
 
 
 
-
-
-
-
 /* بطاقة متدرّجة لنفس كتلة النصوص الحالية */
 .about-section .about-text{
   background: linear-gradient(180deg, var(--primary, #1a66ff) 0%, var(--secondary, #9c39ff) 100%);
@@ -2932,4 +2928,68 @@ header .header-container {
 
 
 
+
+
+
+
+
+
+/* ——— قسم العلامات (الشركاء) ——— */
+.brands-section {
+    background-color: white; /* يمكنك تغييره إلى #f8f9fa إن رغبت */
+}
+
+.brands-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px;
+    align-items: center;
+    justify-items: center;
+    padding: 0% 5% 10% 5%;
+}
+
+.brand-card {
+    width: 100%;
+    height: 110px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease, opacity .25s ease;
+    padding: 16px;
+}
+
+.brand-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+}
+
+.brand-card img.brand-logo {
+    max-width: 120px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: filter .25s ease, opacity .25s ease;
+}
+
+/* عند التحويم تصبح ملونة وواضحة */
+.brand-card:hover img.brand-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* لمظهر متناسق على الشاشات الصغيرة */
+@media (max-width: 480px) {
+    .brand-card { height: 90px; }
+    .brand-card img.brand-logo { max-width: 100px; max-height: 48px; }
+}
 
