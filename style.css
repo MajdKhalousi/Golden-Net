@@ -1716,14 +1716,14 @@ section.show {
 @media (max-width: 768px) {
   /* ترتيب عناصر الهيدر بشكل عمودي */
   .header-container {
-    flex-direction: column;
-    height: auto;
+   /*  flex-direction: column;
+    height: auto;*/
     padding: 15px 0;
   }
 
   /* تباعد الشعار عن القائمة */
   .logo {
-    margin-bottom: 15px;
+    margin-bottom: 0px;
   }
 
   /* لف روابط القائمة عند ضيق العرض */
