@@ -806,6 +806,30 @@ header.scrolled .logo img {
 
 
 
+/* قائمة اللغات المنسدلة داخل الهيدر */
+.languages{ position: relative; }
+.lang-toggle{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 14px; border:1px solid #e5e7eb; border-radius:999px;
+  background:#fff; color:var(--primary); font-weight:600; cursor:pointer;
+}
+.lang-toggle i{ font-size: 0.95rem; }
+
+.lang-menu{
+  position:absolute; top:calc(100% + 8px); right:0;
+  min-width:160px; background:#fff; border:1px solid #eee;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  border-radius:12px; padding:6px; list-style:none; z-index:1200;
+}
+.lang-menu li{ margin:0; }
+.lang-menu .lang-btn{
+  width:100%; text-align:start; background:transparent; border:0;
+  padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600;
+  color:var(--dark);
+}
+.lang-menu .lang-btn:hover, .lang-menu .lang-btn.active{
+  background:#f5f6f7; color:var(--secondary);
+}
 
 
 
@@ -823,10 +847,20 @@ header.scrolled .logo img {
 <!-- الهيدر الجديد -->
 <header dir="rtl">
   <div class="header-container">
- <div class="languages">
-                    <button class="lang-btn active" data-lang="ar">AR</button>
-                    <button class="lang-btn" data-lang="tr">TR</button>
-                </div>
+<div class="languages">
+  <!-- احذف الأزرار القديمة وضع التالي -->
+  <button class="lang-toggle" id="langToggle" aria-haspopup="menu" aria-expanded="false">
+    <i class="fas fa-globe"></i>
+    <span id="currentLangLabel">AR</span>
+    <i class="fas fa-chevron-down"></i>
+  </button>
+
+  <ul class="lang-menu" id="langMenu" role="menu" hidden>
+    <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
+    <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
+    <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
+  </ul>
+</div>
 
     <!-- اللوغو -->
     <div class="logo">
@@ -1035,17 +1069,17 @@ header.scrolled .logo img {
                             </a>
                             <a href="https://wa.me/905522886112" class="contact-link whatsapp-link" target="_blank">
                                 <i class="fab fa-whatsapp whatsapp-icon"></i>
-                                <span class="link-label">Whatsapp</span>
+                                <span class="link-label">خدمات انترنت</span>
                             </a>
                         </p>
                         <p id="contactPhone2">
                             <a href="tel:+905388899919" class="contact-link phone-link">
-                                <span id="phone2Text" dir="ltr">+90 538 889 99 19</span>
+                                <span id="phone2Text" dir="ltr">+4917666990043</span>
                                 <i class="fas fa-phone phone-icon"></i>
                             </a>
-                            <a href="https://wa.me/905388899919" class="contact-link whatsapp-link" target="_blank">
+                            <a href="https://wa.me/4917666990043" class="contact-link whatsapp-link" target="_blank">
                                 <i class="fab fa-whatsapp whatsapp-icon"></i>
-                                <span class="link-label">Whatsapp</span>
+                                <span class="link-label">خدمات عامة</span>
                             </a>
                         </p>
                     </div>
@@ -1241,18 +1275,41 @@ observer.observe(section);
 });
 
   // تغيير اللغة (وظيفة أساسية)
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // هنا يمكنك إضافة كود تغيير اللغة الفعلي
-                const lang = this.dataset.lang;
-                console.log('تم اختيار اللغة:', lang);
-                // يمكنك إضافة المزيد من الكود هنا لتحميل ملفات اللغة أو تغيير النصوص
-            });
-        });
+       const languagesBox = document.querySelector('.languages');
+  const langToggle   = document.getElementById('langToggle');
+  const langMenu     = document.getElementById('langMenu');
+  const currentLabel = document.getElementById('currentLangLabel');
+
+  const openMenu  = () => { langMenu.hidden = false; langToggle.setAttribute('aria-expanded','true'); };
+  const closeMenu = () => { langMenu.hidden = true;  langToggle.setAttribute('aria-expanded','false'); };
+
+  langToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langMenu.hidden ? openMenu() : closeMenu();
+  });
+
+  // إغلاق عند الضغط خارج/على Escape
+  document.addEventListener('click', (e) => {
+    if (!languagesBox.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // وظيفة اختيار اللغة (نفس منطقك السابق + إغلاق وتحديث اللابل)
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      const lang = this.dataset.lang;
+      currentLabel.textContent = this.textContent.trim(); // AR/TR/EN
+      closeMenu();
+
+      // TODO: هنا ضع منطق الترجمة الفعلي (تحميل ملفات/تبديل نصوص حسب lang)
+      console.log('تم اختيار اللغة:', lang);
     });
+  });
 
 
 // القائمة الجانبية
@@ -1281,14 +1338,9 @@ closeSidebar.addEventListener("click", () => {
         element.style.boxShadow = '';
     });
     });
+    });
+
 </script>
-
-
-
-
-
-
-
 
 
 
