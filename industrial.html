@@ -11,66 +11,6 @@
     <style>
 
 
-/* ——— قسم العلامات (الشركاء) ——— */
-.brands-section {
-    background-color: white; /* يمكنك تغييره إلى #f8f9fa إن رغبت */
-}
-
-.brands-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.brands-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 24px;
-    align-items: center;
-    justify-items: center;
-    padding: 0 5%;
-}
-
-.brand-card {
-    width: 100%;
-    height: 110px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease, opacity .25s ease;
-    padding: 16px;
-}
-
-.brand-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.10);
-}
-
-.brand-card img.brand-logo {
-    max-width: 120px;
-    max-height: 60px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    opacity: 0.85;
-    transition: filter .25s ease, opacity .25s ease;
-}
-
-/* عند التحويم تصبح ملونة وواضحة */
-.brand-card:hover img.brand-logo {
-    filter: grayscale(0%);
-    opacity: 1;
-}
-
-/* لمظهر متناسق على الشاشات الصغيرة */
-@media (max-width: 480px) {
-    .brand-card { height: 90px; }
-    .brand-card img.brand-logo { max-width: 100px; max-height: 48px; }
-}
-
-
 
 
         /* أنماط CSS المعدلة */
@@ -747,7 +687,7 @@ a#companyName{
 
 /* اجعل ترتيب عناصر الهيدر من اليسار لليمين فقط داخل الهيدر */
 header .header-container {
-  direction: ltr;            /* هذا يضمن ظهور أول عنصر يساراً */
+  direction: rtl;            /* هذا يضمن ظهور أول عنصر يساراً */
   justify-content: space-between;
 }
 
@@ -827,7 +767,7 @@ header .header-container {
     <!-- الهيدر -->
 
 <!-- الهيدر الجديد -->
-<header>
+<header dir="rtl">
   <div class="header-container">
  <div class="languages">
                     <button class="lang-btn active" data-lang="ar">AR</button>
@@ -981,13 +921,13 @@ header .header-container {
         <div class="about-content">
             <div class="about-text">
                 <h2>شركة رائدة في الصناعات الغذائية والكيميائية</h2>
-                <p>تأسست شركة "Golden Net" عام 2010 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.</p>
+                <p>تأسست شركة "Golden Net" عام 2015 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.</p>
                 <p>نمتلك مصنعين منفصلين، واحد مخصص للصناعات الغذائية وآخر للصناعات الكيميائية، لضمان عدم وجود أي تداخل أو تلوث بين خطوط الإنتاج.</p>
                 <p>فريقنا من المهندسين والخبراء يعملون بجد لتقديم أفضل المنتجات، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية في مجال الصناعات.</p>
                 
                 <div class="about-stats">
                     <div class="stat">
-                        <h3>7+</h3>
+                        <h3>10+</h3>
                         <p>سنوات من الخبرة</p>
                     </div>
                     <div class="stat">
@@ -1019,7 +959,7 @@ header .header-container {
                 <div class="contact-details">
                     <h3 id="contactAddressTitle">العنوان</h3>
                     <p id="contactAddress">
-                        <a href="https://maps.google.com?q=36.252439,36.569930" target="_blank" class="contact-link map-link">
+                        <a href="https://maps.app.goo.gl/QLicWEaZZTnChbPH8" target="_blank" class="contact-link map-link">
                             <span id="addressText">الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.</span>
                             <i class="fas fa-external-link-alt external-icon"></i>
                         </a>
@@ -1085,87 +1025,52 @@ header .header-container {
             </div>
         </div>
         
-        <div class="contact-form">
+
+
+
+
+
+    <div class="contact-form">
             <h3 id="contactFormTitle">أرسل لنا رسالة</h3>
-            <form id="messageForm">
-                <div class="form-group">
-                    <label for="name" id="formNameLabel">الاسم الكامل</label>
-                    <input type="text" id="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
-                    <input type="email" id="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
-                    <input type="tel" id="phone">
-                </div>
-                
-                <div class="form-group">
-                    <label for="message" id="formMessageLabel">الرسالة</label>
-                    <textarea id="message" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn" id="formSubmitBtn">
-                    <span>إرسال الرسالة</span>
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
+<form id="messageForm"
+      action="https://formspree.io/f/mjkebzpz" 
+      method="POST"
+      accept-charset="UTF-8">
+
+  <div class="form-group">
+    <label for="name" id="formNameLabel">الاسم الكامل</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+
+  <div class="form-group">
+    <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
+    <input type="tel" id="phone" name="phone">
+  </div>
+
+  <div class="form-group">
+    <label for="message" id="formMessageLabel">الرسالة</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+
+  <!-- عنوان البريد -->
+  <input type="hidden" name="subject" value="رسالة جديدة من موقع Golden Net">
+
+  <!-- حقل honeypot لمكافحة السبام (اختياري) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit" class="btn" id="formSubmitBtn">
+    <span>إرسال الرسالة</span>
+    <i class="fas fa-paper-plane"></i>
+  </button>
+</form>    
         </div>
     </div>
     </section>
-
-<!-- قسم العلامات / الشركاء -->
-<section id="brands" class="main-section brands-section">
-  <div class="section-title">
-    <h2>علاماتنا</h2>
-    <p>نفخر بشراكاتنا مع علامات موثوقة في الصناعات الغذائية والكيميائية</p>
-  </div>
-
-  <div class="brands-container">
-    <div class="brands-grid">
-      <!-- بطاقة علامة 1 -->
-      <a class="brand-card" href="images/comp0.png" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 1">
-        <img
-          src="images/comp0.png"
-          alt="شعار العلامة 1"
-          class="brand-logo"
-          loading="lazy">
-      </a>
-
-      <!-- بطاقة علامة 2 -->
-      <a class="brand-card" href="images/comp2.png" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 2">
-        <img
-          src="images/comp2.png"
-          alt="شعار العلامة 2"
-          class="brand-logo"
-          loading="lazy">
-      </a>
-
-      <!-- بطاقة علامة 3 -->
-      <a class="brand-card" href="images/comp3.png" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 3">
-        <img
-          src="images/comp3.png"
-          alt="شعار العلامة 3"
-          class="brand-logo"
-          loading="lazy">
-      </a>
-
-      <!-- بطاقة علامة 4 -->
-      <a class="brand-card" href="images/comp5.jpeg" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 4">
-        <img
-          src="images/comp5.jpeg"
-          alt="شعار العلامة 4"
-          class="brand-logo"
-          loading="lazy">
-      </a>
-
-      <!-- أضف المزيد حسب الحاجة -->
-    </div>
-  </div>
-</section>
 
 
     <!-- الفوتر -->
