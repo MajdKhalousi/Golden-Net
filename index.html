@@ -249,6 +249,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+
 <section id="why-golden-net" class="about-section" lang="ar" dir="rtl">
   <div class="about-text" style="margin-top:18px">
     <h2>لماذا تختار شركة غولدن نت؟</h2>
@@ -272,12 +275,6 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
   </div>
 </section>
-
-
-
-
-
-
 
 
 
@@ -551,38 +548,111 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
         </div>
-        
-        <div class="contact-form">
+            <div class="contact-form">
             <h3 id="contactFormTitle">أرسل لنا رسالة</h3>
-            <form id="messageForm">
-                <div class="form-group">
-                    <label for="name" id="formNameLabel">الاسم الكامل</label>
-                    <input type="text" id="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
-                    <input type="email" id="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
-                    <input type="tel" id="phone">
-                </div>
-                
-                <div class="form-group">
-                    <label for="message" id="formMessageLabel">الرسالة</label>
-                    <textarea id="message" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn" id="formSubmitBtn">
-                    <span>إرسال الرسالة</span>
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
+<form id="messageForm"
+      action="https://formspree.io/f/mjkebzpz" 
+      method="POST"
+      accept-charset="UTF-8">
+
+  <div class="form-group">
+    <label for="name" id="formNameLabel">الاسم الكامل</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+
+  <div class="form-group">
+    <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
+    <input type="tel" id="phone" name="phone">
+  </div>
+
+  <div class="form-group">
+    <label for="message" id="formMessageLabel">الرسالة</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+
+  <!-- عنوان البريد -->
+  <input type="hidden" name="subject" value="رسالة جديدة من موقع Golden Net">
+
+  <!-- حقل honeypot لمكافحة السبام (اختياري) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit" class="btn" id="formSubmitBtn">
+    <span>إرسال الرسالة</span>
+    <i class="fas fa-paper-plane"></i>
+  </button>
+</form>    
         </div>
     </div>
     </section>
+
+   
+
+
+
+
+
+
+
+
+
+<!-- قسم العلامات / الشركاء -->
+<section id="brands" class="main-section brands-section">
+  <div class="section-title">
+    <h2>علاماتنا</h2>
+    <p>نفخر بشراكاتنا مع علامات موثوقة في الصناعات الغذائية والكيميائية</p>
+  </div>
+
+  <div class="brands-container">
+    <div class="brands-grid">
+      <!-- بطاقة علامة 1 -->
+      <a class="brand-card" href="images/comp0.png" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 1">
+        <img
+          src="images/comp0.png"
+          alt="شعار العلامة 1"
+          class="brand-logo"
+          loading="lazy">
+      </a>
+
+      <!-- بطاقة علامة 2 -->
+      <a class="brand-card" href="images/comp2.png" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 2">
+        <img
+          src="images/comp2.png"
+          alt="شعار العلامة 2"
+          class="brand-logo"
+          loading="lazy">
+      </a>
+
+      <!-- بطاقة علامة 3 -->
+      <a class="brand-card" href="images/comp3.png" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 3">
+        <img
+          src="images/comp3.png"
+          alt="شعار العلامة 3"
+          class="brand-logo"
+          loading="lazy">
+      </a>
+
+      <!-- بطاقة علامة 4 -->
+      <a class="brand-card" href="images/comp5.jpeg" target="_blank" rel="noopener" aria-label="الانتقال إلى موقع العلامة 4">
+        <img
+          src="images/comp5.jpeg"
+          alt="شعار العلامة 4"
+          class="brand-logo"
+          loading="lazy">
+      </a>
+
+      <!-- أضف المزيد حسب الحاجة -->
+    </div>
+  </div>
+</section>
+
+
+
+
 
     <!-- الفوتر -->
     <footer>
@@ -1713,7 +1783,6 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
-
 
 
 
