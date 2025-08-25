@@ -74,10 +74,21 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- الهيدر الجديد -->
 <header>
   <div class="header-container">
- <div class="languages">
-                    <button class="lang-btn active" data-lang="ar">AR</button>
-                    <button class="lang-btn" data-lang="tr">TR</button>
-                </div>
+<div class="languages">
+  <!-- احذف الأزرار القديمة وضع التالي -->
+  <button class="lang-toggle" id="langToggle" aria-haspopup="menu" aria-expanded="false">
+    <i class="fas fa-globe"></i>
+    <span id="currentLangLabel">AR</span>
+    <i class="fas fa-chevron-down"></i>
+  </button>
+
+  <ul class="lang-menu" id="langMenu" role="menu" hidden>
+    <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
+    <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
+    <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
+  </ul>
+</div>
+
 
     <!-- اللوغو -->
     <div class="logo">
@@ -580,17 +591,17 @@ document.addEventListener("DOMContentLoaded", () => {
                             </a>
                             <a href="https://wa.me/905522886112" class="contact-link whatsapp-link" target="_blank">
                                 <i class="fab fa-whatsapp whatsapp-icon"></i>
-                                <span class="link-label">Whatsapp</span>
+                                <span class="link-label">خدمات انترنت</span>
                             </a>
                         </p>
                         <p id="contactPhone2">
                             <a href="tel:+905388899919" class="contact-link phone-link">
-                                <span id="phone2Text" dir="ltr">+90 538 889 99 19</span>
+                                <span id="phone2Text" dir="ltr">+4917666990043</span>
                                 <i class="fas fa-phone phone-icon"></i>
                             </a>
-                            <a href="https://wa.me/905388899919" class="contact-link whatsapp-link" target="_blank">
+                            <a href="https://wa.me/+4917666990043" class="contact-link whatsapp-link" target="_blank">
                                 <i class="fab fa-whatsapp whatsapp-icon"></i>
-                                <span class="link-label">Whatsapp</span>
+                                <span class="link-label">خدمات عامة</span>
                             </a>
                         </p>
                     </div>
@@ -979,11 +990,41 @@ function changeLanguage(lang) {
             // تغيير اللغة عند النقر على الأزرار
             // ربط أزرار تغيير اللغة
 
-document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        changeLanguage(btn.dataset.lang);
+ const languagesBox = document.querySelector('.languages');
+  const langToggle   = document.getElementById('langToggle');
+  const langMenu     = document.getElementById('langMenu');
+  const currentLabel = document.getElementById('currentLangLabel');
+
+  const openMenu  = () => { langMenu.hidden = false; langToggle.setAttribute('aria-expanded','true'); };
+  const closeMenu = () => { langMenu.hidden = true;  langToggle.setAttribute('aria-expanded','false'); };
+
+  langToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langMenu.hidden ? openMenu() : closeMenu();
+  });
+
+  // إغلاق عند الضغط خارج/على Escape
+  document.addEventListener('click', (e) => {
+    if (!languagesBox.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // وظيفة اختيار اللغة (نفس منطقك السابق + إغلاق وتحديث اللابل)
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      const lang = this.dataset.lang;
+      currentLabel.textContent = this.textContent.trim(); // AR/TR/EN
+      closeMenu();
+
+      // TODO: هنا ضع منطق الترجمة الفعلي (تحميل ملفات/تبديل نصوص حسب lang)
+      console.log('تم اختيار اللغة:', lang);
     });
-});
+  });
             
             // إضافة زر العودة للصفحة الرئيسية في صفحة المنتجات
        /*      const productsHeader = document.querySelector('#products-page .page-header');
@@ -1470,7 +1511,7 @@ document.head.appendChild(animationStyles);
                 Yeni, Atatürk Cd. No:150A<br>
                 31500 Reyhanlı/Hatay<br><br>
                 <i class="fas fa-phone"></i> <b>الهاتف:</b> 0552 288 6112<br><br>
-                <a href="https://maps.app.goo.gl/QLicWEaZZTnChbPH8" target="_blank" style="display: inline-block; margin-top: 8px; background: #f8f9fa; padding: 5px 10px; border-radius: 5px;">
+                <a href="https://maps.app.goo.gl/73xmgoTQR312cHXU9" target="_blank" style="display: inline-block; margin-top: 8px; background: #f8f9fa; padding: 5px 10px; border-radius: 5px;">
                     <i class="fas fa-directions"></i> افتح في خرائط جوجل
                 </a>
             </div>
