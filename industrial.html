@@ -684,14 +684,20 @@ a#companyName{
 
 }
 
+
+
 /* اجعل ترتيب عناصر الهيدر من اليسار لليمين فقط داخل الهيدر */
 header .header-container {
-  direction: rtl;            /* هذا يضمن ظهور أول عنصر يساراً */
-  justify-content: space-between;
+  direction: ltr;            /* هذا يضمن ظهور أول عنصر يساراً */
+  justify-content: flex-start;  
+   gap: 10px;   
+     display: flex;
+  align-items: center;
 }
 
 /* شكل زر القائمة كما هو */
 .menu-toggle {
+  order: 1; 
   font-size: 1.8rem;
   cursor: pointer;
   color: var(--primary);
@@ -699,13 +705,21 @@ header .header-container {
   align-items: center;
 }
 
-
-
+.languages{ 
+  order: 2; 
+  margin-inline-start: auto;    /* تدفع اللغات وما بعدها إلى أقصى اليمين */
+}
 /* زر القائمة */
 .menu-toggle {
   font-size: 1.8rem;
   cursor: pointer;
   color: var(--primary);
+}
+
+.logo{ 
+  order: 3;                     /* اللوغو يجي بعد اللغات ليكون أقصى اليمين */
+  display: flex; 
+  align-items: center;
 }
 
 /* القائمة الجانبية */
@@ -864,8 +878,9 @@ header.scrolled .logo img {
 
     <!-- اللوغو -->
     <div class="logo">
-      <img src="images/LOGOG.png" alt="شعار الشركة">
+    
       <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
+        <img src="images/LOGOG.png" alt="شعار الشركة">
     </div>
 
     <!-- زر القائمة -->
