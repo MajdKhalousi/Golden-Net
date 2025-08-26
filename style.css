@@ -1739,11 +1739,6 @@ section.show {
 /* ✅ شاشة صغيرة - أقل من 768px */
 @media (max-width: 768px) {
   /* ترتيب عناصر الهيدر بشكل عمودي */
-  .header-container {
-   /*  flex-direction: column;
-    height: auto;*/
-    padding: 15px 0;
-  }
 
   /* تباعد الشعار عن القائمة */
   .logo {
@@ -1827,11 +1822,6 @@ section.show {
   .testimonial-author img {
     width: 50px;
     height: 50px;
-  }
-
-  /* تقليل الحشوة داخل الهيدر */
-  .header-container {
-    padding: 10px 5%;
   }
 
   /* تصغير عنوان الشعار */
