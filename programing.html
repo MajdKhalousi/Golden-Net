@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>خدمات برمجية | إنشاء مواقع ويب احترافية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --primary:#101010;
+      --secondary:#efb730;
+      --light:#f8f9fa;
+      --dark:#34495e;
+      --text:#333;
+      --transition: all .5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    *{box-sizing:border-box; margin:0; padding:0; font-family:'Tajawal',system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+    body{background:#f8f9fa; color:var(--text); line-height:1.7;}
+
+    /* ===== Header ===== */
+    header{
+      background:#fff; box-shadow:0 2px 15px rgba(0,0,0,.08);
+      position:sticky; top:0; z-index:1000; padding:0 5%;
+    }
+    .header-container{
+      display:flex; align-items:center; justify-content:flex-start;
+      height:80px; gap:10px; direction:ltr; /* لضبط الترتيب البصري */
+    }
+    .menu-toggle{ order:1; font-size:1.8rem; color:var(--primary); cursor:pointer; display:flex; align-items:center; }
+    .languages{ order:2; margin-inline-start:auto; position:relative; }
+    .logo{ order:3; display:flex; align-items:center; gap:10px; }
+    .logo img{height:50px;}
+    #companyName{ font-size:28px; font-weight:700; color:#000; text-decoration:none; }
+    #companyName span{ color:var(--secondary); }
+
+    /* لغات (Dropdown) */
+    .lang-toggle{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 14px; border:1px solid #e5e7eb; border-radius:999px;
+      background:#fff; color:var(--primary); font-weight:600; cursor:pointer;
+    }
+    .lang-menu{
+      position:absolute; top:calc(100% + 8px); right:0; min-width:160px;
+      background:#fff; border:1px solid #eee; box-shadow:0 10px 25px rgba(0,0,0,.08);
+      border-radius:12px; padding:6px; list-style:none; z-index:1200;
+    }
+    .lang-menu[hidden]{ display:none; }
+    .lang-menu .lang-btn{
+      width:100%; text-align:start; background:transparent; border:0;
+      padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600; color:var(--dark);
+    }
+    .lang-menu .lang-btn:hover, .lang-menu .lang-btn.active{ background:#f5f6f7; color:var(--secondary); }
+
+    /* Sidebar */
+    .sidebar-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:1500; display:block; }
+    .sidebar-overlay[hidden]{ display:none; }
+    .sidebar{
+      position:fixed; top:0; right:-260px; width:260px; height:100%;
+      background:var(--primary); color:#fff; z-index:2000; padding:20px;
+      box-shadow:-2px 0 10px rgba(0,0,0,.2); transition:right .4s ease;
+    }
+    .sidebar.open{ right:0; }
+    .close-btn{ position:absolute; top:20px; left:20px; font-size:1.3rem; cursor:pointer; }
+
+    .sidebar ul{ list-style:none; margin-top:50px; }
+    .sidebar ul li{ margin:16px 0; }
+    .sidebar ul li a{ color:#fff; text-decoration:none; font-weight:600; }
+    .sidebar ul li a:hover{ color:var(--secondary); }
+
+    /* قائمة فرعية */
+    .sidebar .has-sub > a{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .sub-caret{ transition:transform .2s ease; font-size:.9em; }
+    .submenu{ display:none; margin:8px 0 0; padding:6px 0 0; border-top:1px solid rgba(255,255,255,.14); }
+    .submenu li a{ display:block; padding:8px 0; color:rgba(255,255,255,.92); }
+    .submenu li a:hover{ color:var(--secondary); }
+    .has-sub:hover > .submenu{ display:block; }
+    .has-sub:hover > a .sub-caret{ transform:rotate(180deg); }
+    .has-sub.open > .submenu{ display:block; }
+    .has-sub.open > a .sub-caret{ transform:rotate(180deg); }
+
+    /* ===== Hero ===== */
+    .hero{
+      position:relative; display:grid; place-items:center; text-align:center; color:#fff;
+      min-height:70vh;
+      background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)), url('images/webdev-hero.jpg') center/cover no-repeat;
+      margin-bottom:40px;
+    }
+    .hero h1{ font-size:3rem; margin-bottom:12px; }
+    .hero p{ font-size:1.2rem; opacity:.95; max-width:780px; margin:0 auto 20px; }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--secondary); color:#fff; padding:12px 24px; border:none; border-radius:30px;
+      text-decoration:none; font-weight:700; transition:var(--transition); cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.15);
+    }
+    .btn:hover{ transform:translateY(-3px); box-shadow:0 10px 26px rgba(0,0,0,.22); }
+
+    /* ===== Sections (بطاقات) ===== */
+    .section-title{ text-align:center; margin:50px 0 20px; }
+    .section-title h2{ font-size:2.2rem; color:var(--primary); position:relative; display:inline-block; padding-bottom:10px; }
+    .section-title h2::after{
+      content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+      width:80px; height:4px; background:var(--secondary); border-radius:2px;
+    }
+    .paket-section{ padding:60px 5%; }
+    .paket-container{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:24px; max-width:1200px; margin:0 auto;
+    }
+    .paket-item{
+      background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.08);
+      border:1px solid #eee; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .paket-item:hover{ transform:translateY(-6px); box-shadow:0 16px 36px rgba(0,0,0,.12); }
+    .paket-header{ padding:20px 20px 10px; }
+    .paket-header h3{ font-size:1.4rem; color:var(--primary); margin-bottom:6px; }
+    .paket-header p{ color:#555; }
+    .paket-features{ padding:0 20px 16px; }
+    .paket-features ul{ list-style:none; }
+    .paket-features li{ margin:10px 0; }
+    .paket-features i{ width:22px; text-align:center; color:var(--secondary); }
+
+    .paket-action{ padding:16px 20px 22px; display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* شبكة المعرض */
+    .grid{
+      display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      max-width:1200px; margin:0 auto;
+    }
+    .card{
+      background:#fff; border-radius:12px; border:1px solid #eee; box-shadow:0 8px 24px rgba(0,0,0,.06);
+      overflow:hidden; transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(0,0,0,.1); }
+    .card .thumb{ width:100%; height:180px; background:#e9ecef center/cover no-repeat; }
+    .card .body{ padding:14px 16px; }
+    .card h4{ margin:0 0 6px; color:var(--primary); }
+    .card p{ margin:0; color:#555; }
+
+    /* التسعير */
+    .price{ font-size:2rem; font-weight:800; color:var(--secondary); margin:6px 0 10px; }
+    .muted{ color:#777; font-size:.95rem; }
+
+    /* CTA */
+    .cta{
+      text-align:center; padding:50px 5%;
+      background:linear-gradient(135deg, var(--primary), #000);
+      color:#fff;
+    }
+    .cta h2{ font-size:2rem; margin-bottom:10px; }
+    .cta p{ opacity:.95; margin-bottom:16px; }
+
+    /* Footer */
+    footer{ background:#111; color:#fff; padding:26px 5%; text-align:center; }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .hero h1{ font-size:2.4rem; }
+      .hero p{ font-size:1rem; }
+    }
+  </style>
+</head>
+<body dir="rtl">
+
+<!-- Back to Top -->
+<button id="backToTop" class="btn" style="position:fixed;bottom:24px;right:24px;border-radius:50%;width:50px;height:50px;display:none;justify-content:center;align-items:center;z-index:999;">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="header-container">
+    <!-- زر القائمة (أقصى اليسار) -->
+    <div class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- لغات (بجانب اللوغو) -->
+    <div class="languages">
+      <button class="lang-toggle" id="langToggle" aria-haspopup="menu" aria-expanded="false">
+        <i class="fas fa-globe"></i>
+        <span id="currentLangLabel">AR</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul class="lang-menu" id="langMenu" role="menu" hidden>
+        <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
+        <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
+        <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
+      </ul>
+    </div>
+
+    <!-- اللوغو (أقصى اليمين) -->
+    <div class="logo">
+      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
+      <img src="images/LOGOG.png" alt="شعار الشركة">
+    </div>
+  </div>
+</header>
+
+<div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+<nav id="sidebar" class="sidebar" aria-hidden="true">
+  <div class="close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
+  <ul>
+    <li><a href="index.html">الصفحة الرئيسية</a></li>
+    <li class="has-sub">
+      <a href="industrial.html" aria-expanded="false" aria-controls="submenu-services">الخدمات الرئيسية
+        <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
+      </a>
+      <ul class="submenu" id="submenu-services">
+        <li><a href="#offers">مواقع الشركات</a></li>
+        <li><a href="#offers">متاجر إلكترونية</a></li>
+        <li><a href="#offers">صفحات هبوط</a></li>
+        <li><a href="#stack">التقنيات المستخدمة</a></li>
+        <li><a href="#pricing">الباقات والأسعار</a></li>
+      </ul>
+    </li>
+    <li><a href="#portfolio">أعمالنا</a></li>
+    <li><a href="#process">آلية العمل</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div>
+    <h1>نُنشئ مواقع ويب سريعة، آمنة، قابلة للنمو</h1>
+    <p>مواقع شركات، متاجر إلكترونية، صفحات هبوط—بتجربة استخدام ممتازة وتحسين لمحركات البحث وأداء عالي على كل الأجهزة.</p>
+    <a href="#offers" class="btn"><i class="fas fa-rocket"></i> ابدأ مشروعك الآن</a>
+  </div>
+</section>
+
+<!-- عروضنا (بطاقة واحدة لكل فئة) -->
+<section id="offers" class="paket-section">
+  <div class="section-title">
+    <h2>خدمات برمجية مخصّصة للويب</h2>
+    <p style="max-width:700px;margin:8px auto;color:#555;">اختر ما يناسب هدفك—وسننجز الباقي بسرعة وجودة.</p>
+  </div>
+
+  <div class="paket-container">
+    <div class="paket-item">
+      <div class="paket-header">
+        <h3>مواقع الشركات والمؤسسات</h3>
+        <p>هوية احترافية تعكس أعمالك وثقة عملائك</p>
+      </div>
+      <div class="paket-features">
+        <ul>
+          <li><i class="fas fa-layer-group"></i> تصميم عصري متوافق مع الهوية</li>
+          <li><i class="fas fa-bolt"></i> أداء مُحسّن وتجربة سريعة</li>
+          <li><i class="fas fa-shield-alt"></i> حماية أساسية وتوثيق HTTPS</li>
+          <li><i class="fas fa-search"></i> تحسين SEO أساسي</li>
+        </ul>
+      </div>
+      <div class="paket-action">
+        <a href="#contact" class="btn"><i class="fas fa-comments"></i> احصل على استشارة</a>
+      </div>
+    </div>
+
+    <div class="paket-item">
+      <div class="paket-header">
+        <h3>متاجر إلكترونية</h3>
+        <p>بيع منتجاتك بثقة—بوابات دفع وشحن وتتبّع</p>
+      </div>
+      <div class="paket-features">
+        <ul>
+          <li><i class="fas fa-store"></i> إدارة منتجات ومخزون</li>
+          <li><i class="fas fa-credit-card"></i> ربط بوابات الدفع والشحن</li>
+          <li><i class="fas fa-chart-line"></i> تقارير ومؤشرات مبيعات</li>
+          <li><i class="fas fa-globe"></i> دعم لغات متعددة وعُملات</li>
+        </ul>
+      </div>
+      <div class="paket-action">
+        <a href="#contact" class="btn"><i class="fas fa-comments"></i> اطلب عرض سعر</a>
+      </div>
+    </div>
+
+    <div class="paket-item">
+      <div class="paket-header">
+        <h3>صفحات هبوط</h3>
+        <p>تحويل الزائر إلى عميل بعبارات واضحة وتجربة سريعة</p>
+      </div>
+      <div class="paket-features">
+        <ul>
+          <li><i class="fas fa-bullseye"></i> عناوين مؤثرة وواجهات مركّزة</li>
+          <li><i class="fas fa-vial"></i> اختبار A/B وتحسين التحويل</li>
+          <li><i class="fas fa-mobile-alt"></i> توافق كامل مع الجوال</li>
+          <li><i class="fas fa-envelope-open-text"></i> تكامل نماذج واتس/بريد</li>
+        </ul>
+      </div>
+      <div class="paket-action">
+        <a href="#contact" class="btn"><i class="fas fa-comments"></i> لنصمّم صفحتك</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- التقنيات المستخدمة -->
+<section id="stack" class="paket-section" style="padding-top:20px;">
+  <div class="section-title"><h2>التقنيات المستخدمة</h2></div>
+  <div class="grid" style="max-width:1000px;">
+    <div class="card"><div class="body"><h4>HTML5/CSS3</h4><p>تصميم متجاوب، وصوليّة، أداء.</p></div></div>
+    <div class="card"><div class="body"><h4>JavaScript</h4><p>واجهات تفاعلية وتجربة سلسة.</p></div></div>
+    <div class="card"><div class="body"><h4>Node.js / PHP</h4><p>واجهات برمجية وخدمات خلفية.</p></div></div>
+    <div class="card"><div class="body"><h4>React / Vue</h4><p>تطبيقات واجهة حديثة.</p></div></div>
+    <div class="card"><div class="body"><h4>MySQL / MongoDB</h4><p>قواعد بيانات موثوقة.</p></div></div>
+    <div class="card"><div class="body"><h4>SEO & Analytics</h4><p>قياس وتحسين الظهور.</p></div></div>
+  </div>
+</section>
+
+<!-- أعمال مختارة -->
+<section id="portfolio" class="paket-section">
+  <div class="section-title"><h2>نماذج من أعمالنا</h2></div>
+  <div class="grid">
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="thumb" style="background-image:url('images/portfolio-1.jpg');"></div>
+      <div class="body"><h4>موقع شركة خدمات</h4><p>تعريف بالخدمات/المدوّنة/اتصال.</p></div>
+    </a>
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="thumb" style="background-image:url('images/portfolio-2.jpg');"></div>
+      <div class="body"><h4>متجر إلكتروني</h4><p>سلة، دفع، شحن، تقارير.</p></div>
+    </a>
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="thumb" style="background-image:url('images/portfolio-3.jpg');"></div>
+      <div class="body"><h4>صفحة هبوط</h4><p>حملة تسويقية وتحويلات عالية.</p></div>
+    </a>
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="thumb" style="background-image:url('images/portfolio-4.jpg');"></div>
+      <div class="body"><h4>لوحة تحكّم</h4><p>لوحات بيانات وتتبّع أداء.</p></div>
+    </a>
+  </div>
+</section>
+
+
+
+<section id="portfolio" class="paket-section">
+  <div class="section-title">
+    <h2>أعمالنا</h2>
+    <p style="max-width:700px;margin:8px auto;color:#555;">نماذج مختارة من مشاريع التطبيقات والمواقع.</p>
+  </div>
+
+  <div class="grid" style="max-width:1100px;">
+    <!-- بطاقة تطبيق عقار شامي -->
+    <article class="card">
+      <div class="body">
+        <h4 style="margin-bottom:6px;">تطبيق عقار شامي</h4>
+        <p class="muted" style="margin-bottom:10px;">منصّة إعلانات عقارية (بيع/إيجار) بواجهات عربية متجاوبة ولوحة إدارة.</p>
+
+        <!-- شارات تقنية (اختياري) -->
+        <div class="tags" style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px;">
+          <span class="tag-chip">Android</span>
+          <span class="tag-chip">iOS</span>
+          <span class="tag-chip">Web Admin</span>
+          <span class="tag-chip">RTL</span>
+        </div>
+
+        <!-- معرض صور التطبيق -->
+        <div class="portfolio-gallery">
+          <!-- استبدل المسارات بالصور الفعلية لتطبيقك -->
+          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 1"
+               style="background-image:url('images/aqaar-shami/shot1.jpg');"
+               data-full="images/aqaar-shami/shot1.jpg"></div>
+
+          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 2"
+               style="background-image:url('images/aqaar-shami/shot2.jpg');"
+               data-full="images/aqaar-shami/shot2.jpg"></div>
+
+          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 3"
+               style="background-image:url('images/aqaar-shami/shot3.jpg');"
+               data-full="images/aqaar-shami/shot3.jpg"></div>
+
+          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 4"
+               style="background-image:url('images/aqaar-shami/shot4.jpg');"
+               data-full="images/aqaar-shami/shot4.jpg"></div>
+        </div>
+
+        <!-- أزرار -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+          <a class="btn" target="_blank" href="https://wa.me/905522886112?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D8%B9%D9%86%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D8%B9%D9%82%D8%A7%D8%B1%20%D8%B4%D8%A7%D9%85%D9%8A">
+            <i class="fab fa-whatsapp"></i> تواصل حول المشروع
+          </a>
+          <!-- روابط المتاجر (إن وجدت) -->
+          <!-- <a class="btn" target="_blank" href="#"><i class="fas fa-external-link-alt"></i> جرّب التطبيق</a> -->
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- عارض الصور (Lightbox) -->
+<div id="lightboxModal" class="lightbox" hidden aria-modal="true" role="dialog">
+  <button class="lightbox-close" aria-label="إغلاق">&times;</button>
+  <img id="lightboxImage" alt="لقطة من العمل" />
+</div>
+
+
+
+
+
+<!-- آلية العمل -->
+<section id="process" class="paket-section" style="padding-top:20px;">
+  <div class="section-title"><h2>آلية العمل</h2></div>
+  <div class="paket-container" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+    <div class="paket-item"><div class="paket-header"><h3>1) تحليل ومواءمة</h3><p>نفهم هدفك والجمهور والمحتوى.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>2) تصميم واجهة</h3><p>نماذج أولية وتناسق الهوية.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>3) التطوير</h3><p>فرونت/باك-إند وربط الخدمات.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>4) الاختبار والإطلاق</h3><p>تحسين أداء، أمان، وسيو.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>5) دعم وتوسّع</h3><p>صيانة وتطوير مستمر.</p></div></div>
+  </div>
+</section>
+
+<!-- الباقات والأسعار -->
+<section id="pricing" class="paket-section">
+  <div class="section-title"><h2>الباقات والأسعار</h2></div>
+  <div class="paket-container">
+    <div class="paket-item">
+      <div class="paket-header"><h3>أساسي</h3><p class="muted">موقع تعريفي سريع</p></div>
+      <div class="paket-features">
+        <div class="price">$299</div>
+        <ul>
+          <li><i class="fas fa-check"></i> صفحة رئيسية + 3 صفحات</li>
+          <li><i class="fas fa-check"></i> تصميم متجاوب</li>
+          <li><i class="fas fa-check"></i> نموذج تواصل</li>
+        </ul>
+      </div>
+      <div class="paket-action"><a href="#contact" class="btn">اطلب الآن</a></div>
+    </div>
+
+    <div class="paket-item">
+      <div class="paket-header"><h3>احترافي</h3><p class="muted">شركة/منظمة</p></div>
+      <div class="paket-features">
+        <div class="price">$699</div>
+        <ul>
+          <li><i class="fas fa-check"></i> حتى 8 صفحات + مدوّنة</li>
+          <li><i class="fas fa-check"></i> تكاملات (واتس/تحليلات)</li>
+          <li><i class="fas fa-check"></i> SEO أساسي + أداء</li>
+        </ul>
+      </div>
+      <div class="paket-action"><a href="#contact" class="btn">اطلب الآن</a></div>
+    </div>
+
+    <div class="paket-item">
+      <div class="paket-header"><h3>شركة</h3><p class="muted">خصائص متقدمة/متجر</p></div>
+      <div class="paket-features">
+        <div class="price">$1299+</div>
+        <ul>
+          <li><i class="fas fa-check"></i> متجر/لوحة تحكّم</li>
+          <li><i class="fas fa-check"></i> تعدد لغات وعملات</li>
+          <li><i class="fas fa-check"></i> دعم وأمان متقدّم</li>
+        </ul>
+      </div>
+      <div class="paket-action"><a href="#contact" class="btn">احصل على عرض مخصص</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta">
+  <h2>لنبدأ خلال 24 ساعة من الآن</h2>
+  <p>ارسل فكرتك وسنعود إليك بجدول زمني وتكلفة تقديرية.</p>
+  <div>
+    <a class="btn" target="_blank" href="https://wa.me/905522886112?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D9%88%D9%82%D8%B9%D8%A7%D9%8B%20%D9%84%D8%B4%D8%B1%D9%83%D8%AA%D9%8A"><i class="fab fa-whatsapp"></i> تواصل واتساب</a>
+    <a class="btn" href="index.html#contact"><i class="fas fa-envelope"></i> أرسل رسالة</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 GOLDEN NET — حلول ويب متكاملة</p>
+</footer>
+
+
+
+
+
+<script>
+// Lightbox بسيط لعرض صور أعمالنا
+(function(){
+  const modal = document.getElementById('lightboxModal');
+  const imgEl = document.getElementById('lightboxImage');
+  const closeBtn = modal?.querySelector('.lightbox-close');
+
+  function openLightbox(src){
+    if(!modal || !imgEl) return;
+    imgEl.src = src;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    if(!modal) return;
+    modal.hidden = true;
+    imgEl.removeAttribute('src');
+    document.body.style.overflow = '';
+  }
+
+  // فتح من الصور المصغرة
+  document.querySelectorAll('.gallery-thumb[data-full]').forEach(thumb=>{
+    thumb.addEventListener('click', ()=> openLightbox(thumb.dataset.full));
+  });
+
+  // إغلاق: زر × أو الضغط خارج الصورة أو زر ESC
+  closeBtn?.addEventListener('click', closeLightbox);
+  modal?.addEventListener('click', (e)=>{ if(e.target === modal) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && !modal.hidden) closeLightbox(); });
+})();
+</script>
+
+
+
+<!-- ===== Scripts ===== -->
+<script>
+  // Smooth scroll for in-page links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el){
+        e.preventDefault();
+        window.scrollTo({top: el.offsetTop - 70, behavior:'smooth'});
+      }
+    });
+  });
+
+  // Back to top
+  const backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', ()=>{
+    backBtn.style.display = window.scrollY>300 ? 'flex' : 'none';
+  });
+  backBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Sidebar toggle
+  const sidebar  = document.getElementById('sidebar');
+  const overlay  = document.getElementById('sidebarOverlay');
+  const menuBtn  = document.getElementById('menuToggle');
+  const closeBtn = document.getElementById('closeSidebar');
+
+  function openSidebar(){ sidebar.classList.add('open'); overlay.hidden=false; menuBtn.setAttribute('aria-expanded','true'); sidebar.setAttribute('aria-hidden','false');}
+  function closeSidebar(){ sidebar.classList.remove('open'); overlay.hidden=true; menuBtn.setAttribute('aria-expanded','false'); sidebar.setAttribute('aria-hidden','true');}
+
+  menuBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+  sidebar?.querySelectorAll('a').forEach(a=> a.addEventListener('click', closeSidebar));
+
+  // Sidebar submenu (hover on desktop, click on touch)
+  (function(){
+    const parent  = document.querySelector('.sidebar .has-sub');
+    if(!parent) return;
+    const trigger = parent.querySelector('a');
+    const submenu = parent.querySelector('.submenu');
+    if(submenu && !submenu.id) submenu.id='submenu-services';
+    trigger.setAttribute('aria-controls', submenu.id);
+
+    const canHover = window.matchMedia('(any-hover: hover)').matches;
+    if(!canHover){
+      trigger.addEventListener('click', (e)=>{
+        e.preventDefault();
+        parent.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(parent.classList.contains('open')));
+      });
+    }else{
+      parent.addEventListener('mouseenter', ()=> trigger.setAttribute('aria-expanded','true'));
+      parent.addEventListener('mouseleave', ()=> trigger.setAttribute('aria-expanded','false'));
+    }
+  })();
+
+  // Language dropdown
+  const languagesBox = document.querySelector('.languages');
+  const langToggle   = document.getElementById('langToggle');
+  const langMenu     = document.getElementById('langMenu');
+  const currentLabel = document.getElementById('currentLangLabel');
+
+  const openMenu  = ()=>{ langMenu.hidden=false; langToggle.setAttribute('aria-expanded','true'); };
+  const closeMenu = ()=>{ langMenu.hidden=true;  langToggle.setAttribute('aria-expanded','false'); };
+
+  langToggle.addEventListener('click', (e)=>{ e.stopPropagation(); langMenu.hidden ? openMenu() : closeMenu(); });
+  document.addEventListener('click', (e)=>{ if(!languagesBox.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+
+  // Bind language selection to your existing translation system if present
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.remove('active'));
+      this.classList.add('active');
+      const lang = this.dataset.lang;
+      currentLabel.textContent = this.textContent.trim();
+      closeMenu();
+
+      // التكامل مع نظامك الحالي:
+      if (typeof loadLanguage==='function'){ loadLanguage(lang); }
+      else if (typeof changeLanguage==='function'){ changeLanguage(lang); }
+
+      document.body.dir = (lang==='ar') ? 'rtl' : 'ltr';
+    });
+  });
+</script>
+</body>
+</html>
