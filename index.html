@@ -139,8 +139,18 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="close-btn" id="closeSidebar">
     <i class="fas fa-times"></i>
   </div>
-  <ul>
-    <li><a href="industrial.html">الخدمات الرئيسية</a></li>
+  <ul> <li> <a href="index.html" id="navFaq">الصفحة الرئيسية</a>
+    <!-- الخدمات الرئيسية + قائمة فرعية -->
+    <li class="has-sub">
+     <a href="industrial.html">الخدمات الرئيسية</a>
+      <ul class="submenu">
+        <li><a href="#chemical">الصناعات الكيميائية</a></li>
+        <li><a href="#food">الصناعات الغذائية</a></li>
+        <li><a href="net.html">خدمات الانترنت</a></li>
+        <li><a href="#services">خدمات برمجية</a></li>
+        <li><a href="#trade">خدمات الاستيراد والتصدير</a></li>
+      </ul>
+    </li>
     <li><a href="#products">منتجاتنا</a></li>
     <li><a href="#about">من نحن</a></li>
     <li><a href="#contact">التواصل</a></li>
@@ -712,20 +722,20 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="footer-links">
                 <h4 id="footerLinks1Title">روابط سريعة</h4>
                 <ul>
-                    <li><a href="#faq" id="footerFaqLink">الصناعات الغذائية</a></li>
-                    <li><a href="#products" id="footerProductsLink">الصناعات الكيميائية</a></li>
-                    <li><a href="#about" id="footerAboutLink">خدمات الانترنت</a></li>
+                    <li><a href="industrial.html" id="footerFaqLink">الصناعات الغذائية</a></li>
+                    <li><a href="industrial.html" id="footerProductsLink">الصناعات الكيميائية</a></li>
+                    <li><a href="net.html" id="footerAboutLink">خدمات الانترنت</a></li>
                     <li><a href="#contact" id="footerContactLink">التواصل</a></li>
             </div>
             
             <div class="footer-links">
                    <h4 id="footerLinks2Title">ماذا نقدم؟</h4>
                 <ul>
-                    <li><a href="#" id="footerProduct1Link">شيبس المتقن</a></li>
-                    <li><a href="#" id="footerProduct1Link">مقرمشات المتقن</a></li>
-                    <li><a href="#" id="footerProduct1Link">طلاء داخلي</a></li>
-                    <li><a href="#" id="footerProduct1Link">طلاء خارجي</a></li>
-                    <li><a href="#" id="footerProduct1Link">تركيب انترنت</a></li>
+                    <li><a href="industrial.html" id="footerProduct1Link">شيبس  MyDays</a></li>
+                    <li><a href="industrial.html" id="footerProduct1Link">ايس كريم StrongBoy</a></li>
+                    <li><a href="industrial.html" id="footerProduct1Link">طلاء داخلي</a></li>
+                    <li><a href="industrial.html" id="footerProduct1Link">طلاء خارجي</a></li>
+                    <li><a href="net.html" id="footerProduct1Link">تركيب انترنت</a></li>
                 </ul>
             </div>
             
@@ -741,7 +751,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         
         <div class="copyright">
-            <p id="copyrightText">جميع الحقوق محفوظة &copy; 2023 شركة إنترنت للاتصالات</p>
+            <p id="copyrightText">جميع الحقوق محفوظة &copy;GOLDEN NET 2025</p>
         </div>
     </footer>
 
