@@ -281,6 +281,37 @@
 }
 
 
+/* أساسيات القائمة الفرعية في الشريط الجانبي */
+.sidebar ul { list-style: none; }
+.sidebar .has-sub { position: relative; }
+
+.sidebar .submenu{
+  display: none;
+  margin: 8px 0 0;
+  padding: 6px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.sidebar .submenu li a{
+  display: block;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.sidebar .submenu li a:hover{
+  color: var(--secondary);
+}
+
+/* إظهار القائمة الفرعيّة عند التحويم على العنصر الأب أو على القائمة نفسها */
+.sidebar .has-sub:hover > .submenu{
+  display: block;
+}
+
+/* دعم النقر على الأجهزة اللمسية: عندما تضيف JS صنف .open سنُبقيها مفتوحة */
+.sidebar .has-sub.open > .submenu{
+  display: block;
+}
 
 
 
