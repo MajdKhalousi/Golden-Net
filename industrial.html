@@ -878,6 +878,42 @@ header.scrolled .logo img {
 
 
 
+
+
+/* أساسيات القائمة الفرعية في الشريط الجانبي */
+.sidebar ul { list-style: none; }
+.sidebar .has-sub { position: relative; }
+
+.sidebar .submenu{
+  display: none;
+  margin: 8px 0 0;
+  padding: 6px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.sidebar .submenu li a{
+  display: block;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.sidebar .submenu li a:hover{
+  color: var(--secondary);
+}
+
+/* إظهار القائمة الفرعيّة عند التحويم على العنصر الأب أو على القائمة نفسها */
+.sidebar .has-sub:hover > .submenu{
+  display: block;
+}
+
+/* دعم النقر على الأجهزة اللمسية: عندما تضيف JS صنف .open سنُبقيها مفتوحة */
+.sidebar .has-sub.open > .submenu{
+  display: block;
+}
+
+
+
     </style>
 </head>
 <body dir="rtl">
@@ -926,8 +962,18 @@ header.scrolled .logo img {
   <div class="close-btn" id="closeSidebar">
     <i class="fas fa-times"></i>
   </div>
-  <ul>
-    <li><a href="industrial.html">الخدمات الرئيسية</a></li>
+  <ul><li>
+     <a href="index.html" id="navFaq">الصفحة الرئيسية</a> </li>
+ <li class="has-sub">
+      <a href="industrial.html">الخدمات الرئيسية</a>
+      <ul class="submenu">
+        <li><a href="#chemical">الصناعات الكيميائية</a></li>
+        <li><a href="#food">الصناعات الغذائية</a></li>
+        <li><a href="net.html">خدمات الانترنت</a></li>
+        <li><a href="#services">خدمات برمجية</a></li>
+        <li><a href="#trade">خدمات الاستيراد والتصدير</a></li>
+      </ul>
+    </li>
     <li><a href="#products">منتجاتنا</a></li>
     <li><a href="#about">من نحن</a></li>
     <li><a href="#contact">التواصل</a></li>
@@ -1280,9 +1326,9 @@ header.scrolled .logo img {
             <div class="footer-links">
                 <h4>روابط سريعة</h4>
                 <ul>
-                    <li><a href="#food">الصناعات الغذائية</a></li>
-                    <li><a href="#chemical">الصناعات الكيميائية</a></li>
-                    <li><a href="#about">خدمات الانترنت</a></li>
+                    <li><a href="industrial.html">الصناعات الغذائية</a></li>
+                    <li><a href="industrial.html">الصناعات الكيميائية</a></li>
+                    <li><a href="net.html">خدمات الانترنت</a></li>
                     <li><a href="#contact">التواصل</a></li>
                 </ul>
             </div>
@@ -1290,11 +1336,11 @@ header.scrolled .logo img {
             <div class="footer-links">
                 <h4>ماذا نقدم؟</h4>
                 <ul>
-                    <li><a href="#">شيبس المتقن</a></li>
-                    <li><a href="#">مقرمشات المتقن</a></li>
-                    <li><a href="#">طلاء داخلي</a></li>
-                    <li><a href="#">طلاء خارجي</a></li>
-                    <li><a href="#">تركيب انترنت</a></li>
+                    <li><a href="industrial.html">شيبس  MyDays</a></li>
+                    <li><a href="industrial.html">ايس كريم StrongBoy</a></li>
+                    <li><a href="industrial.html">طلاء داخلي</a></li>
+                    <li><a href="industrial.html">طلاء خارجي</a></li>
+                    <li><a href="net.html">تركيب انترنت</a></li>
                 </ul>
             </div>
             
@@ -1309,7 +1355,7 @@ header.scrolled .logo img {
         </div>
         
         <div class="copyright">
-            <p>جميع الحقوق محفوظة &copy; 2023 صناعات المتقن</p>
+            <p>جميع الحقوق محفوظة &copy;GOLDEN NET 2025</p>
         </div>
     </footer>
 
