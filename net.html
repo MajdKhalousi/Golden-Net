@@ -51,41 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
     <button id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
-  <!-- الهيدر -->
-    <header>
-        <div class="header-container">
-            <div class="logo">
-               
-            
-                <span id="companyName" role="link" tabindex="0">GOLDEN <span>NET</span></span>
-             <img  src="images/LOGOG.png" alt="شعار الشركة">
-            </div>
-            <div class="nav-links">
-               
-                <a href="#faq" id="navFaq">الأسئلة الشائعة</a>
-                 <a href="industrial.html" id="navFaq">الخدمات الرئيسية</a>
-                <a href="#products" id="navProducts">منتجاتنا</a>
-                <a href="#about" id="navAbout">من نحن</a>
-                <a href="#contact" id="navContact">التواصل</a>
-            </div>
-        </div>
-    </header>
-
-
 
 <!-- الهيدر الجديد -->
-
-
-
 <header>
-
-<div class="logo">
-      <img src="images/LOGOG.png" alt="شعار الشركة">
-      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
-  
-
-
-    <div class="header-container">
+  <div class="header-container">
 <div class="languages">
   <!-- احذف الأزرار القديمة وضع التالي -->
   <button class="lang-toggle" id="langToggle" aria-haspopup="menu" aria-expanded="false">
@@ -102,7 +71,15 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 
 
-   <div class="menu-toggle" id="menuToggle">
+    <!-- اللوغو -->
+    <div class="logo">
+    
+      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
+        <img src="images/LOGOG.png" alt="شعار الشركة">
+    </div>
+
+    <!-- زر القائمة -->
+    <div class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
     </div>
   </div>
@@ -114,8 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="close-btn" id="closeSidebar">
     <i class="fas fa-times"></i>
   </div>
-  <ul>
-    <li><a href="industrial.html">الخدمات الرئيسية</a></li>
+  <ul> <li> <a href="index.html" id="navFaq">الصفحة الرئيسية</a>
+    <!-- الخدمات الرئيسية + قائمة فرعية -->
+    <li class="has-sub">
+     <a href="industrial.html">الخدمات الرئيسية</a>
+      <ul class="submenu">
+        <li><a href="#chemical">الصناعات الكيميائية</a></li>
+        <li><a href="#food">الصناعات الغذائية</a></li>
+        <li><a href="net.html">خدمات الانترنت</a></li>
+        <li><a href="#services">خدمات برمجية</a></li>
+        <li><a href="#trade">خدمات الاستيراد والتصدير</a></li>
+      </ul>
+    </li>
     <li><a href="#products">منتجاتنا</a></li>
     <li><a href="#about">من نحن</a></li>
     <li><a href="#contact">التواصل</a></li>
@@ -125,13 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
   </ul>
 </nav>
 
-</div>
-
-    <!-- اللوغو -->
-    
-
-    <!-- زر القائمة -->
- 
 
 
 
@@ -706,8 +686,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="footer-links">
                    <h4 id="footerLinks2Title">ماذا نقدم؟</h4>
                 <ul>
-                    <li><a href="#" id="footerProduct1Link">شيبس المتقن</a></li>
-                    <li><a href="#" id="footerProduct1Link">مقرمشات المتقن</a></li>
+                    <li><a href="#" id="footerProduct1Link">شيبس  MyDays</a></li>
+                    <li><a href="#" id="footerProduct1Link">ايس كريم StrongBoy</a></li>
                     <li><a href="#" id="footerProduct1Link">طلاء داخلي</a></li>
                     <li><a href="#" id="footerProduct1Link">طلاء خارجي</a></li>
                     <li><a href="#" id="footerProduct1Link">تركيب انترنت</a></li>
@@ -726,7 +706,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         
         <div class="copyright">
-            <p id="copyrightText">جميع الحقوق محفوظة &copy; 2023 شركة إنترنت للاتصالات</p>
+            <p id="copyrightText">جميع الحقوق محفوظة &copy;GOLDEN NET 2025</p>
         </div>
     </footer>
 
@@ -1852,7 +1832,47 @@ document.head.appendChild(animationStyles);
   
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const menuToggle = document.getElementById('menuToggle');
+  const closeBtn = document.getElementById('closeSidebar');
 
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.hidden = false;
+    menuToggle.setAttribute('aria-expanded', 'true');
+    sidebar.setAttribute('aria-hidden', 'false');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.hidden = true;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    sidebar.setAttribute('aria-hidden', 'true');
+  }
+
+  menuToggle?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+  sidebar?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+
+  // ربط أزرار اللغة الموجودة بالهيدر/القائمة
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      // إن كنت تستخدم loadLanguage(...) مع ملفات lang/{ar,tr}.json فاستدعِها هنا:
+      if (typeof loadLanguage === 'function') {
+        loadLanguage(lang);
+      } else if (typeof changeLanguage === 'function') {
+        changeLanguage(lang);
+      }
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b === btn));
+      document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    });
+  });
+});
+</script>
 
 
 
