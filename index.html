@@ -12,10 +12,26 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-   
+
 </head>
 
 
+<script>
+(function(){
+  const canHover = window.matchMedia('(any-hover: hover)').matches; // هل الجهاز يدعم hover؟
+  const parent = document.querySelector('.sidebar .has-sub');
+  if (!parent) return;
+
+  const trigger = parent.querySelector('a'); // رابط "الخدمات الرئيسية"
+  if (!canHover && trigger){
+    trigger.addEventListener('click', function(e){
+      // بدلاً من الذهاب مباشرة للرابط، افتح/أغلق القائمة
+      e.preventDefault();
+      parent.classList.toggle('open');
+    });
+  }
+})();
+</script>
 
 
 <script>
@@ -141,16 +157,17 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
   <ul> <li> <a href="index.html" id="navFaq">الصفحة الرئيسية</a>
     <!-- الخدمات الرئيسية + قائمة فرعية -->
-    <li class="has-sub">
-     <a href="industrial.html">الخدمات الرئيسية</a>
-      <ul class="submenu">
-        <li><a href="#chemical">الصناعات الكيميائية</a></li>
-        <li><a href="#food">الصناعات الغذائية</a></li>
-        <li><a href="net.html">خدمات الانترنت</a></li>
-        <li><a href="#services">خدمات برمجية</a></li>
-        <li><a href="#trade">خدمات الاستيراد والتصدير</a></li>
-      </ul>
-    </li>
+   <li class="has-sub">
+  <a href="industrial.html" aria-expanded="false" aria-controls="submenu-services"   >الخدمات الرئيسية   <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
+  </a>
+  <ul class="submenu" id="submenu-services">
+    <li><a href="#chemical">الصناعات الكيميائية</a></li>
+    <li><a href="#food">الصناعات الغذائية</a></li>
+    <li><a href="net.html">خدمات الانترنت</a></li>
+    <li><a href="#services">خدمات برمجية</a></li>
+    <li><a href="#trade">خدمات الاستيراد والتصدير</a></li>
+  </ul>
+</li>
     <li><a href="#products">منتجاتنا</a></li>
     <li><a href="#about">من نحن</a></li>
     <li><a href="#contact">التواصل</a></li>
@@ -1860,7 +1877,6 @@ document.head.appendChild(animationStyles);
 
 </body>
 </html>
-
 
 
 
