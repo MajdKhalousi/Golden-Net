@@ -1,4 +1,38 @@
 
+.trade-section{ background:#fff; padding:80px 5%; }
+.trade-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:24px; max-width:1200px; margin:0 auto;
+}
+.trade-card{
+  position:relative; overflow:hidden;
+  background:#fff; border:1px solid #eee; border-radius:14px;
+  padding:20px; box-shadow:0 10px 25px rgba(0,0,0,.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.trade-card::before{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, var(--secondary, #efb730) 0%, rgba(239,183,48,.15) 100%);
+  opacity:.07; pointer-events:none;
+}
+.trade-card:hover{ transform: translateY(-6px); box-shadow:0 16px 36px rgba(0,0,0,.12); }
+.trade-card h3{ font-size:1.3rem; margin:0 0 8px; color:var(--primary); display:flex; align-items:center; gap:8px; }
+.trade-card p{ margin:0; color:#555; line-height:1.8; }
+.trade-flag{
+  width:28px; height:28px; border-radius:50%; display:inline-grid; place-items:center;
+  background: linear-gradient(180deg, var(--secondary, #efb730), #ffcc4d); color:#fff; font-weight:700;
+}
+.trade-badges{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.badge-chip{
+  background:#f3f5f7; border:1px solid #e8edf2; color:#3a3f47;
+  border-radius:999px; padding:6px 10px; font-size:.9rem;
+}
+.trade-cta{ margin-top:24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+
+
+
+
 #companyName {
   color: #dbae34;
   all: unset;                 /* شطب أي أنماط موروثة */
