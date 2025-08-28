@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>خدمات برمجية | إنشاء مواقع ويب احترافية</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" href="style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -18,6 +19,42 @@
     }
     *{box-sizing:border-box; margin:0; padding:0; font-family:'Tajawal',system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
     body{background:#f8f9fa; color:var(--text); line-height:1.7;}
+
+
+
+
+
+
+
+
+
+
+
+  .price {
+    flex-direction: column;
+    gap: 5px;
+
+
+  }
+
+
+ #originalPrice2 {
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.gallery-thumb {
+    flex: 1;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-image: url(https://images.unsplash.com/photo-1552664730-d307ca884978?...);
+    background-size: cover;
+    background-position: center;
+
+}
+
+
 
     /* ===== Header ===== */
     header{
@@ -139,7 +176,7 @@
     .card p{ margin:0; color:#555; }
 
     /* التسعير */
-    .price{ font-size:2rem; font-weight:800; color:var(--secondary); margin:6px 0 10px; }
+    .price{ font-size:1rem; font-weight:800; color:var(--secondary); margin:6px 0 10px; }
     .muted{ color:#777; font-size:.95rem; }
 
     /* CTA */
@@ -159,6 +196,55 @@
       .hero h1{ font-size:2.4rem; }
       .hero p{ font-size:1rem; }
     }
+
+
+    /* شبكة المعرض كبطاقات متجاوبة */
+.portfolio-gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:16px;
+  max-width:1100px;      /* اختياري: لتحديد عرض أقصى */
+  margin-inline:auto;    /* لتمركز الشبكة */
+}
+
+/* 
+.portfolio-gallery .gallery-thumb{
+  display:block;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  transition:transform .2s ease, box-shadow .2s ease;
+  aspect-ratio: 4 / 3;   
+}
+*/
+.portfolio-gallery .gallery-thumb:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0,0,0,.12);
+}
+
+/* الصورة تملأ البطاقة مع قصّ الحواف الزائدة للحفاظ على التناسق */
+.portfolio-gallery .gallery-thumb img{
+  width:100%;
+  height:100%;
+  object-fit: cover;     /* يحافظ على نسبة الأبعاد بدون تمدّد مشوّه */
+  display:block;
+}
+
+/* إمكانية وصول أفضل عند التركيز من الكيبورد */
+.portfolio-gallery .gallery-thumb:focus-visible{
+  outline:3px solid var(--secondary, #efb730);
+  outline-offset:3px;
+}
+
+/* تحسين طفيف للأجهزة الصغيرة جداً */
+@media (max-width: 420px){
+  .portfolio-gallery{
+    grid-template-columns: 1fr 1fr; /* عمودان على أصغر الشاشات */
+  }
+}
+
   </style>
 </head>
 <body dir="rtl">
@@ -339,13 +425,11 @@
   </div>
 
   <div class="grid" style="max-width:1100px;">
-    <!-- بطاقة تطبيق عقار شامي -->
     <article class="card">
       <div class="body">
         <h4 style="margin-bottom:6px;">تطبيق عقار شامي</h4>
         <p class="muted" style="margin-bottom:10px;">منصّة إعلانات عقارية (بيع/إيجار) بواجهات عربية متجاوبة ولوحة إدارة.</p>
 
-        <!-- شارات تقنية (اختياري) -->
         <div class="tags" style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px;">
           <span class="tag-chip">Android</span>
           <span class="tag-chip">iOS</span>
@@ -353,38 +437,41 @@
           <span class="tag-chip">RTL</span>
         </div>
 
-        <!-- معرض صور التطبيق -->
+       
         <div class="portfolio-gallery">
-          <!-- استبدل المسارات بالصور الفعلية لتطبيقك -->
-          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 1"
-               style="background-image:url('images/aqaar-shami/shot1.jpg');"
-               data-full="images/aqaar-shami/shot1.jpg"></div>
+          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 1" data-full="images/aqaar-shami/shot1.jpg">
+            <img src="images/sam1.jpg" alt="لقطة شاشة تطبيق عقار شامي 1">
+          </a>
 
-          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 2"
-               style="background-image:url('images/aqaar-shami/shot2.jpg');"
-               data-full="images/aqaar-shami/shot2.jpg"></div>
+          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 2" data-full="images/aqaar-shami/shot2.jpg">
+            <img src="images/sam2.jpg" alt="لقطة شاشة تطبيق عقار شامي 2">
+          </a>
 
-          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 3"
-               style="background-image:url('images/aqaar-shami/shot3.jpg');"
-               data-full="images/aqaar-shami/shot3.jpg"></div>
+          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 3" data-full="images/aqaar-shami/shot3.jpg">
+            <img src="images/sam3.jpg" alt="لقطة شاشة تطبيق عقار شامي 3">
+          </a>
 
-          <div class="gallery-thumb" role="button" aria-label="لقطة شاشة 4"
-               style="background-image:url('images/aqaar-shami/shot4.jpg');"
-               data-full="images/aqaar-shami/shot4.jpg"></div>
+          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 4" data-full="images/aqaar-shami/shot4.jpg">
+            <img src="images/sam4.jpg" alt="لقطة شاشة تطبيق عقار شامي 4">
+          </a>
         </div>
 
-        <!-- أزرار -->
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
-          <a class="btn" target="_blank" href="https://wa.me/905522886112?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D8%B9%D9%86%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D8%B9%D9%82%D8%A7%D8%B1%20%D8%B4%D8%A7%D9%85%D9%8A">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content: space-around;">
+          <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D8%B9%D9%86%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D8%B9%D9%82%D8%A7%D8%B1%20%D8%B4%D8%A7%D9%85%D9%8A">
             <i class="fab fa-whatsapp"></i> تواصل حول المشروع
           </a>
-          <!-- روابط المتاجر (إن وجدت) -->
-          <!-- <a class="btn" target="_blank" href="#"><i class="fas fa-external-link-alt"></i> جرّب التطبيق</a> -->
         </div>
       </div>
     </article>
   </div>
 </section>
+
+<!-- Lightbox (كما هو سابقًا) -->
+<div id="lightboxModal" class="lightbox" hidden aria-modal="true" role="dialog">
+  <button class="lightbox-close" aria-label="إغلاق">&times;</button>
+  <img id="lightboxImage" alt="لقطة من العمل" />
+</div>
+
 
 <!-- عارض الصور (Lightbox) -->
 <div id="lightboxModal" class="lightbox" hidden aria-modal="true" role="dialog">
@@ -400,11 +487,11 @@
 <section id="process" class="paket-section" style="padding-top:20px;">
   <div class="section-title"><h2>آلية العمل</h2></div>
   <div class="paket-container" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
-    <div class="paket-item"><div class="paket-header"><h3>1) تحليل ومواءمة</h3><p>نفهم هدفك والجمهور والمحتوى.</p></div></div>
-    <div class="paket-item"><div class="paket-header"><h3>2) تصميم واجهة</h3><p>نماذج أولية وتناسق الهوية.</p></div></div>
-    <div class="paket-item"><div class="paket-header"><h3>3) التطوير</h3><p>فرونت/باك-إند وربط الخدمات.</p></div></div>
-    <div class="paket-item"><div class="paket-header"><h3>4) الاختبار والإطلاق</h3><p>تحسين أداء، أمان، وسيو.</p></div></div>
-    <div class="paket-item"><div class="paket-header"><h3>5) دعم وتوسّع</h3><p>صيانة وتطوير مستمر.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>1 تحليل ومواءمة</h3><p>نفهم هدفك والجمهور والمحتوى.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>2 تصميم واجهة</h3><p>نماذج أولية وتناسق الهوية.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>3 التطوير</h3><p>فرونت/باك-إند وربط الخدمات.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>4 الاختبار والإطلاق</h3><p>تحسين أداء، أمان، وسيو.</p></div></div>
+    <div class="paket-item"><div class="paket-header"><h3>5 دعم وتوسّع</h3><p>صيانة وتطوير مستمر.</p></div></div>
   </div>
 </section>
 
@@ -415,9 +502,11 @@
     <div class="paket-item">
       <div class="paket-header"><h3>أساسي</h3><p class="muted">موقع تعريفي سريع</p></div>
       <div class="paket-features">
-        <div class="price">$299</div>
-        <ul>
-          <li><i class="fas fa-check"></i> صفحة رئيسية + 3 صفحات</li>
+          <div class="price">
+               <span id="originalPrice2">السعر العادي: $299</span>
+               <span id="discountPrice">السعر الخاص: $99</span>
+        </div>
+          <li><i class="fas fa-check"></i> صفحة رئيسية </li>
           <li><i class="fas fa-check"></i> تصميم متجاوب</li>
           <li><i class="fas fa-check"></i> نموذج تواصل</li>
         </ul>
@@ -428,9 +517,11 @@
     <div class="paket-item">
       <div class="paket-header"><h3>احترافي</h3><p class="muted">شركة/منظمة</p></div>
       <div class="paket-features">
-        <div class="price">$699</div>
-        <ul>
-          <li><i class="fas fa-check"></i> حتى 8 صفحات + مدوّنة</li>
+           <div class="price">
+               <span id="originalPrice2">السعر العادي: $599</span>
+               <span id="discountPrice">السعر الخاص: $299</span>
+        </div>
+          <li><i class="fas fa-check"></i> حتى 4 صفحات + مدوّنة</li>
           <li><i class="fas fa-check"></i> تكاملات (واتس/تحليلات)</li>
           <li><i class="fas fa-check"></i> SEO أساسي + أداء</li>
         </ul>
@@ -441,7 +532,7 @@
     <div class="paket-item">
       <div class="paket-header"><h3>شركة</h3><p class="muted">خصائص متقدمة/متجر</p></div>
       <div class="paket-features">
-        <div class="price">$1299+</div>
+        <div class="price">السعر حسب الطلب</div>
         <ul>
           <li><i class="fas fa-check"></i> متجر/لوحة تحكّم</li>
           <li><i class="fas fa-check"></i> تعدد لغات وعملات</li>
@@ -453,13 +544,75 @@
   </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- الباقات والأسعار -->
+<section id="pricing" class="paket-section">
+  <div class="section-title"><h2>الباقات والأسعار</h2></div>
+  <div class="paket-container">
+    <div class="paket-item">
+      <div class="paket-header"><h3>أساسي</h3><p class="muted">تطبيق جاهز</p></div>
+      <div class="paket-features">
+        <div class="price">
+               <span id="originalPrice2">السعر العادي: $299</span>
+               <span id="discountPrice">السعر الخاص: $99</span>
+        </div>
+        
+        <ul>
+          <li><i class="fas fa-check"></i> صفحة رئيسية أنيقة وجاهزة للاستخدام </li>
+          <li><i class="fas fa-check"></i> تصميم متجاوب يعمل على جميع الأجهزة</li>
+          <li><i class="fas fa-check"></i> نموذج تواصل مدمج وسهل الاستخدام</li>
+        </ul>
+      </div>
+      <div class="paket-action"><a href="#contact" class="btn">اطلب الآن</a></div>
+    </div>
+
+
+    <div class="paket-item">
+      <div class="paket-header"><h3>شركة</h3><p class="muted">تطبيق مخصص</p></div>
+      <div class="paket-features">
+        <div class="price">السعر حسب الطلب</div>
+        <ul>
+          <li><i class="fas fa-check"></i> تصميم مرن يتناسب مع احتياجات شركتك</li>
+          <li><i class="fas fa-check"></i> قابلية تطوير وإضافة مزايا مستقبلية</li>
+          <li><i class="fas fa-check"></i> حماية وأمان متقدم لحماية بيانات العملاء</li>
+        </ul>
+      </div>
+      <div class="paket-action"><a href="#contact" class="btn">احصل على عرض مخصص</a></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- CTA -->
 <section id="contact" class="cta">
   <h2>لنبدأ خلال 24 ساعة من الآن</h2>
   <p>ارسل فكرتك وسنعود إليك بجدول زمني وتكلفة تقديرية.</p>
   <div>
-    <a class="btn" target="_blank" href="https://wa.me/905522886112?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D9%88%D9%82%D8%B9%D8%A7%D9%8B%20%D9%84%D8%B4%D8%B1%D9%83%D8%AA%D9%8A"><i class="fab fa-whatsapp"></i> تواصل واتساب</a>
-    <a class="btn" href="index.html#contact"><i class="fas fa-envelope"></i> أرسل رسالة</a>
+    <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D9%88%D9%82%D8%B9%D8%A7%D9%8B%20%D9%84%D8%B4%D8%B1%D9%83%D8%AA%D9%8A"><i class="fab fa-whatsapp"></i> تواصل واتساب</a>
+
   </div>
 </section>
 
