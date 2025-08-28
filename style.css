@@ -3124,3 +3124,40 @@ header .header-container {
   font-size:28px; line-height:1; display:grid; place-items:center;
 }
 .lightbox-close:hover{ background:rgba(0,0,0,.55); }
+
+
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.gallery-thumb {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-thumb:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* الأسعار قبل وبعد الخصم */
+.price {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+
