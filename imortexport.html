@@ -198,6 +198,40 @@
 .paket-action .btn{ min-width: 160px; } /* اختياري: ثبات عرض الأزرار */
 
 
+/* ترتيب الرابط + زر السهم أفقيًا */
+.sidebar .has-sub{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* اجعل الرابط يتمدّد لملء المساحة */
+.sidebar .has-sub > a{
+  flex: 1;
+}
+
+/* زر السهم */
+.sidebar .sub-toggle{
+  background: transparent;
+  border: 0;
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+/* دوران السهم عند فتح القائمة */
+.has-sub.open .sub-toggle .sub-caret{
+  transform: rotate(180deg);
+  transition: transform .2s ease;
+}
+
+/* على سطح المكتب، نُظهر القائمة بالـ hover كما السابق */
+@media (any-hover: hover){
+  .has-sub:hover > .submenu{ display: block; }
+}
+
   </style>
 </head>
 <body dir="rtl">
@@ -240,14 +274,20 @@
       <a href="industrial.html" aria-expanded="false">الخدمات الرئيسية
         <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
       </a>
-      <ul class="submenu">
-        <li><a href="#cards">الاستيراد والتصدير</a></li>
-        <li><a href="#details">الوساطة من الصين</a></li>
-      </ul>
-    </li>
-    <li><a href="#cards">العروض</a></li>
-    <li><a href="#details">التفاصيل</a></li>
-    <li><a href="#contact">تواصل</a></li>
+      <ul class="submenu" id="submenu-services">
+ <li><a href="industrial.html">الصناعات الكيميائية</a></li>
+    <li><a href="industrial.html">الصناعات الغذائية</a></li>
+    <li><a href="net.html">خدمات الانترنت</a></li>
+    <li><a href="programing.html">خدمات برمجية</a></li>
+    <li><a href="index.html">خدمات الاستيراد والتصدير</a></li>
+  </ul>
+</li>
+ <li><a href="#products">منتجاتنا</a></li>
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#contact">التواصل</a></li>
+    <li><a href="#brands">علاماتنا</a></li>
+
+
   </ul>
 </nav>
 
