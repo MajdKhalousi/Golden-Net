@@ -1,3 +1,38 @@
+/* ترتيب الرابط + زر السهم أفقيًا */
+.sidebar .has-sub{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* اجعل الرابط يتمدّد لملء المساحة */
+.sidebar .has-sub > a{
+  flex: 1;
+}
+
+/* زر السهم */
+.sidebar .sub-toggle{
+  background: transparent;
+  border: 0;
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+/* دوران السهم عند فتح القائمة */
+.has-sub.open .sub-toggle .sub-caret{
+  transform: rotate(180deg);
+  transition: transform .2s ease;
+}
+
+/* على سطح المكتب، نُظهر القائمة بالـ hover كما السابق */
+@media (any-hover: hover){
+  .has-sub:hover > .submenu{ display: block; }
+}
+
+
 
 .trade-section{ background:#fff; padding:80px 5%; }
 .trade-grid{
