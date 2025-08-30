@@ -254,7 +254,9 @@
         <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
         <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
         <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
-      </ul>
+        <li><button class="lang-btn" role="menuitem" data-lang="de">DE</button></li>
+</ul>
+    </ul>
     </div>
 
     <!-- يمين: اللوغو -->
@@ -274,12 +276,12 @@
       <a href="industrial.html" aria-expanded="false">الخدمات الرئيسية
         <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
       </a>
-      <ul class="submenu" id="submenu-services">
+     <ul class="submenu" id="submenu-services">
  <li><a href="industrial.html">الصناعات الكيميائية</a></li>
     <li><a href="industrial.html">الصناعات الغذائية</a></li>
     <li><a href="net.html">خدمات الانترنت</a></li>
     <li><a href="programing.html">خدمات برمجية</a></li>
-    <li><a href="index.html">خدمات الاستيراد والتصدير</a></li>
+    <li><a href="imortexport.html">خدمات الاستيراد والتصدير</a></li>
   </ul>
 </li>
  <li><a href="#products">منتجاتنا</a></li>
@@ -456,7 +458,7 @@
 <section id="contact" class="paket-section" style="padding-top:20px">
   <div class="details" style="text-align:center">
     <h3>جاهز لتقدير دقيق؟</h3>
-    <p class="muted">أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف)، ونرجع لك بعرض مفصّل.</p>
+    <p class="muted">أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف/صورة للمنتج في حال توفرها SH Code)، ونرجع لك بعرض مفصّل.</p>
     <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D8%B4%D8%AD%D9%86%D8%A9%3A%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A3%2F%D8%A7%D9%84%D9%88%D8%AC%D9%87%D8%A9%2F%D8%A7%D9%84%D9%88%D8%B2%D9%86%2F%D8%A7%D9%84%D8%A3%D8%A8%D8%B9%D8%A7%D8%AF%2F%D9%88%D8%B5%D9%81">
       اطلب عرض سعر الآن
     </a>
@@ -513,5 +515,205 @@
     });
   });
 </script>
+
+
+
+
+<script>
+/* ===== ترجمة فورية لنفس الصفحة (AR ⇢ EN/DE) ===== */
+function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function replaceTextDeep(root, map){
+  const keys = Object.keys(map);
+  if(!keys.length) return;
+  keys.sort((a,b)=> b.length - a.length);
+  const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(n=>{
+    if(!n.nodeValue) return;
+    n.nodeValue = n.nodeValue.replace(re, (m)=> map[m] ?? m);
+  });
+}
+
+/* قاموس AR → EN (نصوص هذه الصفحة) */
+const AR_TO_EN = {
+  // الهيدر والقائمة
+  "الصفحة الرئيسية":"Home","الخدمات الرئيسية":"Main Services","الصناعات الكيميائية":"Chemical Industries",
+  "الصناعات الغذائية":"Food Industries","خدمات الانترنت":"Internet Services","خدمات برمجية":"Software Services",
+  "خدمات الاستيراد والتصدير":"Import & Export Services","منتجاتنا":"Our Products","من نحن":"About Us",
+  "التواصل":"Contact","علاماتنا":"Our Brands",
+
+  // الهيرو
+  "استيراد وتصدير من وإلى العالم":"Import & Export Worldwide",
+  "حلول شحن متكاملة: ":"Integrated shipping solutions: ",
+  "بحري":"Sea","جوي":"Air","بري":"Road",
+  "،\n  مع متابعة تخليص جمركي وخدمة عملاء خطوة بخطوة حتى التسليم.":", with customs clearance follow-up and step-by-step customer service until delivery.",
+  "عروض الشحن الحالية":"Current Shipping Offers",
+
+  // البطاقة 1
+  "استيراد من ألمانيا إلى سوريا":"Import from Germany to Syria",
+  "كونتينر ":"Container ","20 قدم":"20ft",
+  " — ":" — ",
+  "حمولة مناسبة للبضائع العامة / التجميع":"Suitable capacity for general/consolidated cargo",
+  "مستندات شحن معتمدة ومتابعة الميناء":"Certified shipping documents & port follow-up",
+  "دعم وتحديثات حتى الوصول":"Support & updates until arrival",
+  "سعر تقريبي: ":"Approx. price: ",
+  "طلب استفسار":"Request Info",
+
+  // البطاقة 2
+  "استيراد جوي من الصين إلى سوريا":"Air import from China to Syria",
+  "أسعار تبدأ من ":"Prices start from ",
+  " للكيلو":" per kg",
+  "شحن سريع عبر الجو (تقريبًا خلال 15 يوم)":"Fast air shipping (~15 days)",
+  "يشمل إجراءات التخليص الجمركي":"Includes customs clearance",
+
+  // البطاقة 3
+  "تخليص جمركي شامل داخل سوريا":"Comprehensive customs clearance in Syria",
+  "خدمة أعمال + أفراد":"Business & Individuals",
+  "تجهيز البيانات الجمركية ومطابقة الفواتير":"Prepare customs data & match invoices",
+  "متابعة التفريغ والفحص ودفع الرسوم":"Oversee unloading, inspection & duties",
+  "تسليم حتى المستودع عند الطلب":"Delivery to warehouse on request",
+  "اطلب التفاصيل":"Get Details",
+
+  // البطاقة 4
+  "شحن بري من الصين إلى سوريا":"Road freight from China to Syria",
+  "شحن تجميعي (LCL/LTL) أو شحن كامل":"Consolidated (LCL/LTL) or full truck",
+  "تتبع وتحديثات مستمرة حتى التسليم":"Tracking & continuous updates to delivery",
+  "إمكانية التخزين المرحلي والتأمين":"Staging storage & insurance available",
+  "اطلب عرض سعر خاص":"Request a Special Quote",
+
+  // التفاصيل
+  "خدمة الوساطة وشراء البضائع من الصين":"Sourcing & Purchasing from China",
+  "اختَر المنتج… ونحن ننجز الباقي":"Pick the product… we’ll handle the rest",
+  "ما الذي نقوم به؟":"What do we do?",
+  "طلب البضاعة والتفاوض على السعر والمواصفات والجودة.":"Place orders and negotiate price, specs, and quality.",
+  "الدفع الإلكتروني الآمن وتأكيد الشحن مع المورّد.":"Secure e-payment and shipment confirmation with the supplier.",
+  "النقل إلى سوريا (جوي/بحري/بري) حسب الأنسب للشحنة.":"Transport to Syria (air/sea/road) as appropriate.",
+  "إجراءات التخليص الجمركي والتسليم النهائي.":"Customs clearance procedures and final delivery.",
+  "التكاليف التجميعية تبدأ من ":"Consolidated rates start from ",
+  " لكل كيلو (للشحنات الخفيفة/الجوية)، وتختلف حسب الوجهة ونوع البضاعة.":" per kg (for light/air shipments), varying by destination & goods.",
+  "تواصل الآن":"Contact Now",
+
+
+  "يمكنك تصفّح ملايين المنتجات عبر منصات مثل Alibaba و AliExpress، وسنقوم بمتابعة الطلب من Contact مع المورّد حتى التسليم في سوريا.":"You can browse millions of products on platforms like Alibaba and AliExpress, and we will handle your order—from contacting the supplier to delivery in Syria.",
+
+  // CTA
+  "جاهز لتقدير دقيق؟":"Ready for an accurate quote?",
+  "أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف/صورة للمنتج في حال توفرها SH Code)، ونرجع لك بعرض مفصّل.":
+    "Send shipment details (origin/destination/weight/dimensions/description/product photo if available, HS code) and we’ll reply with a detailed offer.",
+  "اطلب عرض سعر الآن":"Request a Quote Now",
+
+  // الفوتر
+  "© 2025 GOLDEN NET — خدمات الاستيراد والتصدير":"© 2025 GOLDEN NET — Import & Export Services"
+};
+
+/* قاموس AR → DE (نصوص هذه الصفحة) */
+const AR_TO_DE = {
+  // الهيدر
+  "الصفحة الرئيسية":"Startseite","الخدمات الرئيسية":"Hauptleistungen","الصناعات الكيميائية":"Chemische Industrie",
+  "الصناعات الغذائية":"Lebensmittelindustrie","خدمات الانترنت":"Internetdienste","خدمات برمجية":"Software-Dienste",
+  "خدمات الاستيراد والتصدير":"Import & Export","منتجاتنا":"Produkte","من نحن":"Über uns","التواصل":"Kontakt",
+  "علاماتنا":"Marken",
+"يمكنك تصفّح ملايين المنتجات عبر منصات مثل Alibaba و AliExpress، وسنقوم بمتابعة الطلب من Contact مع المورّد حتى التسليم في سوريا.":"Sie können Millionen von Produkten auf Plattformen wie Alibaba und AliExpress durchsuchen; wir kümmern uns um Ihre Bestellung – von der Kontaktaufnahme mit dem Lieferanten bis zur Lieferung in Syrien.",
+
+  // الهيرو
+  "استيراد وتصدير من وإلى العالم":"Import & Export weltweit",
+  "حلول شحن متكاملة: ":"Integrierte Versandlösungen: ",
+  "بحري":"See","جوي":"Luft","بري":"Straße",
+  "،\n  مع متابعة تخليص جمركي وخدمة عملاء خطوة بخطوة حتى التسليم.":", mit Zollabwicklung und Betreuung bis zur Lieferung.",
+  "عروض الشحن الحالية":"Aktuelle Versandangebote",
+
+  // البطاقة 1
+  "استيراد من ألمانيا إلى سوريا":"Import von Deutschland nach Syrien",
+  "كونتينر ":"Container ","20 قدم":"20 Fuß",
+  " — ":" — ",
+  "حمولة مناسبة للبضائع العامة / التجميع":"Geeignet für allgemeine/gebündelte Waren",
+  "مستندات شحن معتمدة ومتابعة الميناء":"Zertifizierte Dokumente & Hafenbetreuung",
+  "دعم وتحديثات حتى الوصول":"Support & Updates bis zur Ankunft",
+  "سعر تقريبي: ":"Ungefährer Preis: ",
+  "طلب استفسار":"Anfrage senden",
+
+  // البطاقة 2
+  "استيراد جوي من الصين إلى سوريا":"Luftfracht aus China nach Syrien",
+  "أسعار تبدأ من ":"Preise ab ",
+  " للكيلو":" / kg",
+  "شحن سريع عبر الجو (تقريبًا خلال 15 يوم)":"Schnelle Luftfracht (~15 Tage)",
+  "يشمل إجراءات التخليص الجمركي":"Inklusive Zollabfertigung",
+
+  // البطاقة 3
+  "تخليص جمركي شامل داخل سوريا":"Umfassende Zollabfertigung in Syrien",
+  "خدمة أعمال + أفراد":"Für Unternehmen & Privat",
+  "تجهيز البيانات الجمركية ومطابقة الفواتير":"Zolldaten & Rechnungsabgleich",
+  "متابعة التفريغ والفحص ودفع الرسوم":"Entladung, Prüfung & Abgaben",
+  "تسليم حتى المستودع عند الطلب":"Lieferung bis Lager auf Wunsch",
+  "اطلب التفاصيل":"Details anfordern",
+
+  // البطاقة 4
+  "شحن بري من الصين إلى سوريا":"Straßentransport aus China nach Syrien",
+  "شحن تجميعي (LCL/LTL) أو شحن كامل":"Sammelladung (LCL/LTL) oder Komplett",
+  "تتبع وتحديثات مستمرة حتى التسليم":"Tracking & Updates bis zur Lieferung",
+  "إمكانية التخزين المرحلي والتأمين":"Zwischenlagerung & Versicherung möglich",
+  "اطلب عرض سعر خاص":"Sonderangebot anfordern",
+
+  // التفاصيل
+  "خدمة الوساطة وشراء البضائع من الصين":"Vermittlung & Einkauf aus China",
+  "اختَر المنتج… ونحن ننجز الباقي":"Wählen Sie das Produkt – wir erledigen den Rest",
+  "ما الذي نقوم به؟":"Was wir tun",
+  "طلب البضاعة والتفاوض على السعر والمواصفات والجودة.":"Bestellung & Verhandlung zu Preis, Spezifikation & Qualität.",
+  "الدفع الإلكتروني الآمن وتأكيد الشحن مع المورّد.":"Sichere E-Zahlung & Versandbestätigung mit dem Lieferanten.",
+  "النقل إلى سوريا (جوي/بحري/بري) حسب الأنسب للشحنة.":"Transport nach Syrien (Luft/See/Straße) je nach Sendung.",
+  "إجراءات التخليص الجمركي والتسليم النهائي.":"Zollabfertigung & Endauslieferung.",
+  "التكاليف التجميعية تبدأ من ":"Sammelpreise ab ",
+  " لكل كيلو (للشحنات الخفيفة/الجوية)، وتختلف حسب الوجهة ونوع البضاعة.":
+    " / kg (für leichte/Luft-Sendungen), je nach Ziel & Ware.",
+  "تواصل الآن":"Jetzt kontaktieren",
+
+  // CTA
+  "جاهز لتقدير دقيق؟":"Bereit für ein genaues Angebot?",
+  "أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف/صورة للمنتج في حال توفرها SH Code)، ونرجع لك بعرض مفصّل.":
+    "Senden Sie Details (Ursprung/Ziel/Gewicht/Abmessungen/Beschreibung/Produktfoto, HS-Code), wir melden uns mit einem detaillierten Angebot.",
+  "اطلب عرض سعر الآن":"Angebot anfordern",
+
+  // الفوتر
+  "© 2025 GOLDEN NET — خدمات الاستيراد والتصدير":"© 2025 GOLDEN NET — Import & Export"
+};
+
+/* إدارة التبديل */
+(function(){
+  const currentLabel = document.getElementById('currentLangLabel');
+  function setLabel(code){ if(currentLabel) currentLabel.textContent = code.toUpperCase(); }
+
+  window.changeLanguage = function(lang){
+    if (lang === 'ar'){
+      document.body.dir = 'rtl';
+      location.reload();
+      return;
+    }
+    if (lang === 'tr'){
+      document.body.dir = 'ltr';
+      if (typeof applyTranslation==='function' && typeof tr!=='undefined'){ applyTranslation(tr); }
+      setLabel('TR'); return;
+    }
+    document.body.dir = 'ltr';
+    const map = (lang==='en') ? AR_TO_EN : AR_TO_DE;
+    replaceTextDeep(document.body, map);
+    setLabel(lang);
+  };
+
+  // ربط أزرار القائمة الحالية (لو ما كانت مربوطة)
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b===btn));
+      changeLanguage(btn.dataset.lang);
+      const menu = document.getElementById('langMenu');
+      const toggle = document.getElementById('langToggle');
+      if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+    });
+  });
+})();
+</script>
+
+
 </body>
 </html>
