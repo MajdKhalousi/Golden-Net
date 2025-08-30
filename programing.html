@@ -23,6 +23,31 @@
 
 
 
+/* اجعل كل بطاقة عمود Flex */
+.paket-item{
+  display: flex;
+  flex-direction: column;
+}
+
+/* اجعل محتوى المزايا يتمدّد ليملأ الفراغ */
+.paket-features{
+  flex: 1;
+}
+
+/* ثبّت منطقة الأزرار أسفل البطاقة */
+.paket-action{
+  margin-top: auto;         /* تدفعها لأسفل داخل العمود */
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;  /* رتّب الأزرار بشكل جميل */
+  align-items: center;
+}
+
+/* تحسينات اختيارية لثبات الشكل */
+.paket-features ul{ margin: 0; }
+.paket-header p{ margin: 0; }
+.paket-action .btn{ min-width: 160px; } /* اختياري: ثبات عرض الأزرار */
 
 
 
@@ -130,6 +155,8 @@
       display:inline-flex; align-items:center; gap:8px;
       background:var(--secondary); color:#fff; padding:12px 24px; border:none; border-radius:30px;
       text-decoration:none; font-weight:700; transition:var(--transition); cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.15);
+          justify-content: center;
+
     }
     .btn:hover{ transform:translateY(-3px); box-shadow:0 10px 26px rgba(0,0,0,.22); }
 
@@ -182,7 +209,7 @@
     .card p{ margin:0; color:#555;  text-decoration: none;}
 
     /* التسعير */
-    .price{ font-size:1.0rem; font-weight:800; color:#ff2626; margin:6px 0 10px; }
+    .price{ font-size:1.1rem; font-weight:800; color:#ff2626; margin:6px 0 10px; }
     .muted{ color:#777; font-size:.95rem; }
 
     /* CTA */
@@ -269,6 +296,46 @@ a.card .body p {
 /* (اختياري عند اللزوم) قتل أي توريث مزعج في بعض الثيمات/المتصفحات */
 a.card * { text-decoration: none !important; }
 
+
+
+
+
+/* ترتيب الرابط + زر السهم أفقيًا */
+.sidebar .has-sub{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* اجعل الرابط يتمدّد لملء المساحة */
+.sidebar .has-sub > a{
+  flex: 1;
+}
+
+/* زر السهم */
+.sidebar .sub-toggle{
+  background: transparent;
+  border: 0;
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+/* دوران السهم عند فتح القائمة */
+.has-sub.open .sub-toggle .sub-caret{
+  transform: rotate(180deg);
+  transition: transform .2s ease;
+}
+
+/* على سطح المكتب، نُظهر القائمة بالـ hover كما السابق */
+@media (any-hover: hover){
+  .has-sub:hover > .submenu{ display: block; }
+}
+
+
+
   </style>
 </head>
 <body dir="rtl">
@@ -297,7 +364,9 @@ a.card * { text-decoration: none !important; }
         <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
         <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
         <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
-      </ul>
+     <li><button class="lang-btn" role="menuitem" data-lang="de">DE</button></li>
+
+    </ul>
     </div>
 
     <!-- اللوغو (أقصى اليمين) -->
@@ -313,23 +382,42 @@ a.card * { text-decoration: none !important; }
   <div class="close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
   <ul>
     <li><a href="index.html">الصفحة الرئيسية</a></li>
+
     <li class="has-sub">
-      <a href="industrial.html" aria-expanded="false" aria-controls="submenu-services">الخدمات الرئيسية
-        <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
-      </a>
-      <ul class="submenu" id="submenu-services">
-        <li><a href="#offers">مواقع الشركات</a></li>
-        <li><a href="#offers">متاجر إلكترونية</a></li>
-        <li><a href="#offers">صفحات هبوط</a></li>
-        <li><a href="#stack">التقنيات المستخدمة</a></li>
-        <li><a href="#pricing">الباقات والأسعار</a></li>
-      </ul>
-    </li>
-    <li><a href="#portfolio">أعمالنا</a></li>
-    <li><a href="#process">آلية العمل</a></li>
-    <li><a href="#contact">تواصل</a></li>
+  <!-- رابط يذهب لصفحة الخدمات كالمعتاد -->
+  <a href="industrial.html" aria-expanded="false" aria-controls="submenu-services">الخدمات الرئيسية</a>
+
+  <!-- زر السهم: مسؤول عن فتح/إغلاق الدروب فقط على الجوال -->
+  <button type="button" class="sub-toggle" aria-label="تبديل القائمة الفرعية"
+          aria-expanded="false" aria-controls="submenu-services">
+    <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
+  </button>
+
+   <ul class="submenu" id="submenu-services">
+ <li><a href="industrial.html">الصناعات الكيميائية</a></li>
+    <li><a href="industrial.html">الصناعات الغذائية</a></li>
+    <li><a href="net.html">خدمات الانترنت</a></li>
+    <li><a href="programing.html">خدمات برمجية</a></li>
+    <li><a href="imortexport.html">خدمات الاستيراد والتصدير</a></li>
+  </ul>
+</li>
+ <li><a href="#products">منتجاتنا</a></li>
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#contact">التواصل</a></li>
+    <li><a href="#brands">علاماتنا</a></li>
+
+
   </ul>
 </nav>
+
+
+
+
+
+
+
+
+
 
 <!-- ===== Hero ===== -->
 <section class="hero">
@@ -544,6 +632,7 @@ a.card * { text-decoration: none !important; }
     <div class="card"><div class="body"><h4>React / Vue</h4><p>تطبيقات واجهة حديثة.</p></div></div>
     <div class="card"><div class="body"><h4>MySQL / MongoDB</h4><p>قواعد بيانات موثوقة.</p></div></div>
     <div class="card"><div class="body"><h4>SEO & Analytics</h4><p>قياس وتحسين الظهور.</p></div></div>
+    <div class="card"><div class="body"><h4>Flutter & Dart</h4><p>واجهات التطبيقات</p></div></div>
   </div>
 </section>
 
@@ -551,19 +640,19 @@ a.card * { text-decoration: none !important; }
 <section id="portfolio" class="paket-section">
   <div class="section-title"><h2>نماذج من أعمالنا</h2></div>
   <div class="grid">
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web1.jpg');"></div>
       <div class="body"><h4>موقع متابعة التقارير</h4><p></p></div>
     </a>
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card"  target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web2.jpg'); text-decoration: none;"></div>
       <div class="body"><h4>موقع ادارة البيانات</h4><p></p></div>
     </a>
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web3.jpg'); text-decoration: none;"></div>
       <div class="body"><h4>موقع ادارة عقارية</h4><p></p></div>
     </a>
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card"  target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web4.jpg');"></div>
       <div class="body"><h4>موقع ادارة عقارية</h4><p></p></div>
     </a>
@@ -576,19 +665,19 @@ a.card * { text-decoration: none !important; }
 <section id="portfolio" class="paket-section">
 
   <div class="grid">
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card"  target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web5.jpg');"></div>
       <div class="body"><h4>موقع شركة خدمات</h4><p></p></div>
     </a>
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web6.jpg');"></div>
       <div class="body"><h4>موقع شركة خدمات</h4><p></p></div>
     </a>
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web7.jpg');"></div>
       <div class="body"><h4>مواقع صفحات تعريفية</h4><p></p></div>
     </a>
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card"  target="_blank" rel="noopener">
       <div class="thumb" style="background-image:url('images/web8.jpg');"></div>
       <div class="body"><h4>مواقع صفحات تعريفية</h4><p></p></div>
     </a>
@@ -824,6 +913,375 @@ a.card * { text-decoration: none !important; }
     });
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* ====== ترجمة فورية للنصوص (AR <-> EN) بدون تعديل HTML ====== */
+
+/* دوال مساعدة */
+function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function replaceTextDeep(root, map){
+  const keys = Object.keys(map);
+  if(!keys.length) return;
+  // الأسماء الأطول أولاً لنتفادى الاستبدال الجزئي
+  keys.sort((a,b)=> b.length - a.length);
+  const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  while(walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node=>{
+    // نتجنب نصوص السكربت/الستايل المخفية
+    if(!node.nodeValue) return;
+    node.nodeValue = node.nodeValue.replace(re, (m)=> map[m] ?? m);
+  });
+}
+
+/* القاموس: عربي -> إنجليزي */
+const AR_TO_EN = {
+  // الهيدر/القائمة
+  "الصفحة الرئيسية":"Home",
+  "الخدمات الرئيسية":"Main Services",
+  "الصناعات الكيميائية":"Chemical Industries",
+  "الصناعات الغذائية":"Food Industries",
+  "خدمات الانترنت":"Internet Services",
+  "خدمات برمجية":"Software Services",
+  "خدمات الاستيراد والتصدير":"Import & Export",
+  "منتجاتنا":"Products",
+  "من نحن":"About",
+  "التواصل":"Contact",
+  "علاماتنا":"Brands",
+
+  // البطل (Hero)
+  "نُنشئ مواقع ويب سريعة، آمنة، قابلة للنمو":"We build fast, secure, scalable websites",
+  "مواقع شركات، متاجر إلكترونية، صفحات هبوط—بتجربة استخدام ممتازة وتحسين لمحركات البحث وأداء عالي على كل الأجهزة.":"Company sites, e-commerce stores and landing pages—with excellent UX, SEO and high performance on all devices.",
+  "ابدأ مشروعك الآن":"Start your project",
+
+  // عناوين الأقسام
+  "أسعار الويب":"Web Pricing",
+  "أسعار التطبيقات":"App Pricing",
+  "خدمات برمجية مخصّصة للويب":"Tailored Web Services",
+  "التقنيات المستخدمة":"Tech Stack",
+  "نماذج من أعمالنا":"Selected Work",
+  "أعمالنا":"Our Work",
+  "آلية العمل":"Process",
+
+  // باقات الويب
+  "أساسي":"Basic",
+  "موقع تعريفي سريع":"Quick company profile",
+  "صفحة رئيسية":"Home page",
+  "تصميم متجاوب":"Responsive design",
+  "نموذج تواصل":"Contact form",
+  "عرض لفترة محدودة:":"Limited-time offer:",
+  "المزيد من المعلومات":"More info",
+  "احترافي":"Professional",
+  "شركة/منظمة":"Company / Organization",
+  "حتى 4 صفحات + مدوّنة":"Up to 4 pages + blog",
+  "تكاملات (واتس/تحليلات)":"Integrations (WhatsApp / Analytics)",
+  "SEO أساسي + أداء":"Basic SEO + performance",
+  "شركة":"Business",
+  "خصائص متقدمة/متجر":"Advanced features / Store",
+  "متجر/لوحة تحكّم":"Store / Admin panel",
+  "تعدد لغات وعملات":"Multi-language & currencies",
+  "دعم وأمان متقدّم":"Advanced support & security",
+  "السعر حسب الطلب":"Custom pricing",
+  "احصل على عرض مخصص":"Get a custom quote",
+  "اطلب الآن":"Order Now",
+
+
+  "تطبيق مخصص":"Custom App",
+"تطبيقات بيع سيارات":"Car Sales Apps",
+"السعر العادي":"Regular price",
+
+  // باقات التطبيقات
+  "أساسي":"Starter",
+  "تطبيق جاهز للاستخدام":"Ready-to-use app",
+  "تطبيقات بيع عقارات":"Real-estate apps",
+  "متاجر الكترونية":"E-commerce apps",
+  "تطبيقات محادثة":"Chat apps",
+  "تطبيقات بيع مستعمل":"Classifieds apps",
+  "تطبيقات دراسة":"Education apps",
+  "تطبيقات تواصل اجتماعي":"Social apps",
+  "تطبيقات بيع سيارات":"Car marketplace apps",
+  "تصميم مرن يتناسب مع احتياجات شركتك":"Flexible design tailored to your needs",
+  "قابلية تطوير وإضافة مزايا مستقبلية":"Scalable with future features",
+  "حماية وأمان متقدم لحماية بيانات العملاء":"Advanced security for customer data",
+
+  // العروض (Offers)
+  "اختر ما يناسب هدفك—وسننجز الباقي بسرعة وجودة.":"Pick what fits your goal—we’ll handle the rest quickly and with quality.",
+  "مواقع الشركات والمؤسسات":"Company & organization websites",
+  "هوية احترافية تعكس أعمالك وثقة عملائك":"A professional identity that reflects your work and builds trust",
+  "تصميم عصري متوافق مع الهوية":"Modern design aligned with your brand",
+  "أداء مُحسّن وتجربة سريعة":"Optimized performance & fast UX",
+  "حماية أساسية وتوثيق HTTPS":"Baseline security & HTTPS",
+  "تحسين SEO أساسي":"Basic SEO",
+  "احصل على استشارة":"Get a consultation",
+  "متاجر إلكترونية":"E-commerce stores",
+  "بيع منتجاتك بثقة—بوابات دفع وشحن وتتبّع":"Sell with confidence—payments, shipping, tracking",
+  "إدارة منتجات ومخزون":"Product & inventory management",
+  "ربط بوابات الدفع والشحن":"Payment & shipping integrations",
+  "تقارير ومؤشرات مبيعات":"Sales reports & KPIs",
+  "دعم لغات متعددة وعُملات":"Multiple languages & currencies",
+  "اطلب عرض سعر":"Request a quote",
+  "صفحات هبوط":"Landing pages",
+  "تحويل الزائر إلى عميل بعبارات واضحة وتجربة سريعة":"Convert visitors to customers with clear messaging & speed",
+  "عناوين مؤثرة وواجهات مركّزة":"Compelling headlines & focused UI",
+  "اختبار A/B وتحسين التحويل":"A/B testing & conversion optimization",
+  "توافق كامل مع الجوال":"Fully mobile-friendly",
+  "تكامل نماذج واتس/بريد":"WhatsApp/email form integrations",
+  "لنصمّم صفحتك":"Let’s design your page",
+
+  // التقنيات
+  "تصميم متجاوب، وصوليّة، أداء.":"Responsive, accessible, performant.",
+  "واجهات تفاعلية وتجربة سلسة.":"Interactive UIs and smooth UX.",
+  "واجهات برمجية وخدمات خلفية.":"APIs and backend services.",
+  "تطبيقات واجهة حديثة.":"Modern front-end apps.",
+  "قواعد بيانات موثوقة.":"Reliable databases.",
+  "قياس وتحسين الظهور.":"Measurement & SEO improvements.",
+  "واجهات التطبيقات":"App UIs",
+
+  // بورتفوليو (العناوين)
+  "موقع متابعة التقارير":"Reports tracking site",
+  "موقع ادارة البيانات":"Data management site",
+  "موقع ادارة عقارية":"Property management site",
+  "موقع شركة خدمات":"Services company site",
+  "مواقع صفحات تعريفية":"Company profile pages",
+
+  // قسم أعمالنا: عقار شامي
+  "نماذج مختارة من مشاريع التطبيقات والمواقع.":"Selected projects of apps & websites.",
+  "تطبيق عقار شامي":"Aqar Shami app",
+  "منصّة إعلانات عقارية (بيع/إيجار) بواجهات عربية متجاوبة ولوحة إدارة.":"A real-estate classifieds platform (buy/rent) with RTL UI and admin panel.",
+  "تواصل حول المشروع":"Contact about this project",
+  "مشاهدة المشروع":"View project",
+
+  // آلية العمل
+  "1 تحليل ومواءمة":"1 Discovery & alignment",
+  "نفهم هدفك والجمهور والمحتوى.":"We understand goals, audience and content.",
+  "2 تصميم واجهة":"2 UI design",
+  "نماذج أولية وتناسق الهوية.":"Prototypes and brand consistency.",
+  "3 التطوير":"3 Development",
+  "فرونت/باك-إند وربط الخدمات.":"Front/back-end and integrations.",
+  "4 الاختبار والإطلاق":"4 Testing & launch",
+  "تحسين أداء، أمان، وسيو.":"Performance, security and SEO.",
+  "5 دعم وتوسّع":"5 Support & growth",
+  "صيانة وتطوير مستمر.":"Maintenance and ongoing improvements.",
+
+  // CTA + الفوتر
+  "لنبدأ خلال 24 ساعة من الآن":"Kick off within 24 hours",
+  "ارسل فكرتك وسنعود إليك بجدول زمني وتكلفة تقديرية.":"Send your idea and we’ll reply with timeline and estimate.",
+  "تواصل واتساب":"Chat on WhatsApp",
+  "© 2025 GOLDEN NET — حلول ويب متكاملة":"© 2025 GOLDEN NET — Full Web Solutions"
+};
+
+/* الدالة العامة التي يستدعيها زر اللغة لديك */
+function changeLanguage(lang){
+  if (lang === 'ar'){
+    // نرجّع الصفحة لنصها الأصلي العربي
+    location.reload();
+    return;
+  }
+  if (lang === 'en'){
+    // اتجاه LTR وترجمة
+    document.body.dir = 'ltr';
+    replaceTextDeep(document.body, AR_TO_EN);
+  }
+  // لاحقًا يمكنك إضافة 'tr' بنفس الأسلوب
+}
+</script>
+
+<script>
+/* ====== إضافة الترجمة الألمانية (AR -> DE) ====== */
+
+/* دوال مساعدة في حال لم تكن معرّفة مسبقًا */
+if (typeof escapeRegExp !== 'function') {
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+}
+if (typeof replaceTextDeep !== 'function') {
+  function replaceTextDeep(root, map){
+    const keys = Object.keys(map);
+    if(!keys.length) return;
+    keys.sort((a,b)=> b.length - a.length);
+    const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      if(!node.nodeValue) return;
+      node.nodeValue = node.nodeValue.replace(re, (m)=> map[m] ?? m);
+    });
+  }
+}
+
+/* القاموس: عربي -> ألماني */
+const AR_TO_DE = {
+  // الهيدر/القائمة
+  "الصفحة الرئيسية":"Startseite",
+  "الخدمات الرئيسية":"Hauptleistungen",
+  "الصناعات الكيميائية":"Chemische Industrie",
+  "الصناعات الغذائية":"Lebensmittelindustrie",
+  "خدمات الانترنت":"Internetdienste",
+  "خدمات برمجية":"Software-Dienste",
+  "خدمات الاستيراد والتصدير":"Import & Export",
+  "منتجاتنا":"Produkte",
+  "من نحن":"Über uns",
+  "التواصل":"Kontakt",
+  "علاماتنا":"Marken",
+
+  // البطل
+  "نُنشئ مواقع ويب سريعة، آمنة، قابلة للنمو":"Wir erstellen schnelle, sichere und skalierbare Websites",
+  "مواقع شركات، متاجر إلكترونية، صفحات هبوط—بتجربة استخدام ممتازة وتحسين لمحركات البحث وأداء عالي على كل الأجهزة.":"Unternehmensseiten, Onlineshops und Landingpages – mit hervorragender UX, SEO und hoher Performance auf allen Geräten.",
+  "ابدأ مشروعك الآن":"Projekt starten",
+
+  // العناوين
+  "أسعار الويب":"Web-Preise",
+  "أسعار التطبيقات":"App-Preise",
+  "خدمات برمجية مخصّصة للويب":"Maßgeschneiderte Web-Dienste",
+  "التقنيات المستخدمة":"Eingesetzte Technologien",
+  "نماذج من أعمالنا":"Ausgewählte Arbeiten",
+  "أعمالنا":"Unsere Arbeiten",
+  "آلية العمل":"Ablauf",
+   "تطبيق مخصص":"Custom App",
+"تطبيقات بيع سيارات":"Car Sales Apps",
+"السعر العادي":"Regular price",
+
+  // باقات الويب
+  "أساسي":"Basis",
+  "موقع تعريفي سريع":"Schnelle Firmenpräsenz",
+  "صفحة رئيسية":"Startseite",
+  "تصميم متجاوب":"Responsives Design",
+  "نموذج تواصل":"Kontaktformular",
+  "عرض لفترة محدودة:":"Nur für kurze Zeit:",
+  "المزيد من المعلومات":"Mehr Infos",
+  "احترافي":"Profi",
+  "شركة/منظمة":"Unternehmen / Organisation",
+  "حتى 4 صفحات + مدوّنة":"Bis zu 4 Seiten + Blog",
+  "تكاملات (واتس/تحليلات)":"Integrationen (WhatsApp / Analytics)",
+  "SEO أساسي + أداء":"Basis-SEO & Performance",
+  "شركة":"Unternehmen",
+  "خصائص متقدمة/متجر":"Erweiterte Funktionen / Shop",
+  "متجر/لوحة تحكّم":"Shop / Admin-Panel",
+  "تعدد لغات وعملات":"Mehrsprachigkeit & Währungen",
+  "دعم وأمان متقدّم":"Erweiterter Support & Sicherheit",
+  "السعر حسب الطلب":"Preis auf Anfrage",
+  "احصل على عرض مخصص":"Individuelles Angebot anfordern",
+  "اطلب الآن":"Jetzt bestellen",
+
+  // باقات التطبيقات
+  "تطبيق جاهز للاستخدام":"Einsatzbereite App",
+  "تطبيقات بيع عقارات":"Immobilien-Apps",
+  "متاجر الكترونية":"E-Commerce-Apps",
+  "تطبيقات محادثة":"Chat-Apps",
+  "تطبيقات بيع مستعمل":"Kleinanzeigen-Apps",
+  "تطبيقات دراسة":"Lern-Apps",
+  "تطبيقات تواصل اجتماعي":"Social-Apps",
+  "تطبيقات بيع سيارات":"Auto-Marktplatz-Apps",
+  "تصميم مرن يتناسب مع احتياجات شركتك":"Flexibles Design nach Ihren Anforderungen",
+  "قابلية تطوير وإضافة مزايا مستقبلية":"Skalierbar, erweiterbar um künftige Features",
+  "حماية وأمان متقدم لحماية بيانات العملاء":"Erweiterte Sicherheit für Kundendaten",
+
+  // العروض
+  "اختر ما يناسب هدفك—وسننجز الباقي بسرعة وجودة.":"Wählen Sie, was zu Ihrem Ziel passt – den Rest liefern wir schnell und in hoher Qualität.",
+  "مواقع الشركات والمؤسسات":"Unternehmens-/Institutionsseiten",
+  "هوية احترافية تعكس أعمالك وثقة عملائك":"Professionelles Erscheinungsbild, das Vertrauen schafft",
+  "تصميم عصري متوافق مع الهوية":"Modernes Design im Einklang mit Ihrer Marke",
+  "أداء مُحسّن وتجربة سريعة":"Optimierte Performance & schnelle UX",
+  "حماية أساسية وتوثيق HTTPS":"Basisschutz & HTTPS",
+  "تحسين SEO أساسي":"Basis-SEO",
+  "احصل على استشارة":"Beratung anfordern",
+  "متاجر إلكترونية":"Onlineshops",
+  "بيع منتجاتك بثقة—بوابات دفع وشحن وتتبّع":"Verkaufen Sie sicher – Zahlungen, Versand, Tracking",
+  "إدارة منتجات ومخزون":"Produkt- & Lagerverwaltung",
+  "ربط بوابات الدفع والشحن":"Anbindung von Zahlungs- & Versanddiensten",
+  "تقارير ومؤشرات مبيعات":"Berichte & KPIs",
+  "دعم لغات متعددة وعُملات":"Mehrere Sprachen & Währungen",
+  "اطلب عرض سعر":"Angebot anfordern",
+  "صفحات هبوط":"Landingpages",
+  "تحويل الزائر إلى عميل بعبارات واضحة وتجربة سريعة":"Besucher mit klarem Messaging und Schnelligkeit konvertieren",
+  "عناوين مؤثرة وواجهات مركّزة":"Aussagekräftige Headlines & fokussierte UI",
+  "اختبار A/B وتحسين التحويل":"A/B-Tests & Conversion-Optimierung",
+  "توافق كامل مع الجوال":"Voll mobiloptimiert",
+  "تكامل نماذج واتس/بريد":"WhatsApp/E-Mail-Formulare",
+  "لنصمّم صفحتك":"Wir designen Ihre Seite",
+
+  // التقنيات
+  "تصميم متجاوب، وصوليّة، أداء.":"Responsiv, zugänglich, performant.",
+  "واجهات تفاعلية وتجربة سلسة.":"Interaktive UIs und flüssige UX.",
+  "واجهات برمجية وخدمات خلفية.":"APIs und Backend-Dienste.",
+  "تطبيقات واجهة حديثة.":"Moderne Front-End-Apps.",
+  "قواعد بيانات موثوقة.":"Zuverlässige Datenbanken.",
+  "قياس وتحسين الظهور.":"Messung & SEO-Optimierung.",
+  "واجهات التطبيقات":"App-UIs",
+
+  // بورتفوليو
+  "موقع متابعة التقارير":"Berichts-Tracking-Website",
+  "موقع ادارة البيانات":"Datenmanagement-Website",
+  "موقع ادارة عقارية":"Immobilien-Verwaltungsseite",
+  "موقع شركة خدمات":"Dienstleistungs-Unternehmensseite",
+  "مواقع صفحات تعريفية":"Firmenprofil-Seiten",
+  "نماذج مختارة من مشاريع التطبيقات والمواقع.":"Ausgewählte Projekte von Apps & Websites.",
+  "تطبيق عقار شامي":"Aqar Shami App",
+  "منصّة إعلانات عقارية (بيع/إيجار) بواجهات عربية متجاوبة ولوحة إدارة.":"Immobilien-Kleinanzeigen (Kauf/Miete) mit RTL-UI und Admin-Panel.",
+  "تواصل حول المشروع":"Zum Projekt anfragen",
+  "مشاهدة المشروع":"Projekt ansehen",
+
+  // آلية العمل
+  "1 تحليل ومواءمة":"1 Analyse & Abstimmung",
+  "نفهم هدفك والجمهور والمحتوى.":"Ziele, Zielgruppe und Inhalte verstehen.",
+  "2 تصميم واجهة":"2 UI-Design",
+  "نماذج أولية وتناسق الهوية.":"Prototypen und Marken-Konsistenz.",
+  "3 التطوير":"3 Entwicklung",
+  "فرونت/باك-إند وربط الخدمات.":"Front/Back-End und Integrationen.",
+  "4 الاختبار والإطلاق":"4 Test & Launch",
+  "تحسين أداء، أمان، وسيو.":"Performance, Sicherheit und SEO.",
+  "5 دعم وتوسّع":"5 Support & Wachstum",
+  "صيانة وتطوير مستمر.":"Wartung und kontinuierliche Weiterentwicklung.",
+
+  // CTA + الفوتر
+  "لنبدأ خلال 24 ساعة من الآن":"Start innerhalb von 24 Stunden",
+  "ارسل فكرتك وسنعود إليك بجدول زمني وتكلفة تقديرية.":"Senden Sie Ihre Idee – wir melden uns mit Zeitplan und Kostenschätzung.",
+  "تواصل واتساب":"Auf WhatsApp schreiben",
+  "© 2025 GOLDEN NET — حلول ويب متكاملة":"© 2025 GOLDEN NET — Ganzheitliche Web-Lösungen"
+};
+
+/* تحديث changeLanguage لدعم 'de' أيضًا */
+(function(){
+  const prev = (typeof changeLanguage === 'function') ? changeLanguage : null;
+
+  window.changeLanguage = function(lang){
+    if (lang === 'ar'){
+      location.reload();
+      return;
+    }
+    if (lang === 'en'){
+      document.body.dir = 'ltr';
+      if (typeof AR_TO_EN !== 'undefined') replaceTextDeep(document.body, AR_TO_EN);
+      return;
+    }
+    if (lang === 'de'){
+      document.body.dir = 'ltr';
+      replaceTextDeep(document.body, AR_TO_DE);
+      return;
+    }
+    // لو عندك TR لاحقاً
+    if (prev) return prev(lang);
+  };
+})();
+</script>
+
+
+
 </body>
 </html>
-
