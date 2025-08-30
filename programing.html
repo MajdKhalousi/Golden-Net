@@ -4,7 +4,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>خدمات برمجية | إنشاء مواقع ويب احترافية</title>
+   <title>شركة غولدن نت للتجارة العامة</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" href="style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -334,6 +334,40 @@ a.card * { text-decoration: none !important; }
   .has-sub:hover > .submenu{ display: block; }
 }
 
+.btn1{
+  display: inline-flex;         /* بدل flex */
+  align-items: center;
+  gap: 8px;
+  background: var(--secondary);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  white-space: nowrap;          /* يبقى بسطر واحد */
+  width: auto;                  /* إلغاء أي عرض مفروض */
+  height: auto;                 /* إلغاء أي ارتفاع مفروض */
+  margin: 20px 0;               /* كان فيها خطأ مطبعي 331p */
+}
+a.btn1{
+  width: auto !important;
+  height: auto !important;
+  display: inline-flex !important;
+}
+/* حط هذا للعنصر الأب للزر */
+.btn1-wrap{ text-align:center; }
+
+.btn1-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+
+
 
 
   </style>
@@ -591,7 +625,14 @@ a.card * { text-decoration: none !important; }
       <div class="thumb" style="background-image:url('images/web4.jpg');"></div>
       <div class="body"><h4>موقع ادارة عقارية</h4><p></p></div>
     </a>
+
+        
+
   </div>
+
+<div class="btn1-wrap">
+  <a href="https://aqarshami.com/" class="btn1">مشاهدة المشروع مباشر</a>
+</div>
 
   
 </section>
@@ -642,19 +683,19 @@ a.card * { text-decoration: none !important; }
 
        
         <div class="portfolio-gallery">
-          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 1" data-full="images/aqaar-shami/shot1.jpg">
+          <a href="https://aqarshami.com/" class="gallery-thumb" role="button" aria-label="لقطة شاشة 1" data-full="images/aqaar-shami/shot1.jpg">
             <img src="images/sam5.jpg" alt="لقطة شاشة تطبيق عقار شامي 1">
           </a>
 
-          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 2" data-full="images/aqaar-shami/shot2.jpg">
+          <a  href="https://aqarshami.com/" class="gallery-thumb" role="button" aria-label="لقطة شاشة 2" data-full="images/aqaar-shami/shot2.jpg">
             <img src="images/sam2.jpg" alt="لقطة شاشة تطبيق عقار شامي 2">
           </a>
 
-          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 3" data-full="images/aqaar-shami/shot3.jpg">
+          <a href="https://aqarshami.com/"  class="gallery-thumb" role="button" aria-label="لقطة شاشة 3" data-full="images/aqaar-shami/shot3.jpg">
             <img src="images/sam6.jpg" alt="لقطة شاشة تطبيق عقار شامي 3">
           </a>
 
-          <a class="gallery-thumb" role="button" aria-label="لقطة شاشة 4" data-full="images/aqaar-shami/shot4.jpg">
+          <a href="https://aqarshami.com/" class="gallery-thumb" role="button" aria-label="لقطة شاشة 4" data-full="images/aqaar-shami/shot4.jpg">
             <img src="images/sam7.jpg" alt="لقطة شاشة تطبيق عقار شامي 4">
           </a>
         </div>
@@ -1303,4 +1344,3 @@ const AR_TO_DE = {
 
 </body>
 </html>
-
