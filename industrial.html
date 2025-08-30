@@ -939,7 +939,9 @@ header.scrolled .logo img {
     <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
     <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
     <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
-  </ul>
+<li><button class="lang-btn" role="menuitem" data-lang="de">DE</button></li>
+
+</ul>
 </div>
 
     <!-- اللوغو -->
@@ -969,15 +971,15 @@ header.scrolled .logo img {
     الخدمات الرئيسية
     <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
   </a>
-  <ul class="submenu" id="submenu-services">
-    <li><a href="#chemical">الصناعات الكيميائية</a></li>
-    <li><a href="#food">الصناعات الغذائية</a></li>
+   <ul class="submenu" id="submenu-services">
+ <li><a href="industrial.html">الصناعات الكيميائية</a></li>
+    <li><a href="industrial.html">الصناعات الغذائية</a></li>
     <li><a href="net.html">خدمات الانترنت</a></li>
-    <li><a href="#services">خدمات برمجية</a></li>
-    <li><a href="#trade">خدمات الاستيراد والتصدير</a></li>
+    <li><a href="programing.html">خدمات برمجية</a></li>
+    <li><a href="imortexport.html">خدمات الاستيراد والتصدير</a></li>
   </ul>
 </li>
-    <li><a href="#products">منتجاتنا</a></li>
+ <li><a href="#products">منتجاتنا</a></li>
     <li><a href="#about">من نحن</a></li>
     <li><a href="#contact">التواصل</a></li>
     <li><a href="#brands">علاماتنا</a></li>
@@ -1329,10 +1331,12 @@ header.scrolled .logo img {
             <div class="footer-links">
                 <h4>روابط سريعة</h4>
                 <ul>
-                    <li><a href="industrial.html">الصناعات الغذائية</a></li>
-                    <li><a href="industrial.html">الصناعات الكيميائية</a></li>
-                    <li><a href="net.html">خدمات الانترنت</a></li>
-                    <li><a href="#contact">التواصل</a></li>
+                  <li><a href="industrial.html" id="footerFaqLink">الصناعات الغذائية</a></li>
+                    <li><a href="industrial.html" id="footerProductsLink">الصناعات الكيميائية</a></li>
+                    <li><a href="net.html" id="footerAboutLink">خدمات الانترنت</a></li>
+ <li><a href="programing.html" id="footerDevLink">إنشاء صفحة ويب وتطبيقات</a></li>
+  <li><a href="imortexport.html" id="footerTradeLink">استيراد وتصدير وتخليص جمركي</a></li>
+
                 </ul>
             </div>
             
@@ -1492,6 +1496,261 @@ closeSidebar.addEventListener("click", () => {
     });
 
 </script>
+
+<script>
+  // تأثيرات إضافية للبطاقات عند التحويم (تصحيح)
+  document.querySelectorAll('.product-card').forEach((card) => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-6px) scale(1.03)';
+      card.style.boxShadow = '0 16px 36px rgba(0,0,0,0.15)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+</script>
+
+<script>
+/* ===== أدوات مساعدة للاسـتبدال النصّي العميق ===== */
+function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function replaceTextDeep(root, map){
+  const keys = Object.keys(map); if(!keys.length) return;
+  const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(n=>{ if(n.nodeValue){ n.nodeValue = n.nodeValue.replace(re, m=> map[m] ?? m); }});
+}
+function setActiveLangButton(code){
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang === code);
+  });
+  const lbl = document.getElementById('currentLangLabel');
+  if(lbl) lbl.textContent = code.toUpperCase();
+}
+
+/* ===== قواميس حسب الـIDs (للأماكن التي بها IDs) ===== */
+window.translations = window.translations || {};
+translations.en = {
+  contactTitle:"Contact Us",
+  contactSubtitle:"Stay in touch",
+  contactAddressTitle:"Address",
+  contactPhoneTitle:"Phone",
+  contactEmailTitle:"Email",
+  contactHoursTitle:"Business Hours",
+  contactHours1:"Mon – Sat: 10:00 AM – 6:00 PM",
+  contactHours2:"Sunday: Closed",
+  contactFormTitle:"Send us a message",
+  formNameLabel:"Full name",
+  formEmailLabel:"Email",
+  formPhoneLabel:"Phone number",
+  formMessageLabel:"Message",
+  // Copyright
+  // (لو أردت سطر الفوتر يتغير، بدّل النص مباشرة هنا أو اترك الاستبدال العام أدناه)
+};
+
+translations.de = {
+  contactTitle:"Kontakt",
+  contactSubtitle:"Bleiben Sie in Verbindung",
+  contactAddressTitle:"Adresse",
+  contactPhoneTitle:"Telefon",
+  contactEmailTitle:"E-Mail",
+  contactHoursTitle:"Öffnungszeiten",
+  contactHours1:"Mo – Sa: 10:00 – 18:00",
+  contactHours2:"Sonntag: Geschlossen",
+  contactFormTitle:"Schreiben Sie uns",
+  formNameLabel:"Vollständiger Name",
+  formEmailLabel:"E-Mail",
+  formPhoneLabel:"Telefonnummer",
+  formMessageLabel:"Nachricht",
+};
+
+/* ===== استبدال نصّي ذكي (لعناصر بدون IDs) — EN ===== */
+const COMMON_EN = {
+  // الهيدر والقائمة
+  "الصفحة الرئيسية":"Home","الخدمات الرئيسية":"Main Services","الصناعات الكيميائية":"Chemical Industries",
+  "الصناعات الغذائية":"Food Industries","خدمات الانترنت":"Internet Services","خدمات برمجية":"Software Services",
+  "خدمات الاستيراد والتصدير":"Import & Export Services","منتجاتنا":"Our Products","من نحن":"About Us",
+  "التواصل":"Contact","علاماتنا":"Our Brands",
+
+  // هيرو
+  "رواد في الصناعات الغذائية والكيميائية":"Leaders in Food & Chemical Industries",
+  "جودة عالية. ابتكار دائم. التزام بمعايير التصنيع العالمية":"High quality. Constant innovation. Committed to global manufacturing standards",
+  "استكشف منتجاتنا":"Explore our products",
+
+  // أقسام
+  "الصناعات الغذائية":"Food Industries",
+  "منتجات غذائية عالية الجودة تلبي أعلى المعايير الصحية":"High-quality food products that meet the highest health standards",
+  "الصناعات الكيميائية":"Chemical Industries",
+  "منتجات كيميائية عالية الجودة لتلبية احتياجات الصناعة والبناء":"High-quality chemical products for industry and construction",
+
+  // بطاقات المنتجات الغذائية
+  "صناعات غذائية":"Food Industry",
+  "شيبس بنكهة الديربي":"Derby-flavored Chips",
+  "شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.":"Tasty chips with a distinctive Derby flavor for classic-taste lovers.",
+  "شيبس بنكهة الجبنة":"Cheese-flavored Chips",
+  "شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.":"Crispy chips from quality potatoes, rich cheese flavor—perfect for family snacks.",
+  "شيبس بنكهة الخل":"Vinegar-flavored Chips",
+  "شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.":"Crispy, zesty vinegar chips crafted for bold-flavor fans.",
+  "اطلب الآن":"Order now",
+  "قريباً":"Coming soon",
+
+  // بطاقات الكيميائيات
+  "صناعات كيميائية":"Chemical Industry",
+  "طلاء داخلي عالي الجودة":"Premium Interior Paint",
+  "طلاء داخلي صديق للبيئة، مقاوم للعفن والعوامل الجوية، متوفر بألوان متعددة":"Eco-friendly interior paint, mold/weather resistant, multi-color options",
+  "طلاء خارجي مقاوم":"Durable Exterior Paint",
+  "طلاء خارجي عالي الجودة مقاوم لأشعة الشمس والتغيرات الجوية، يدوم لسنوات":"High-grade exterior paint, UV & weather resistant, long-lasting",
+  "مواد كيميائية للصناعة":"Industrial Chemicals",
+  "توفير مواد كيميائية عالية الجودة لاستخدامات الصناعات المختلفة":"Supplying high-quality chemicals for diverse industrial uses",
+
+  // من نحن + الإحصاءات
+  "من نحن":"About Us",
+  "شركة رائدة في الصناعات الغذائية والكيميائية":"A leading company in food & chemical industries",
+  "تأسست شركة \"Golden Net\" عام 2015 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.":"Founded in 2015, Golden Net delivers high-quality food & chemical products to local and regional markets. We believe quality and innovation are the key to industrial success.",
+  "نمتلك مصنعين منفصلين، واحد مخصص للصناعات الغذائية وآخر للصناعات الكيميائية، لضمان عدم وجود أي تداخل أو تلوث بين خطوط الإنتاج.":"We operate two separate plants—food and chemical—to ensure zero cross-contamination.",
+  "فريقنا من المهندسين والخبراء يعملون بجد لتقديم أفضل المنتجات، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية في مجال الصناعات.":"Our engineers and experts focus on innovation and continuous development to offer cutting-edge solutions.",
+  "سنوات من الخبرة":"Years of experience",
+  "عميل في الشرق الأوسط":"Clients in the Middle East",
+  "رضا العملاء":"Customer satisfaction",
+
+  // التجارة (استيراد/تصدير)
+  "الاستيراد والتصدير إلى كل أنحاء العالم":"Import & Export worldwide",
+  "ندير سلاسل التوريد من المصنع حتى باب العميل مع شحن مرن، تخليص جمركي، ووثائق مطابقة للأسواق المستهدفة.":"We manage the supply chain end-to-end with flexible shipping, customs clearance, and market-compliant documentation.",
+  "أسواق مستهدفة متعددة":"Multiple target markets",
+  "شحن منتظم إلى الشرق الأوسط وأوروبا وشمال أفريقيا مع حلول تعبئة ووسم لكل سوق.":"Regular shipping to MENA, EU, North Africa with tailored packaging & labeling.",
+  "لوجستيات وشحن مرن":"Flexible logistics & shipping",
+  "بحري/جوي/بري، تتبّع الشحنات، وتغليف ملائم للدهانات والمنتجات الغذائية.":"Sea/Air/Land, tracking, and packaging suitable for paints & foods.",
+  "مستندات وتخليص":"Documentation & clearance",
+  "فواتير، شهادة منشأ، MSDS للدهانات، شهادات صحية للمواد الغذائية، وترجمة معتمدة.":"Invoices, COO, MSDS for paints, health certs for foods, certified translations.",
+  "مطابقة ومعايير":"Compliance & standards",
+  "التزام بالمواصفات الفنية ومتطلبات التعبئة والوسم وفق الأسواق المستهدفة.":"Compliance with technical specs and labeling for target markets.",
+  "اطلب عرض تصدير":"Request export quote",
+  "المواصفات والكتالوجات":"Specs & Catalogs",
+
+  // تواصل + روابط
+  "التواصل معنا":"Contact Us","ابقى على تواصل":"Stay in touch",
+  "العنوان":"Address","الهاتف":"Phone","البريد الإلكتروني":"Email",
+  "ساعات العمل":"Business Hours","الأثنين - السبت: 10 صباحاً - 6 مساءً":"Mon – Sat: 10:00 AM – 6:00 PM","الأحد: إجازة":"Sunday: Closed",
+  "أرسل لنا رسالة":"Send us a message","الاسم الكامل":"Full name","رقم الهاتف":"Phone number","الرسالة":"Message",
+  "إرسال الرسالة":"Send Message","خدمات انترنت":"Internet Services","خدمات عامة":"General Services",
+
+  // الفوتر
+  "روابط سريعة":"Quick Links","ماذا نقدم؟":"What we offer","الدعم":"Support",
+  "الأسئلة الشائعة":"FAQ","شروط الاستخدام":"Terms of Use","سياسة الخصوصية":"Privacy Policy",
+  "جميع الحقوق محفوظة":"All rights reserved"
+};
+
+/* ===== الاستبدال العام — DE ===== */
+const COMMON_DE = {
+  "الصفحة الرئيسية":"Startseite","الخدمات الرئيسية":"Hauptleistungen","الصناعات الكيميائية":"Chemische Industrie",
+  "الصناعات الغذائية":"Lebensmittelindustrie","خدمات الانترنت":"Internetdienste","خدمات برمجية":"Software-Dienste",
+  "خدمات الاستيراد والتصدير":"Import & Export","منتجاتنا":"Produkte","من نحن":"Über uns",
+  "التواصل":"Kontakt","علاماتنا":"Marken",
+
+  "رواد في الصناعات الغذائية والكيميائية":"Branchenführer für Lebensmittel & Chemie",
+  "جودة عالية. ابتكار دائم. التزام بمعايير التصنيع العالمية":"Hohe Qualität. Ständige Innovation. Verpflichtung zu internationalen Standards",
+  "استكشف منتجاتنا":"Produkte entdecken",
+
+  "الصناعات الغذائية":"Lebensmittelindustrie",
+  "منتجات غذائية عالية الجودة تلبي أعلى المعايير الصحية":"Hochwertige Lebensmittel nach höchsten Gesundheitsstandards",
+  "الصناعات الكيميائية":"Chemische Industrie",
+  "منتجات كيميائية عالية الجودة لتلبية احتياجات الصناعة والبناء":"Hochwertige Chemieprodukte für Industrie und Bau",
+
+  "صناعات غذائية":"Lebensmittel-Industrie",
+  "شيبس بنكهة الديربي":"Chips mit Derby-Geschmack",
+  "شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.":"Leckere Chips mit markantem Derby-Aroma für Liebhaber klassischer Geschmäcker.",
+  "شيبس بنكهة الجبنة":"Chips mit Käse-Geschmack",
+  "شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.":"Knusprige Chips aus besten Kartoffeln, reich an Käsegeschmack – ideal für die Familie.",
+  "شيبس بنكهة الخل":"Chips mit Essig-Geschmack",
+  "شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.":"Knusprige, erfrischende Essig-Chips – für mutige Geschmäcker.",
+  "اطلب الآن":"Jetzt bestellen","قريباً":"Bald",
+
+  "صناعات كيميائية":"Chemische Industrie",
+  "طلاء داخلي عالي الجودة":"Hochwertige Innenfarbe",
+  "طلاء داخلي صديق للبيئة، مقاوم للعفن والعوامل الجوية، متوفر بألوان متعددة":"Umweltfreundliche Innenfarbe, schimmel- & wetterbeständig, viele Farben",
+  "طلاء خارجي مقاوم":"Widerstandsfähige Außenfarbe",
+  "طلاء خارجي عالي الجودة مقاوم لأشعة الشمس والتغيرات الجوية، يدوم لسنوات":"Hochwertige Außenfarbe, UV- & witterungsbeständig, sehr langlebig",
+  "مواد كيميائية للصناعة":"Industriechemikalien",
+  "توفير مواد كيميائية عالية الجودة لاستخدامات الصناعات المختلفة":"Hochwertige Chemikalien für vielfältige Industrie-Anwendungen",
+
+  "من نحن":"Über uns",
+  "شركة رائدة في الصناعات الغذائية والكيميائية":"Führendes Unternehmen in Lebensmittel & Chemie",
+  "تأسست شركة \"Golden Net\" عام 2015 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.":"Golden Net (seit 2015) liefert hochwertige Lebensmittel- & Chemieprodukte für lokale und regionale Märkte. Qualität & Innovation sind unser Fundament.",
+  "نمتلك مصنعين منفصلين، واحد مخصص للصناعات الغذائية وآخر للصناعات الكيميائية، لضمان عدم وجود أي تداخل أو تلوث بين خطوط الإنتاج.":"Zwei getrennte Werke (Food & Chemie) garantieren Null Kreuzkontamination.",
+  "فريقنا من المهندسين والخبراء يعملون بجد لتقديم أفضل المنتجات، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية في مجال الصناعات.":"Unser Experten-Team liefert beständig Innovation & modernste Lösungen.",
+  "سنوات من الخبرة":"Jahre Erfahrung",
+  "عميل في الشرق الأوسط":"Kunden im Nahen Osten",
+  "رضا العملاء":"Kundenzufriedenheit",
+
+  "الاستيراد والتصدير إلى كل أنحاء العالم":"Import & Export weltweit",
+  "ندير سلاسل التوريد من المصنع حتى باب العميل مع شحن مرن، تخليص جمركي، ووثائق مطابقة للأسواق المستهدفة.":"End-to-End Supply-Chain: flexibler Versand, Zollabfertigung, marktgerechte Dokumente.",
+  "أسواق مستهدفة متعددة":"Mehrere Zielmärkte",
+  "شحن منتظم إلى الشرق الأوسط وأوروبا وشمال أفريقيا مع حلول تعبئة ووسم لكل سوق.":"Regelmäßiger Versand in MENA, EU & Nordafrika mit maßgeschneiderter Etikettierung.",
+  "لوجستيات وشحن مرن":"Flexible Logistik & Versand",
+  "بحري/جوي/بري، تتبّع الشحنات، وتغليف ملائم للدهانات والمنتجات الغذائية.":"See/Luft/Land, Tracking, passendes Verpacken für Farben & Lebensmittel.",
+  "مستندات وتخليص":"Dokumente & Zoll",
+  "فواتير، شهادة منشأ، MSDS للدهانات، شهادات صحية للمواد الغذائية، وترجمة معتمدة.":"Rechnungen, Ursprungszeugnis, MSDS, Gesundheitszertifikate, beglaubigte Übersetzungen.",
+  "مطابقة ومعايير":"Konformität & Standards",
+  "التزام بالمواصفات الفنية ومتطلبات التعبئة والوسم وفق الأسواق المستهدفة.":"Einhaltung technischer Spezifikationen & Etikettierung für Zielmärkte.",
+  "اطلب عرض تصدير":"Export-Angebot anfordern",
+  "المواصفات والكتالوجات":"Spezifikationen & Kataloge",
+
+  "التواصل معنا":"Kontakt","ابقى على تواصل":"Bleiben Sie in Verbindung",
+  "العنوان":"Adresse","الهاتف":"Telefon","البريد الإلكتروني":"E-Mail",
+  "ساعات العمل":"Öffnungszeiten","الأثنين - السبت: 10 صباحاً - 6 مساءً":"Mo – Sa: 10:00 – 18:00","الأحد: إجازة":"Sonntag: Geschlossen",
+  "أرسل لنا رسالة":"Schreiben Sie uns","الاسم الكامل":"Vollständiger Name","رقم الهاتف":"Telefonnummer","الرسالة":"Nachricht",
+  "إرسال الرسالة":"Nachricht senden","خدمات انترنت":"Internetdienste","خدمات عامة":"Allgemeine Dienste",
+
+  "روابط سريعة":"Schnellzugriff","ماذا نقدم؟":"Was wir anbieten","الدعم":"Support",
+  "الأسئلة الشائعة":"FAQ","شروط الاستخدام":"Nutzungsbedingungen","سياسة الخصوصية":"Datenschutz",
+  "جميع الحقوق محفوظة":"Alle Rechte vorbehalten"
+};
+
+/* ===== المبدّل الرئيسي ===== */
+window.changeLanguage = function(lang){
+  // AR = RTL (نرجع للنص الأصلي) — TR/EN/DE = LTR
+  if(lang==='ar'){ document.body.dir='rtl'; localStorage.setItem('lang','ar'); location.reload(); return; }
+  document.body.dir='ltr';
+  // اختر القاموس الخاص بالـIDs
+  const dict = translations[lang] || {};
+  Object.keys(dict).forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.textContent = dict[id];
+  });
+  // استبدال نصوص عامة بلا IDs
+  replaceTextDeep(document.body, lang==='en' ? COMMON_EN : COMMON_DE);
+  // ضبط واجهة المُبدّل
+  setActiveLangButton(lang);
+  localStorage.setItem('lang', lang);
+};
+
+/* ربط الأزرار (ونغلق القائمة بعد الاختيار) */
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    const lang = btn.dataset.lang;
+    const menu = document.getElementById('langMenu');
+    const toggle = document.getElementById('langToggle');
+    if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+    changeLanguage(lang);
+  }, {capture:true});
+});
+
+/* تحميل اللغة المحفوظة */
+(function(){
+  const saved = localStorage.getItem('lang') || 'ar';
+  if(saved!=='ar'){ changeLanguage(saved); } // العربية هي الأصلية بالنص داخل الـHTML
+  else { setActiveLangButton('ar'); document.body.dir='rtl'; }
+})();
+</script>
+
+
+
+
+
+</body>
+</html>
+
 
 
 
