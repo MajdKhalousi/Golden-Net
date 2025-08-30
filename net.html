@@ -67,7 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
     <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
     <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
-  </ul>
+  <li><button class="lang-btn" role="menuitem" data-lang="de">DE</button></li>
+ 
+</ul>
 </div>
 
 
@@ -98,19 +100,19 @@ document.addEventListener("DOMContentLoaded", () => {
     الخدمات الرئيسية
     <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
   </a>
-  <ul class="submenu" id="submenu-services">
-    <li><a href="#chemical">الصناعات الكيميائية</a></li>
-    <li><a href="#food">الصناعات الغذائية</a></li>
+   <ul class="submenu" id="submenu-services">
+ <li><a href="industrial.html">الصناعات الكيميائية</a></li>
+    <li><a href="industrial.html">الصناعات الغذائية</a></li>
     <li><a href="net.html">خدمات الانترنت</a></li>
-    <li><a href="#services">خدمات برمجية</a></li>
-    <li><a href="#trade">خدمات الاستيراد والتصدير</a></li>
+    <li><a href="programing.html">خدمات برمجية</a></li>
+    <li><a href="imortexport.html">خدمات الاستيراد والتصدير</a></li>
   </ul>
 </li>
-    <li><a href="#products">منتجاتنا</a></li>
+ <li><a href="#products">منتجاتنا</a></li>
     <li><a href="#about">من نحن</a></li>
     <li><a href="#contact">التواصل</a></li>
     <li><a href="#brands">علاماتنا</a></li>
-   
+
 
   </ul>
 </nav>
@@ -680,11 +682,12 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="footer-links">
                 <h4 id="footerLinks1Title">روابط سريعة</h4>
                 <ul>
-                    <li><a href="#faq" id="footerFaqLink">الصناعات الغذائية</a></li>
-                    <li><a href="#products" id="footerProductsLink">الصناعات الكيميائية</a></li>
-                    <li><a href="#about" id="footerAboutLink">خدمات الانترنت</a></li>
-                    <li><a href="#contact" id="footerContactLink">التواصل</a></li>
-            </div>
+                   <li><a href="industrial.html" id="footerFaqLink">الصناعات الغذائية</a></li>
+                    <li><a href="industrial.html" id="footerProductsLink">الصناعات الكيميائية</a></li>
+                    <li><a href="net.html" id="footerAboutLink">خدمات الانترنت</a></li>
+ <li><a href="programing.html" id="footerDevLink">إنشاء صفحة ويب وتطبيقات</a></li>
+  <li><a href="imortexport.html" id="footerTradeLink">استيراد وتصدير وتخليص جمركي</a></li>
+        </div>
             
             <div class="footer-links">
                    <h4 id="footerLinks2Title">ماذا نقدم؟</h4>
@@ -1881,12 +1884,375 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script src="lang/ar.js" ></script>
 <script src="lang/tr.js" ></script>
+
+
+
+
+<script>
+/* ===== أدوات مساعدة ===== */
+function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function replaceTextDeep(root, map){
+  const keys = Object.keys(map); if(!keys.length) return;
+  const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(n=>{ if(n.nodeValue){ n.nodeValue = n.nodeValue.replace(re, m=> map[m] ?? m); }});
+}
+function setActiveLangButton(code){
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang === code);
+  });
+  const lbl = document.getElementById('currentLangLabel');
+  if(lbl) lbl.textContent = code.toUpperCase();
+}
+
+/* ===== ترجمات حسب الـID ===== */
+window.translations = window.translations || {};
+translations.en = {
+  /* المنتجات */
+  productsTitle:"Our Equipment",
+  product1Title:"UBNT Dish",
+  product1Desc:"New high-quality receiver dish",
+  product1Price:"TRY 2500",
+  product2Title:"EVEREST Router",
+  product2Desc:"Latest model with strong coverage",
+  product2Price:"TRY 800",
+  product4Title:"CAT6 Internet Cable",
+  product4Desc:"High-quality internet cable",
+  product4Price:"TRY 15 per meter",
+  product3Title:"Monthly Subscription",
+  product3Desc:"Activated immediately after installation",
+  product3Price:"Plans",
+
+  /* الباقات */
+  paketTitle:"Plans",
+
+  paket1Title:"Gold Plan",
+  q3:"For households seeking ultra speed",
+  paketprice1:"₺500 /month",
+  paket1Feature1:"Speed 24 Mbps",
+  paket1Feature2:"Unlimited connection",
+  paket1Feature3:"24/7 technical support",
+  paket1Feature5:"Priority service",
+  tr1:"Order via WhatsApp",
+
+  paket2Title:"Silver Plan",
+  q2:"For medium-usage households",
+  paketprice2:"₺450 /month",
+  paket2Feature1:"Speed 16 Mbps",
+  paket2Feature2:"Unlimited connection",
+  paket2Feature3:"24/7 technical support",
+  paket2Feature5:"On-site service within 24 hours",
+  tr3:"Order via WhatsApp",
+
+  paket3Title:"Bronze Plan",
+  q1:"For light-usage households",
+  paketprice3:"₺400 /month",
+  paket3Feature1:"Speed 8 Mbps",
+  paket3Feature2:"Unlimited connection",
+  paket3Feature3:"24/7 technical support",
+  paket3Feature5:"On-site service within 48 hours",
+  tr2:"Order via WhatsApp",
+
+  /* عرض خاص */
+  specialOfferTitle:"Special Offer from GOLDEN NET",
+  offerHeader:"All-in installation package!",
+  offerIncludes:"Offer includes:",
+  feature1:"High-quality dish worth 2500 TRY",
+  feature2:"Modern router with strong coverage worth 800 TRY",
+  feature3:"High-quality internet cable (up to 25m)",
+  feature4:"Monthly internet subscription",
+  feature5:"100% free installation fees",
+  guaranteeText:"All devices are 100% new and under warranty",
+  originalPrice:"Regular price: 5000 TRY",
+  discountPrice:"Special price: 3999 TRY",
+  urgentMessage:"Hurry — limited quantity, offer for a short time only!",
+  callNow:"Call now",
+  whatsappOrder:"Order via WhatsApp",
+
+  /* عرض الشبكة المركزية */
+  centralOfferTitle:"Offer for buildings connected to the central network",
+  centralOfferHeader:"Special offer for buildings connected to our central network",
+  centralOfferIncludes:"Package includes:",
+  centralFeature1:"Modern router with strong coverage",
+  centralFeature2:"High-quality internet cable (up to 25m)",
+  centralFeature3:"Monthly internet subscription",
+  centralFeature4:"Free installation",
+  centralFeature5:"No need to install a dish",
+  centralGuaranteeText:"All devices are 100% new and under warranty",
+  originalPrice1:"Regular price: 2000 TRY",
+  discountPrice1:"Special price: 1599 TRY",
+  centralNoticeText:"This offer is available only for buildings connected to Golden Net’s central network",
+  centralUrgentMessage:"Subscribe now — exclusive for connected buildings!",
+  centralCallNow:"Call to check coverage",
+  centralWhatsappOrder:"Subscribe via WhatsApp",
+
+  /* الخريطة */
+  mapTitle:"Our Coverage Map in Reyhanlı",
+  mapSubtitle:"See our coverage areas and your nearest service point",
+  legend1:"Head Office", legend2:"Transmission Towers", legend3:"Central Server",
+  mapNote:"Click the markers for details",
+
+  /* FAQ */
+  faqTitle:"Frequently Asked Questions",
+  faq1Question:"How can I subscribe to the internet service?",
+  faq1Answer:"You can subscribe by calling our numbers or visiting our office. You can also request via WhatsApp from the Plans section.",
+  faq2Question:"How long until installation after ordering?",
+  faq2Answer:"Installation usually takes 24–48 hours after your request, depending on technician availability in your area.",
+  faq3Question:"Is there a binding contract period?",
+  faq3Answer:"No. The service is monthly and you can stop anytime without commitments.",
+  faq4Question:"What payment methods are available?",
+  faq4Answer:"Cash upon installation or bank transfer. Online payment is coming soon.",
+
+  /* آراء العملاء */
+  testimonialsTitle:"What our customers say",
+  testimonial1Text:'"Excellent service and very high speed compared to others in the area. Very responsive support team."',
+  testimonial2Text:'"Thanks to Golden Net for great service and fast support. Highly recommended."',
+  testimonial3Text:'"After trying several providers, Golden Net offered the best speed and stability in the area."',
+
+  /* تواصل */
+  contactTitle:"Contact Us",
+  contactSubtitle:"Stay in touch",
+  contactAddressTitle:"Address",
+  contactPhoneTitle:"Phone",
+  contactEmailTitle:"Email",
+  contactHoursTitle:"Business Hours",
+  contactHours1:"Mon – Sat: 10:00 AM – 6:00 PM",
+  contactHours2:"Sunday: Closed",
+  contactFormTitle:"Send us a message",
+  formNameLabel:"Full name",
+  formEmailLabel:"Email",
+  formPhoneLabel:"Phone number",
+  formMessageLabel:"Message",
+
+  /* فوتر */
+  footerLinks1Title:"Quick Links",
+  footerLinks2Title:"What we offer",
+  footerLinks3Title:"Support",
+  copyrightText:"All rights reserved © GOLDEN NET 2025",
+
+  /* صفحة المنتجات المخفية */
+  pageTitle:"Our Products",
+  pageSubtitle:"Discover all our innovative solutions and premium services",
+  product1TitlePage:"UBNT Dish",
+  product1DescPage:"New high-quality receiver dish",
+  product2TitlePage:"Business Internet",
+  product2DescPage:"Complete solutions for companies with high speeds and advanced tech",
+  product3TitlePage:"Fiber-optic Services",
+  product3DescPage:"Latest fiber technologies for ultra-fast, stable internet",
+  product4TitlePage:"Cloud Storage Solutions",
+  product4DescPage:"Secure, reliable cloud storage with large space and easy access",
+  product5TitlePage:"Cybersecurity Solutions",
+  product5DescPage:"Comprehensive protection for your network and data",
+  product6TitlePage:"Advanced Wi-Fi Solutions",
+  product6DescPage:"Wide coverage and high performance for homes and businesses",
+  product7TitlePage:"Custom VPN Services",
+  product7DescPage:"Secure, encrypted access to restricted sites and services",
+  product8TitlePage:"Backup Solutions",
+  product8DescPage:"Protect critical data with automatic backup & restore"
+};
+
+translations.de = {
+  /* المنتجات */
+  productsTitle:"Unsere Geräte",
+  product1Title:"UBNT-Schüssel",
+  product1Desc:"Neue, hochwertige Empfangsschüssel",
+  product1Price:"TRY 2500",
+  product2Title:"EVEREST-Router",
+  product2Desc:"Modernes Modell mit starker Abdeckung",
+  product2Price:"TRY 800",
+  product4Title:"CAT6-Internetkabel",
+  product4Desc:"Hochwertiges Internetkabel",
+  product4Price:"TRY 15 pro Meter",
+  product3Title:"Monatsabo",
+  product3Desc:"Wird direkt nach der Installation aktiviert",
+  product3Price:"Tarife",
+
+  /* الباقات */
+  paketTitle:"Tarife",
+
+  paket1Title:"Gold-Tarif",
+  q3:"Für Haushalte mit höchstem Geschwindigkeitsbedarf",
+  paketprice1:"₺500 /Monat",
+  paket1Feature1:"Geschwindigkeit 24 Mbit/s",
+  paket1Feature2:"Unbegrenzte Verbindung",
+  paket1Feature3:"Technischer Support rund um die Uhr",
+  paket1Feature5:"Bevorzugter Service",
+  tr1:"Über WhatsApp bestellen",
+
+  paket2Title:"Silber-Tarif",
+  q2:"Für Haushalte mit mittlerer Nutzung",
+  paketprice2:"₺450 /Monat",
+  paket2Feature1:"Geschwindigkeit 16 Mbit/s",
+  paket2Feature2:"Unbegrenzte Verbindung",
+  paket2Feature3:"Technischer Support rund um die Uhr",
+  paket2Feature5:"Vor-Ort-Service innerhalb von 24 Std.",
+  tr3:"Über WhatsApp bestellen",
+
+  paket3Title:"Bronze-Tarif",
+  q1:"Für Haushalte mit geringer Nutzung",
+  paketprice3:"₺400 /Monat",
+  paket3Feature1:"Geschwindigkeit 8 Mbit/s",
+  paket3Feature2:"Unbegrenzte Verbindung",
+  paket3Feature3:"Technischer Support rund um die Uhr",
+  paket3Feature5:"Vor-Ort-Service innerhalb von 48 Std.",
+  tr2:"Über WhatsApp bestellen",
+
+  /* عرض خاص */
+  specialOfferTitle:"Sonderangebot von GOLDEN NET",
+  offerHeader:"Alles-inklusive Installationspaket!",
+  offerIncludes:"Angebot beinhaltet:",
+  feature1:"Hochwertige Schüssel im Wert von 2500 TRY",
+  feature2:"Moderner Router mit starker Abdeckung im Wert von 800 TRY",
+  feature3:"Hochwertiges Internetkabel (bis 25 m)",
+  feature4:"Monatliches Internet-Abo",
+  feature5:"100 % kostenlose Installation",
+  guaranteeText:"Alle Geräte sind 100 % neu und garantiert",
+  originalPrice:"Regulärer Preis: 5000 TRY",
+  discountPrice:"Sonderpreis: 3999 TRY",
+  urgentMessage:"Schnell sein — begrenzte Menge, nur kurze Zeit!",
+  callNow:"Jetzt anrufen",
+  whatsappOrder:"Über WhatsApp bestellen",
+
+  /* عرض الشبكة المركزية */
+  centralOfferTitle:"Angebot für Gebäude im zentralen Netz",
+  centralOfferHeader:"Spezialangebot für Gebäude im zentralen Netzwerk",
+  centralOfferIncludes:"Paket beinhaltet:",
+  centralFeature1:"Moderner Router mit starker Abdeckung",
+  centralFeature2:"Hochwertiges Internetkabel (bis 25 m)",
+  centralFeature3:"Monatliches Internet-Abo",
+  centralFeature4:"Kostenlose Installation",
+  centralFeature5:"Keine Schüssel erforderlich",
+  centralGuaranteeText:"Alle Geräte sind 100 % neu und garantiert",
+  originalPrice1:"Regulärer Preis: 2000 TRY",
+  discountPrice1:"Sonderpreis: 1599 TRY",
+  centralNoticeText:"Nur für Gebäude im zentralen Netzwerk von Golden Net verfügbar",
+  centralUrgentMessage:"Jetzt abonnieren — exklusiv für angeschlossene Gebäude!",
+  centralCallNow:"Abdeckung prüfen – anrufen",
+  centralWhatsappOrder:"Über WhatsApp abonnieren",
+
+  /* الخريطة */
+  mapTitle:"Unsere Abdeckung in Reyhanlı",
+  mapSubtitle:"Sehen Sie die Abdeckungsbereiche und den nächstliegenden Servicepunkt",
+  legend1:"Hauptsitz", legend2:"Sendemasten", legend3:"Zentraler Server",
+  mapNote:"Klicken Sie auf die Marker für Details",
+
+  /* FAQ */
+  faqTitle:"Häufige Fragen",
+  faq1Question:"Wie kann ich den Internetdienst abonnieren?",
+  faq1Answer:"Rufen Sie uns an oder besuchen Sie unser Büro. Alternativ über WhatsApp auf der Tarifseite.",
+  faq2Question:"Wie lange dauert die Installation nach der Bestellung?",
+  faq2Answer:"In der Regel 24–48 Stunden, abhängig von der Verfügbarkeit der Techniker.",
+  faq3Question:"Gibt es eine Mindestvertragslaufzeit?",
+  faq3Answer:"Nein. Der Dienst ist monatlich und jederzeit kündbar.",
+  faq4Question:"Welche Zahlungsmethoden gibt es?",
+  faq4Answer:"Barzahlung bei Installation oder Banküberweisung. Online-Zahlung folgt bald.",
+
+  /* آراء العملاء */
+  testimonialsTitle:"Kundenstimmen",
+  testimonial1Text:'„Ausgezeichneter Service und sehr hohe Geschwindigkeit im Vergleich zu anderen. Sehr reaktiver Support.“',
+  testimonial2Text:'„Vielen Dank an Golden Net für den tollen Service und den schnellen Support. Sehr empfehlenswert.“',
+  testimonial3Text:'„Nach mehreren Anbietern bietet Golden Net die beste Geschwindigkeit und Stabilität in der Region.“',
+
+  /* تواصل */
+  contactTitle:"Kontakt",
+  contactSubtitle:"Bleiben Sie in Verbindung",
+  contactAddressTitle:"Adresse",
+  contactPhoneTitle:"Telefon",
+  contactEmailTitle:"E-Mail",
+  contactHoursTitle:"Öffnungszeiten",
+  contactHours1:"Mo – Sa: 10:00 – 18:00",
+  contactHours2:"Sonntag: Geschlossen",
+  contactFormTitle:"Schreiben Sie uns",
+  formNameLabel:"Vollständiger Name",
+  formEmailLabel:"E-Mail",
+  formPhoneLabel:"Telefonnummer",
+  formMessageLabel:"Nachricht",
+
+  /* فوتر */
+  footerLinks1Title:"Schnellzugriff",
+  footerLinks2Title:"Was wir anbieten",
+  footerLinks3Title:"Support",
+  copyrightText:"Alle Rechte vorbehalten © GOLDEN NET 2025",
+
+  /* صفحة المنتجات المخفية */
+  pageTitle:"Unsere Produkte",
+  pageSubtitle:"Entdecken Sie unsere innovativen Lösungen und Premium-Services",
+  product1TitlePage:"UBNT-Schüssel",
+  product1DescPage:"Neue, hochwertige Empfangsschüssel",
+  product2TitlePage:"Business-Internet",
+  product2DescPage:"Komplettlösungen für Unternehmen mit hohen Geschwindigkeiten",
+  product3TitlePage:"Glasfaser-Dienste",
+  product3DescPage:"Neueste Glasfasertechnologien für sehr schnelles, stabiles Internet",
+  product4TitlePage:"Cloud-Speicherlösungen",
+  product4DescPage:"Sicherer, zuverlässiger Cloud-Speicher mit großem Volumen",
+  product5TitlePage:"Cybersicherheitslösungen",
+  product5DescPage:"Umfassender Schutz für Ihr Netzwerk und Ihre Daten",
+  product6TitlePage:"Erweitere WLAN-Lösungen",
+  product6DescPage:"Große Abdeckung und hohe Leistung für Zuhause & Unternehmen",
+  product7TitlePage:"Benutzerdefinierte VPN-Dienste",
+  product7DescPage:"Sicherer, verschlüsselter Zugriff auf gesperrte Dienste",
+  product8TitlePage:"Backup-Lösungen",
+  product8DescPage:"Schützen Sie wichtige Daten mit Auto-Backups & Restore"
+};
+
+/* عبارات عامة (بدون IDs) للقائمة والروابط */
+const COMMON_EN = {
+  "الصفحة الرئيسية":"Home","الخدمات الرئيسية":"Main Services","الصناعات الكيميائية":"Chemical Industries",
+  "الصناعات الغذائية":"Food Industries","خدمات الانترنت":"Internet Services","خدمات برمجية":"Software Services",
+  "خدمات الاستيراد والتصدير":"Import & Export Services","منتجاتنا":"Our Products","من نحن":"About Us",
+  "التواصل":"Contact","علاماتنا":"Our Brands",
+  "الباقات":"Plans","إرسال الرسالة":"Send Message",
+  "خدمات انترنت":"Internet Services","خدمات عامة":"General Services","خدمات عامة":"General Services"
+};
+const COMMON_DE = {
+  "الصفحة الرئيسية":"Startseite","الخدمات الرئيسية":"Hauptleistungen","الصناعات الكيميائية":"Chemische Industrie",
+  "الصناعات الغذائية":"Lebensmittelindustrie","خدمات الانترنت":"Internetdienste","خدمات برمجية":"Software-Dienste",
+  "خدمات الاستيراد والتصدير":"Import & Export","منتجاتنا":"Produkte","من نحن":"Über uns",
+  "التواصل":"Kontakt","علاماتنا":"Marken",
+  "الباقات":"Tarife","إرسال الرسالة":"Nachricht senden",
+  "خدمات انترنت":"Internetdienste","خدمات عامة":"Allgemeine Dienste","خدمات عامة":"Allgemeine Dienste"
+};
+
+/* ===== تبديل اللغة (AR/TR/EN/DE) ===== */
+window.changeLanguage = function(lang){
+  if(lang==='ar'){ document.body.dir='rtl'; location.reload(); return; }
+  if(lang==='tr'){
+    document.body.dir='ltr';
+    if(typeof applyTranslation==='function' && typeof tr!=='undefined'){ applyTranslation(tr); }
+    setActiveLangButton('tr'); return;
+  }
+  document.body.dir='ltr';
+  const dict = translations[lang] || {};
+  Object.keys(dict).forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.textContent = dict[id];
+  });
+  // استبدال نصوص عامة لا تملك IDs
+  replaceTextDeep(document.body, lang==='en' ? COMMON_EN : COMMON_DE);
+  setActiveLangButton(lang);
+};
+
+/* ربط الأزرار بأمان (يتجاوز أي مستمع قديم يستدعي loadLanguage) */
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    const lang = btn.dataset.lang;
+    // أغلق الـ dropdown إن وجد
+    const menu = document.getElementById('langMenu');
+    const toggle = document.getElementById('langToggle');
+    if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+    // نفّذ التبديل
+    changeLanguage(lang);
+  }, {capture:true}); // نلتقط قبل أي listeners قديمة
+});
+</script>
+
+
+
 </body>
 </html>
 
 
-</body>
-</html>
 
 
 
