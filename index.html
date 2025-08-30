@@ -131,7 +131,9 @@ document.addEventListener('DOMContentLoaded', function () {
     <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
     <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
     <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
-  </ul>
+  <li><button class="lang-btn" role="menuitem" data-lang="de">DE</button></li>
+
+</ul>
 </div>
 
 
@@ -162,12 +164,12 @@ document.addEventListener('DOMContentLoaded', function () {
   </a>
   
 
-   <ul class="submenu" id="submenu-services">
+     <ul class="submenu" id="submenu-services">
  <li><a href="industrial.html">الصناعات الكيميائية</a></li>
     <li><a href="industrial.html">الصناعات الغذائية</a></li>
     <li><a href="net.html">خدمات الانترنت</a></li>
     <li><a href="programing.html">خدمات برمجية</a></li>
-    <li><a href="index.html">خدمات الاستيراد والتصدير</a></li>
+    <li><a href="imortexport.html">خدمات الاستيراد والتصدير</a></li>
   </ul>
 </li>
  <li><a href="#products">منتجاتنا</a></li>
@@ -744,7 +746,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="industrial.html" id="footerFaqLink">الصناعات الغذائية</a></li>
                     <li><a href="industrial.html" id="footerProductsLink">الصناعات الكيميائية</a></li>
                     <li><a href="net.html" id="footerAboutLink">خدمات الانترنت</a></li>
-                    <li><a href="#contact" id="footerContactLink">التواصل</a></li>
+ <li><a href="programing.html" id="footerDevLink">إنشاء صفحة ويب وتطبيقات</a></li>
+  <li><a href="imortexport.html" id="footerTradeLink">استيراد وتصدير وتخليص جمركي</a></li>
             </div>
             
             <div class="footer-links">
@@ -1868,6 +1871,324 @@ document.head.appendChild(animationStyles);
 </script>
 
 
+<script>
+/* ========== ترجمة فورية بالنص (AR -> EN/DE) لنفس الصفحة ========== */
+
+/* أدوات مساعدة */
+function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function replaceTextDeep(root, map){
+  const keys = Object.keys(map);
+  if(!keys.length) return;
+  keys.sort((a,b)=> b.length - a.length);
+  const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node=>{
+    if(!node.nodeValue) return;
+    node.nodeValue = node.nodeValue.replace(re, (m)=> map[m] ?? m);
+  });
+}
+
+/* ——— قاموس عربي -> إنجليزي ——— */
+const AR_TO_EN = {
+  // هيدر/قائمة
+  "الصفحة الرئيسية":"Home",
+  "الخدمات الرئيسية":"Main Services",
+  "الصناعات الكيميائية":"Chemical Industries",
+  "الصناعات الغذائية":"Food Industries",
+  "خدمات الانترنت":"Internet Services",
+  "خدمات برمجية":"Software Services",
+  "خدمات الاستيراد والتصدير":"Import & Export Services",
+  "منتجاتنا":"Our Products",
+  "من نحن":"About Us",
+  "التواصل":"Contact",
+  "علاماتنا":"Our Brands",
+
+  // سلايدر الموجة (الهيرو أعلى الصفحة)
+  "حلول متقدمة":"Advanced Solutions",
+  "نقدم أفضل الحلول بقطاعات الإنترنت والتصنيع والتجارة العامة لجميع احتياجاتك الشخصية والتجارية بجودة عالية وأداء متميز":
+    "We deliver top solutions in internet, manufacturing, and general trade for all personal and business needs with high quality and performance.",
+  "تعرّف علينا":"Learn about us",
+
+  // سكشن خدماتنا
+  "خدماتنا المتكاملة":"Our Integrated Services",
+  "في GOLDEN NET نقدم لك باقة شاملة من الخدمات التي تلبي جميع احتياجاتك التقنية والتجارية \n      مع جودة عالية وتجربة استثنائية.":
+    "At GOLDEN NET, we offer a comprehensive suite of technical and commercial services with high quality and an exceptional experience.",
+
+  // بطاقة الإنترنت
+  "خدمات الإنترنت فائقة السرعة":"High-Speed Internet Services",
+  "تجربة إنترنت بلا حدود مع دعم فني مستمر":"Unlimited internet with continuous support",
+  "تغطية شاملة لمناطق الريحانية والمناطق المجاورة":"Full coverage in Reyhanlı and nearby areas",
+  "سرعات تصل حتى":"Speeds up to",
+  "100Mbps":"100 Mbps",
+  "دعم فني على مدار الساعة":"24/7 technical support",
+  "تركيب احترافي خلال\n 24 ساعة":"Professional installation within 24 hours",
+  "اشترك الآن":"Subscribe Now",
+
+  // بطاقة التجارة العامة
+  "خدمات التجارة\n العامة":"General Trade Services",
+  "حلول متكاملة لتوسيع أعمالك بسهولة وأمان":"Integrated solutions to grow your business safely and easily",
+  "انتاج وتوريد المواد الكيميائية والغذائية عالية الجودة":"Production and supply of high-quality chemicals and food products",
+  "شحن سريع وتوصيل الى كل مكان":"Fast shipping and delivery everywhere",
+  "أسعار تنافسية وعروض خاصة للتجار":"Competitive prices and special offers for traders",
+  "استشارات لتوسيع أعمالك ودخول أسواق جديدة":"Consulting to expand your business and enter new markets",
+  "اعرف المزيد":"Learn More",
+
+  // بطاقة البرمجة
+  "تصميم المواقع والتطبيقات":"Websites & Apps Development",
+  "حوّل فكرتك إلى مشروع رقمي احترافي":"Turn your idea into a professional digital product",
+  "تصميم مواقع عصرية متجاوبة مع جميع الشاشات":"Modern responsive websites",
+  "تطوير تطبيقات موبايل (Android و iOS)":"Mobile apps (Android & iOS)",
+  "استضافة سحابية آمنة وسريعة":"Fast, secure cloud hosting",
+  "استشارات تقنية لتطوير أعمالك على الإنترنت":"Tech consulting to grow your online business",
+
+"في GOLDEN NET نقدم لك باقة شاملة من الخدمات التي تلبي جميع احتياجاتك التقنية والتجارية مع جودة عالية وتجربة استثنائية.":"At GOLDEN NET, we offer a comprehensive suite of services that meet all your technical and business needs with high quality and an exceptional experience.",
+"خدمات التجارة العامة":"General Trading Services",
+"تركيب احترافي خلال 24 ساعة":"Professional installation within 24 hours",
+"تأسست شركة GOLDEN NET .و عام 2015 لتقديم حلول اتصال موثوقة وخدمات إنترنت عالية الجودة، وتوسّعت أعمالنا لاحقًا لتشمل الصناعات الغذائية (إنتاج الشيبس والمقرمشات) والصناعات الكيميائية (أنظمة ودهانات داخلية وخارجية) بمعايير تصنيع عالمية ولا يقتصر الامر على هذا فحسب بل توسعنا لنقدم حلول برمجية و تقنية من التطبيقات و برامج تلبي احتياجاتك واحتياجات عملاؤك":"GOLDEN NET was founded in 2015 to deliver reliable connectivity solutions and high-quality internet services. Our business later expanded to include the food industry (production of chips and snacks) and the chemical industry (systems and interior and exterior paints) to global manufacturing standards. We have also expanded to offer software and technology solutions—applications and programs that meet your needs and your customers’ needs.",
+"بأكثر من 10 سنوات من الخبرة، بنينا شبكة قوية وبنية تحتية كبيرة لضمان تجربة إنترنت سلسة، كما طوّرنا خطوط إنتاج منفصلة ومتخصصة للطلاء والشيبس لضمان الجودة والسلامة والالتزام بالمواصفات.":"With more than 10 years of experience, we have built a strong network and a large infrastructure to ensure a smooth internet experience. We also developed separate, specialized production lines for paint and chips to ensure quality, safety, and compliance with specifications.",
+"يعمل فريقنا من المهندسين والفنيين على الابتكار المستمر؛ من تحسين سرعات واستقرار الشبكة، إلى تطوير نكهات منتجات الشيبس وصيغ دهانات مقاومة للعوامل الجوية، مع خدمة عملاء ودعم فني يستجيب لاحتياجاتكم بسرعة وكفاءة.":"Our team of engineers and technicians is committed to continuous innovation—from improving network speed and stability to developing chip flavors and weather-resistant paint formulas—backed by customer service and technical support that respond to your needs quickly and efficiently.",
+
+
+  // بطاقة الاستيراد والتصدير (الوحيدة)
+  "حلول تصدير واستيراد عالمية":"Global Import & Export Solutions",
+  "شحن بحري/جوي/بري، وتتبع كامل حتى التسليم":"Sea/Air/Road shipping with end-to-end tracking",
+  "شحن بحري (FCL/LCL) وجوي وبري":"Sea (FCL/LCL), air and road shipping",
+  "مستندات مكتملة: فاتورة، شهادة منشأ، MSDS، صحية":"Complete paperwork: Invoice, COO, MSDS, Health",
+  "تغليف ووسم متعدد اللغات ومتوافق مع اللوائح":"Multilingual, compliant packaging & labeling",
+  "أسواق: الشرق الأوسط، أوروبا، وشمال أفريقيا":"Markets: Middle East, Europe, North Africa",
+  "إنكوترمز مرنة (EXW/FOB/CIF) وتأمين الشحن":"Flexible Incoterms (EXW/FOB/CIF) & cargo insurance",
+  "المزيد من المعلومات":"More Info",
+
+  // من نحن + لماذا غولدن نت
+  "من نحن":"About Us",
+  "شركة رائدة في الإنترنت والصناعات الغذائية والكيميائية":
+    "A leading company in internet, food, and chemical industries",
+  "سنوات من الخبرة":"Years of experience",
+  "عميل راضٍ":"Happy clients",
+  "رضا العملاء":"Customer satisfaction",
+  "لماذا تختار شركة غولدن نت؟":"Why choose Golden Net?",
+  "جودة تصنيعية صارمة واختبارات متعددة المراحل":"Strict manufacturing quality and multi-stage testing",
+  "تكامل تقني–صناعي يسرّع التنفيذ ويقلّل التكاليف":"Tech-industrial integration speeds execution and reduces costs",
+  "خدمة ما قبل/بعد البيع وشراكات طويلة الأمد":"Pre/after-sales service and long-term partnerships",
+  "تخصيص سريع للمنتج والتغليف لأسواق التصدير":"Fast product & packaging customization for export markets",
+
+  // العلامات
+  "علاماتنا":"Our Brands",
+  "نفتخر ب علاماتنا التجارية في قطاعات متنوعة":"We are proud of our brands across diverse sectors",
+
+  // التواصل
+  "التواصل معنا":"Contact Us",
+  "ابقى على تواصل":"Stay Connected",
+  "العنوان":"Address",
+  "الهاتف":"Phone",
+  "البريد الإلكتروني":"Email",
+  "ساعات العمل":"Working Hours",
+  "الأثنين - السبت: 10 صباحاً - 6 مساءً":"Mon - Sat: 10am - 6pm",
+  "الأحد: إجازة":"Sunday: Closed",
+  "أرسل لنا رسالة":"Send us a message",
+  "الاسم الكامل":"Full Name",
+  "رقم الهاتف":"Phone Number",
+  "الرسالة":"Message",
+  "إرسال الرسالة":"Send Message",
+
+  // الفوتر
+  "روابط سريعة":"Quick Links",
+  "ماذا نقدم؟":"What we offer",
+  "الدعم":"Support",
+  "مركز المساعدة":"Help Center",
+  "الدعم الفني":"Technical Support",
+  "الشروط والأحكام":"Terms & Conditions",
+  "سياسة الخصوصية":"Privacy Policy",
+  "جميع الحقوق محفوظة":"All rights reserved",
+
+  // عناوين مشاريع (شبكة الأعمال)
+  "موقع متابعة التقارير":"Reports Tracking Website",
+  "موقع ادارة البيانات":"Data Management Website",
+  "موقع ادارة عقارية":"Real-Estate Management Website",
+  "موقع شركة خدمات":"Service Company Website",
+  "مواقع صفحات تعريفية":"Company Profile Pages",
+
+  // أزرار عامة
+  "المزيد من المعلومات":"More Info",
+  "اطلب الآن":"Order Now",
+  "احصل على عرض مخصص":"Get a tailored quote"
+};
+
+/* ——— قاموس عربي -> ألماني ——— */
+const AR_TO_DE = {
+  // هيدر/قائمة
+  "الصفحة الرئيسية":"Startseite",
+  "الخدمات الرئيسية":"Hauptleistungen",
+  "الصناعات الكيميائية":"Chemische Industrie",
+  "الصناعات الغذائية":"Lebensmittelindustrie",
+  "خدمات الانترنت":"Internetdienste",
+  "خدمات برمجية":"Software-Dienste",
+  "خدمات الاستيراد والتصدير":"Import & Export",
+  "منتجاتنا":"Produkte",
+  "من نحن":"Über uns",
+  "التواصل":"Kontakt",
+  "علاماتنا":"Marken",
+
+  // سلايدر
+  "حلول متقدمة":"Fortschrittliche Lösungen",
+  "نقدم أفضل الحلول بقطاعات الإنترنت والتصنيع والتجارة العامة لجميع احتياجاتك الشخصية والتجارية بجودة عالية وأداء متميز":
+    "Wir bieten Top-Lösungen in Internet, Produktion und Handel – für private und geschäftliche Bedürfnisse, in hoher Qualität und Leistung.",
+  "تعرّف علينا":"Über uns",
+
+  // خدماتنا
+  "خدماتنا المتكاملة":"Unsere integrierten Leistungen",
+  "في GOLDEN NET نقدم لك باقة شاملة من الخدمات التي تلبي جميع احتياجاتك التقنية والتجارية \n      مع جودة عالية وتجربة استثنائية.":
+    "Bei GOLDEN NET bieten wir ein umfassendes Paket technischer und geschäftlicher Leistungen – mit hoher Qualität und exzellenter Erfahrung.",
+
+  // الإنترنت
+  "خدمات الإنترنت فائقة السرعة":"High-Speed-Internetdienste",
+  "تجربة إنترنت بلا حدود مع دعم فني مستمر":"Unbegrenztes Internet mit kontinuierlichem Support",
+  "تغطية شاملة لمناطق الريحانية والمناطق المجاورة":"Vollständige Abdeckung in Reyhanlı und Umgebung",
+  "سرعات تصل حتى":"Geschwindigkeiten bis",
+  "100Mbps":"100 Mbit/s",
+  "دعم فني على مدار الساعة":"Technischer Support rund um die Uhr",
+  "تركيب احترافي خلال\n 24 ساعة":"Professionelle Installation innerhalb von 24 Stunden",
+  "اشترك الآن":"Jetzt abonnieren",
+
+  // التجارة
+  "خدمات التجارة\n العامة":"Allgemeine Handelsdienstleistungen",
+  "حلول متكاملة لتوسيع أعمالك بسهولة وأمان":"Integrierte Lösungen für sicheres und einfaches Wachstum",
+  "انتاج وتوريد المواد الكيميائية والغذائية عالية الجودة":"Produktion & Lieferung hochwertiger Chemie- und Lebensmittel",
+  "شحن سريع وتوصيل الى كل مكان":"Schneller Versand & Lieferung überallhin",
+  "أسعار تنافسية وعروض خاصة للتجار":"Wettbewerbsfähige Preise & Händlerangebote",
+  "استشارات لتوسيع أعمالك ودخول أسواق جديدة":"Beratung für Expansion & neue Märkte",
+  "اعرف المزيد":"Mehr Infos",
+
+  // البرمجة
+  "تصميم المواقع والتطبيقات":"Web- & App-Entwicklung",
+  "حوّل فكرتك إلى مشروع رقمي احترافي":"Verwandeln Sie Ihre Idee in ein professionelles Digitalprodukt",
+  "تصميم مواقع عصرية متجاوبة مع جميع الشاشات":"Moderne, responsive Websites",
+  "تطوير تطبيقات موبايل (Android و iOS)":"Mobile Apps (Android & iOS)",
+  "استضافة سحابية آمنة وسريعة":"Schnelles, sicheres Cloud-Hosting",
+  "استشارات تقنية لتطوير أعمالك على الإنترنت":"Technische Beratung für Online-Wachstum",
+
+  // الاستيراد/التصدير
+  "حلول تصدير واستيراد عالمية":"Globale Import- & Export-Lösungen",
+  "شحن بحري/جوي/بري، وتتبع كامل حتى التسليم":"See-/Luft-/Straßentransport mit End-to-End-Tracking",
+  "شحن بحري (FCL/LCL) وجوي وبري":"Seefracht (FCL/LCL), Luft- & Straßentransport",
+  "مستندات مكتملة: فاتورة، شهادة منشأ، MSDS، صحية":"Vollständige Unterlagen: Rechnung, Ursprungszeugnis, MSDS, Gesundheit",
+  "تغليف ووسم متعدد اللغات ومتوافق مع اللوائح":"Mehrsprachige, konforme Verpackung & Etikettierung",
+  "أسواق: الشرق الأوسط، أوروبا، وشمال أفريقيا":"Märkte: Nahost, Europa, Nordafrika",
+  "إنكوترمز مرنة (EXW/FOB/CIF) وتأمين الشحن":"Flexible Incoterms (EXW/FOB/CIF) & Transportversicherung",
+  "المزيد من المعلومات":"Mehr Infos",
+
+
+  "في GOLDEN NET نقدم لك باقة شاملة من الخدمات التي تلبي جميع احتياجاتك التقنية والتجارية مع جودة عالية وتجربة استثنائية.":"Bei GOLDEN NET bieten wir Ihnen ein umfassendes Dienstleistungspaket, das all Ihre technischen und geschäftlichen Anforderungen mit hoher Qualität und einem außergewöhnlichen Erlebnis erfüllt.",
+"خدمات التجارة العامة":"Allgemeine Handelsdienstleistungen",
+"تركيب احترافي خلال 24 ساعة":"Professionelle Installation innerhalb von 24 Stunden",
+"تأسست شركة GOLDEN NET .و عام 2015 لتقديم حلول اتصال موثوقة وخدمات إنترنت عالية الجودة، وتوسّعت أعمالنا لاحقًا لتشمل الصناعات الغذائية (إنتاج الشيبس والمقرمشات) والصناعات الكيميائية (أنظمة ودهانات داخلية وخارجية) بمعايير تصنيع عالمية ولا يقتصر الامر على هذا فحسب بل توسعنا لنقدم حلول برمجية و تقنية من التطبيقات و برامج تلبي احتياجاتك واحتياجات عملاؤك":"GOLDEN NET wurde 2015 gegründet, um zuverlässige Konnektivitätslösungen und hochwertige Internetdienste bereitzustellen. Später erweiterten wir unser Geschäft auf die Lebensmittelindustrie (Produktion von Chips und Snacks) sowie auf die Chemieindustrie (Systeme sowie Innen- und Außenfarben) nach internationalen Produktionsstandards. Zudem haben wir unser Angebot um Software- und Technologielösungen erweitert – Anwendungen und Programme, die Ihre Bedürfnisse und die Ihrer Kunden erfüllen.",
+"بأكثر من 10 سنوات من الخبرة، بنينا شبكة قوية وبنية تحتية كبيرة لضمان تجربة إنترنت سلسة، كما طوّرنا خطوط إنتاج منفصلة ومتخصصة للطلاء والشيبس لضمان الجودة والسلامة والالتزام بالمواصفات.":"Mit über 10 Jahren Erfahrung haben wir ein starkes Netzwerk und eine umfangreiche Infrastruktur aufgebaut, um ein reibungsloses Interneterlebnis zu gewährleisten. Außerdem haben wir getrennte, spezialisierte Produktionslinien für Farben und Chips entwickelt, um Qualität, Sicherheit und die Einhaltung der Spezifikationen sicherzustellen.",
+"يعمل فريقنا من المهندسين والفنيين على الابتكار المستمر؛ من تحسين سرعات واستقرار الشبكة، إلى تطوير نكهات منتجات الشيبس وصيغ دهانات مقاومة للعوامل الجوية، مع خدمة عملاء ودعم فني يستجيب لاحتياجاتكم بسرعة وكفاءة.":"Unser Team aus Ingenieuren und Technikern arbeitet kontinuierlich an Innovationen – von der Verbesserung der Netzgeschwindigkeiten und -stabilität bis zur Entwicklung von Chipsgeschmacksrichtungen und wetterbeständigen Farbformulierungen – begleitet von einem Kundenservice und technischem Support, die schnell und effizient auf Ihre Bedürfnisse reagieren.",
+
+  // من نحن + لماذا
+  "من نحن":"Über uns",
+  "شركة رائدة في الإنترنت والصناعات الغذائية والكيميائية":
+    "Führendes Unternehmen in Internet-, Lebensmittel- und Chemiebranchen",
+  "سنوات من الخبرة":"Jahre Erfahrung",
+  "عميل راضٍ":"Zufriedene Kunden",
+  "رضا العملاء":"Kundenzufriedenheit",
+  "لماذا تختار شركة غولدن نت؟":"Warum Golden Net?",
+  "جودة تصنيعية صارمة واختبارات متعددة المراحل":"Strenge Fertigungsqualität & mehrstufige Tests",
+  "تكامل تقني–صناعي يسرّع التنفيذ ويقلّل التكاليف":"Technisch-industrielle Integration beschleunigt & senkt Kosten",
+  "خدمة ما قبل/بعد البيع وشراكات طويلة الأمد":"Pre-/After-Sales & langfristige Partnerschaften",
+  "تخصيص سريع للمنتج والتغليف لأسواق التصدير":"Schnelle Produkt- & Verpackungsanpassung für Exportmärkte",
+
+  // العلامات
+  "علاماتنا":"Marken",
+  "نفتخر ب علاماتنا التجارية في قطاعات متنوعة":"Wir sind stolz auf unsere Marken in verschiedenen Branchen",
+
+  // التواصل
+  "التواصل معنا":"Kontakt",
+  "ابقى على تواصل":"Bleiben Sie in Kontakt",
+  "العنوان":"Adresse",
+  "الهاتف":"Telefon",
+  "البريد الإلكتروني":"E-Mail",
+  "ساعات العمل":"Öffnungszeiten",
+  "الأثنين - السبت: 10 صباحاً - 6 مساءً":"Mo–Sa: 10–18 Uhr",
+  "الأحد: إجازة":"Sonntag: Geschlossen",
+  "أرسل لنا رسالة":"Nachricht senden",
+  "الاسم الكامل":"Vollständiger Name",
+  "رقم الهاتف":"Telefonnummer",
+  "الرسالة":"Nachricht",
+  "إرسال الرسالة":"Nachricht senden",
+
+  // فوتر
+  "روابط سريعة":"Schnellzugriff",
+  "ماذا نقدم؟":"Unser Angebot",
+  "الدعم":"Support",
+  "مركز المساعدة":"Hilfe-Center",
+  "الدعم الفني":"Technischer Support",
+  "الشروط والأحكام":"AGB",
+  "سياسة الخصوصية":"Datenschutz",
+  "جميع الحقوق محفوظة":"Alle Rechte vorbehalten",
+
+  // عناوين مشاريع
+  "موقع متابعة التقارير":"Bericht-Tracking-Website",
+  "موقع ادارة البيانات":"Datenmanagement-Website",
+  "موقع ادارة عقارية":"Immobilien-Verwaltungsseite",
+  "موقع شركة خدمات":"Dienstleistungs-Unternehmensseite",
+  "مواقع صفحات تعريفية":"Firmenprofil-Seiten",
+
+  // أزرار عامة
+  "اطلب الآن":"Jetzt bestellen",
+  "احصل على عرض مخصص":"Individuelles Angebot",
+};
+
+/* ——— إدارة التبديل ——— */
+(function(){
+  // تحديث اللصاقة في زر اللغة
+  const currentLabel = document.getElementById('currentLangLabel');
+  function setLabel(code){ if(currentLabel) currentLabel.textContent = code.toUpperCase(); }
+
+  // دالة التغيير الموحّدة
+  window.changeLanguage = function(lang){
+    // العربية: نعيد الصفحة لحالتها الأصلية
+    if (lang === 'ar'){
+      document.body.dir = 'rtl';
+      location.reload();
+      return;
+    }
+
+    // التركية (لو عندك قاموس tr.js يملأ كائن global اسمه tr)
+    if (lang === 'tr'){
+      document.body.dir = 'ltr';
+      if (typeof applyTranslation === 'function' && typeof tr !== 'undefined'){
+        applyTranslation(tr);   // يحدّث حسب الـ IDs الموجودة عندك
+      }
+      setLabel('TR');
+      return;
+    }
+
+    // الإنجليزية/الألمانية: استبدال نصوص مباشرةً
+    const map = (lang === 'en') ? AR_TO_EN : AR_TO_DE;
+    document.body.dir = 'ltr';
+    replaceTextDeep(document.body, map);
+    setLabel(lang);
+  };
+
+  // ربط الأزرار
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const lang = btn.dataset.lang;
+      // حالة الـ dropdown: فعّل الزر المختار
+      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b===btn));
+      // غيّر اللغة
+      changeLanguage(lang);
+      // اغلق القائمة إن وُجدت
+      const menu = document.getElementById('langMenu');
+      const toggle = document.getElementById('langToggle');
+      if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+    });
+  });
+})();
+</script>
 
 
 
@@ -1876,9 +2197,6 @@ document.head.appendChild(animationStyles);
 </body>
 </html>
 
-
-</body>
-</html>
 
 
 
