@@ -367,7 +367,131 @@ a.btn1{
 }
 
 
+ /* الفوتر */
+        footer {
+            background: linear-gradient(135deg, var(--primary), #000);
+            color: white;
+            padding: 40px 5% 20px;
+        }
 
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo p {
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-right: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            color: #aaa;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* زر العودة لأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            z-index: 999;
+        }
 
 
   </style>
@@ -825,28 +949,6 @@ a.btn1{
 
 
 
-
-
-
-
-
-
-
-
-<!-- CTA -->
-<section id="contact" class="cta">
-  <h2>لنبدأ خلال 24 ساعة من الآن</h2>
-  <p>ارسل فكرتك وسنعود إليك بجدول زمني وتكلفة تقديرية.</p>
-  <div>
-    <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D9%88%D9%82%D8%B9%D8%A7%D9%8B%20%D9%84%D8%B4%D8%B1%D9%83%D8%AA%D9%8A"><i class="fab fa-whatsapp"></i> تواصل واتساب</a>
-
-  </div>
-</section>
-  
-
-
-
-
  <!-- الفوتر -->
     <footer>
         <div class="footer-container">
@@ -1038,29 +1140,103 @@ a.btn1{
 
 
 
-
 <script>
-/* ====== ترجمة فورية للنصوص (AR <-> EN) بدون تعديل HTML ====== */
+/* ====== قاعدة: خزن النص العربي الأصلي، ثم ارجع له قبل كل ترجمة ====== */
+(function(){
+  const ORIG_TEXT = new WeakMap();
 
-/* دوال مساعدة */
-function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-function replaceTextDeep(root, map){
-  const keys = Object.keys(map);
-  if(!keys.length) return;
-  // الأسماء الأطول أولاً لنتفادى الاستبدال الجزئي
-  keys.sort((a,b)=> b.length - a.length);
-  const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+  function shouldSkip(node){
+    const p = node.parentNode;
+    if(!p) return true;
+    const tag = p.nodeName;
+    return tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT' ||
+           tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'IFRAME' ||
+           p.isContentEditable;
+  }
 
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
-  const nodes = [];
-  while(walker.nextNode()) nodes.push(walker.currentNode);
+  function indexOriginalText(root){
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while (tw.nextNode()){
+      const n = tw.currentNode;
+      if (shouldSkip(n)) continue;
+      if (!ORIG_TEXT.has(n)) ORIG_TEXT.set(n, n.nodeValue);
+    }
+  }
 
-  nodes.forEach(node=>{
-    // نتجنب نصوص السكربت/الستايل المخفية
-    if(!node.nodeValue) return;
-    node.nodeValue = node.nodeValue.replace(re, (m)=> map[m] ?? m);
+  function restoreArabicBase(root){
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while (tw.nextNode()){
+      const n = tw.currentNode;
+      if (shouldSkip(n)) continue;
+      const orig = ORIG_TEXT.get(n);
+      if (typeof orig === 'string') n.nodeValue = orig;
+    }
+  }
+
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function replaceTextDeep(root, map){
+    const keys = Object.keys(map);
+    if(!keys.length) return;
+    keys.sort((a,b)=> b.length - a.length); // أطول أولاً
+    const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while (tw.nextNode()){
+      const n = tw.currentNode;
+      if (shouldSkip(n) || !n.nodeValue) continue;
+      n.nodeValue = n.nodeValue.replace(re, m => map[m] ?? m);
+    }
+  }
+
+  // خزن النسخة العربية الأصلية بمجرد جاهزية الـ DOM
+  document.addEventListener('DOMContentLoaded', ()=> indexOriginalText(document.body));
+
+  const currentLabel = document.getElementById('currentLangLabel');
+
+  // استبدل changeLanguage لديك بهذه
+  window.changeLanguage = function(lang){
+    // التقط أي عقد نصية جديدة ظهرت بعد التحميل
+    indexOriginalText(document.body);
+
+    if (lang === 'ar'){
+      restoreArabicBase(document.body);
+      document.body.dir = 'rtl';
+      if (currentLabel) currentLabel.textContent = 'AR';
+      return;
+    }
+
+    // ارجع دائماً إلى العربية أولاً، ثم طبّق القاموس
+    restoreArabicBase(document.body);
+    document.body.dir = 'ltr';
+
+    if (lang === 'en'){
+      replaceTextDeep(document.body, AR_TO_EN);
+    } else if (lang === 'de'){
+      replaceTextDeep(document.body, AR_TO_DE);
+    } else if (lang === 'tr'){
+      // لو عندك نظام ترجمة تركي عبر applyTranslation(tr)
+      if (typeof applyTranslation === 'function' && typeof tr !== 'undefined'){
+        applyTranslation(tr);
+      }
+    }
+
+    if (currentLabel) currentLabel.textContent = lang.toUpperCase();
+
+    // إغلاق قائمة اللغات إن وُجدت
+    const menu = document.getElementById('langMenu');
+    const toggle = document.getElementById('langToggle');
+    if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+  };
+
+  // اربط الأزرار إن لم تكن مربوطة
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b===btn));
+      changeLanguage(btn.dataset.lang);
+    });
   });
-}
+
+})();
 
 /* القاموس: عربي -> إنجليزي */
 const AR_TO_EN = {
@@ -1191,53 +1367,38 @@ const AR_TO_EN = {
   "5 دعم وتوسّع":"5 Support & growth",
   "صيانة وتطوير مستمر.":"Maintenance and ongoing improvements.",
 
-  // CTA + الفوتر
-  "لنبدأ خلال 24 ساعة من الآن":"Kick off within 24 hours",
-  "ارسل فكرتك وسنعود إليك بجدول زمني وتكلفة تقديرية.":"Send your idea and we’ll reply with timeline and estimate.",
-  "تواصل واتساب":"Chat on WhatsApp",
-  "© 2025 GOLDEN NET — حلول ويب متكاملة":"© 2025 GOLDEN NET — Full Web Solutions"
+  // الفوتر
+"روابط سريعة":"Quick Links",
+"ماذا نقدم؟":"What we offer",
+"الدعم":"Support",
+"الأسئلة الشائعة":"FAQ",
+"شروط الاستخدام":"Terms of Use",
+"سياسة الخصوصية":"Privacy Policy",
+
+"شيبس  MyDays":"MyDays Chips",   // لاحظ المسافة المزدوجة
+"شيبس MyDays":"MyDays Chips",     // ونسخة بمسافة واحدة للاحتياط
+"ايس كريم StrongBoy":"StrongBoy Ice Cream",
+"طلاء داخلي":"Interior Paint",
+"طلاء خارجي":"Exterior Paint",
+"تركيب انترنت":"Internet Installation",
+
+"شركة رائدة في مجال التكنولوجيا والصناعات الغذائية والكيميائية، نقدم منتجات عالية الجودة للأسواق المحلية والإقليمية بمعايير عالمية.":
+"A leading company in technology, food, and chemical industries, delivering high-quality products to local and regional markets to international standards.",
+
+"جميع الحقوق محفوظة ©GOLDEN NET 2025":"All rights reserved © GOLDEN NET 2025",
+"جميع الحقوق محفوظة":"All rights reserved",
+"إنشاء صفحة ويب وتطبيقات":"Web & App Development",
+"استيراد وتصدير وتخليص جمركي":"Import, Export & Customs Clearance",
+
+
+// COMMON_EN
+"تحميل التطبيق":"Download the app",
+"مشاهدة المشروع مباشر":"View live project",
+"تطبيقات بيع سيارات":"Car sales apps",
+
 };
 
-/* الدالة العامة التي يستدعيها زر اللغة لديك */
-function changeLanguage(lang){
-  if (lang === 'ar'){
-    // نرجّع الصفحة لنصها الأصلي العربي
-    location.reload();
-    return;
-  }
-  if (lang === 'en'){
-    // اتجاه LTR وترجمة
-    document.body.dir = 'ltr';
-    replaceTextDeep(document.body, AR_TO_EN);
-  }
-  // لاحقًا يمكنك إضافة 'tr' بنفس الأسلوب
-}
-</script>
 
-<script>
-/* ====== إضافة الترجمة الألمانية (AR -> DE) ====== */
-
-/* دوال مساعدة في حال لم تكن معرّفة مسبقًا */
-if (typeof escapeRegExp !== 'function') {
-  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-}
-if (typeof replaceTextDeep !== 'function') {
-  function replaceTextDeep(root, map){
-    const keys = Object.keys(map);
-    if(!keys.length) return;
-    keys.sort((a,b)=> b.length - a.length);
-    const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
-    const nodes = [];
-    while(walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(node=>{
-      if(!node.nodeValue) return;
-      node.nodeValue = node.nodeValue.replace(re, (m)=> map[m] ?? m);
-    });
-  }
-}
-
-/* القاموس: عربي -> ألماني */
 const AR_TO_DE = {
   // الهيدر/القائمة
   "الصفحة الرئيسية":"Startseite",
@@ -1361,36 +1522,36 @@ const AR_TO_DE = {
   "5 دعم وتوسّع":"5 Support & Wachstum",
   "صيانة وتطوير مستمر.":"Wartung und kontinuierliche Weiterentwicklung.",
 
-  // CTA + الفوتر
-  "لنبدأ خلال 24 ساعة من الآن":"Start innerhalb von 24 Stunden",
-  "ارسل فكرتك وسنعود إليك بجدول زمني وتكلفة تقديرية.":"Senden Sie Ihre Idee – wir melden uns mit Zeitplan und Kostenschätzung.",
-  "تواصل واتساب":"Auf WhatsApp schreiben",
-  "© 2025 GOLDEN NET — حلول ويب متكاملة":"© 2025 GOLDEN NET — Ganzheitliche Web-Lösungen"
+   // الفوتر
+"روابط سريعة":"Schnellzugriff",
+"ماذا نقدم؟":"Was wir anbieten",
+"الدعم":"Support",
+"الأسئلة الشائعة":"FAQ",
+"شروط الاستخدام":"Nutzungsbedingungen",
+"سياسة الخصوصية":"Datenschutz",
+
+"شيبس  MyDays":"MyDays Chips",
+"شيبس MyDays":"MyDays Chips",
+"ايس كريم StrongBoy":"StrongBoy Eiscreme",
+"طلاء داخلي":"Innenfarbe",
+"طلاء خارجي":"Außenfarbe",
+"تركيب انترنت":"Internetinstallation",
+
+"شركة رائدة في مجال التكنولوجيا والصناعات الغذائية والكيميائية، نقدم منتجات عالية الجودة للأسواق المحلية والإقليمية بمعايير عالمية.":
+"Ein führendes Unternehmen in Technologie-, Lebensmittel- und Chemiebranchen; wir liefern hochwertige Produkte für lokale und regionale Märkte nach internationalen Standards.",
+
+"جميع الحقوق محفوظة ©GOLDEN NET 2025":"Alle Rechte vorbehalten © GOLDEN NET 2025",
+"جميع الحقوق محفوظة":"Alle Rechte vorbehalten",
+"إنشاء صفحة ويب وتطبيقات":"Web- & App-Entwicklung",
+"استيراد وتصدير وتخليص جمركي":"Import, Export & Zollabfertigung",
+
+"تطبيقات بيع سيارات":"Auto-Verkaufs-Apps",
+// COMMON_DE
+"تحميل التطبيق":"App herunterladen",
+"مشاهدة المشروع مباشر":"Projekt live ansehen",
+
 };
 
-/* تحديث changeLanguage لدعم 'de' أيضًا */
-(function(){
-  const prev = (typeof changeLanguage === 'function') ? changeLanguage : null;
-
-  window.changeLanguage = function(lang){
-    if (lang === 'ar'){
-      location.reload();
-      return;
-    }
-    if (lang === 'en'){
-      document.body.dir = 'ltr';
-      if (typeof AR_TO_EN !== 'undefined') replaceTextDeep(document.body, AR_TO_EN);
-      return;
-    }
-    if (lang === 'de'){
-      document.body.dir = 'ltr';
-      replaceTextDeep(document.body, AR_TO_DE);
-      return;
-    }
-    // لو عندك TR لاحقاً
-    if (prev) return prev(lang);
-  };
-})();
 </script>
 
 
