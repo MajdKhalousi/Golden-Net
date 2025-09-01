@@ -3031,7 +3031,7 @@ header .header-container {
   background: rgba(255,255,255,.12);
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 14px;
-  padding: 12px 16px;
+  padding: 25px 0px;
   text-align: center;
 }
 .about-section .about-stats .stat h3{
@@ -3195,4 +3195,5 @@ header .header-container {
   gap: 30px;
   margin-bottom: 10px;
 }
+
 
