@@ -692,25 +692,104 @@
   });
 </script>
 
-
-
-
 <script>
-/* ===== ترجمة فورية لنفس الصفحة (AR ⇢ EN/DE) ===== */
-function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-function replaceTextDeep(root, map){
-  const keys = Object.keys(map);
-  if(!keys.length) return;
-  keys.sort((a,b)=> b.length - a.length);
-  const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
-  const nodes = [];
-  while (walker.nextNode()) nodes.push(walker.currentNode);
-  nodes.forEach(n=>{
-    if(!n.nodeValue) return;
-    n.nodeValue = n.nodeValue.replace(re, (m)=> map[m] ?? m);
+/* ====== قاعدة: خزن النص العربي الأصلي، ثم ارجع له قبل كل ترجمة ====== */
+(function(){
+  const ORIG_TEXT = new WeakMap();
+
+  function shouldSkip(node){
+    const p = node.parentNode;
+    if(!p) return true;
+    const tag = p.nodeName;
+    return tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT' ||
+           tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'IFRAME' ||
+           p.isContentEditable;
+  }
+
+  function indexOriginalText(root){
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while (tw.nextNode()){
+      const n = tw.currentNode;
+      if (shouldSkip(n)) continue;
+      if (!ORIG_TEXT.has(n)) ORIG_TEXT.set(n, n.nodeValue);
+    }
+  }
+
+  function restoreArabicBase(root){
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while (tw.nextNode()){
+      const n = tw.currentNode;
+      if (shouldSkip(n)) continue;
+      const orig = ORIG_TEXT.get(n);
+      if (typeof orig === 'string') n.nodeValue = orig;
+    }
+  }
+
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function replaceTextDeep(root, map){
+    const keys = Object.keys(map);
+    if(!keys.length) return;
+    keys.sort((a,b)=> b.length - a.length); // أطول أولاً
+    const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while (tw.nextNode()){
+      const n = tw.currentNode;
+      if (shouldSkip(n) || !n.nodeValue) continue;
+      n.nodeValue = n.nodeValue.replace(re, m => map[m] ?? m);
+    }
+  }
+
+  // خزن النسخة العربية الأصلية بمجرد جاهزية الـ DOM
+  document.addEventListener('DOMContentLoaded', ()=> indexOriginalText(document.body));
+
+  const currentLabel = document.getElementById('currentLangLabel');
+
+  // استبدل changeLanguage لديك بهذه
+  window.changeLanguage = function(lang){
+    // التقط أي عقد نصية جديدة ظهرت بعد التحميل
+    indexOriginalText(document.body);
+
+    if (lang === 'ar'){
+      restoreArabicBase(document.body);
+      document.body.dir = 'rtl';
+      if (currentLabel) currentLabel.textContent = 'AR';
+      return;
+    }
+
+    // ارجع دائماً إلى العربية أولاً، ثم طبّق القاموس
+    restoreArabicBase(document.body);
+    document.body.dir = 'ltr';
+
+    if (lang === 'en'){
+      replaceTextDeep(document.body, AR_TO_EN);
+    } else if (lang === 'de'){
+      replaceTextDeep(document.body, AR_TO_DE);
+    } else if (lang === 'tr'){
+      // لو عندك نظام ترجمة تركي عبر applyTranslation(tr)
+      if (typeof applyTranslation === 'function' && typeof tr !== 'undefined'){
+        applyTranslation(tr);
+      }
+    }
+
+    if (currentLabel) currentLabel.textContent = lang.toUpperCase();
+
+    // إغلاق قائمة اللغات إن وُجدت
+    const menu = document.getElementById('langMenu');
+    const toggle = document.getElementById('langToggle');
+    if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
+  };
+
+  // اربط الأزرار إن لم تكن مربوطة
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b===btn));
+      changeLanguage(btn.dataset.lang);
+    });
   });
-}
+
+})();
+
 
 /* قاموس AR → EN (نصوص هذه الصفحة) */
 const AR_TO_EN = {
@@ -772,6 +851,12 @@ const AR_TO_EN = {
   "تواصل الآن":"Contact Now",
 
 
+"يمكنك تصفّح ملايين المنتجات عبر منصات مثل":"You can browse millions of products on platforms like",
+"، وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", and we will handle your order—from contacting the supplier to delivery in Syria.",
+"،\n      وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", and we will handle your order—from contacting the supplier to delivery in Syria.",
+
+
+
   "يمكنك تصفّح ملايين المنتجات عبر منصات مثل Alibaba و AliExpress، وسنقوم بمتابعة الطلب من Contact مع المورّد حتى التسليم في سوريا.":"You can browse millions of products on platforms like Alibaba and AliExpress, and we will handle your order—from contacting the supplier to delivery in Syria.",
 
   // CTA
@@ -781,7 +866,29 @@ const AR_TO_EN = {
   "اطلب عرض سعر الآن":"Request a Quote Now",
 
   // الفوتر
-  "© 2025 GOLDEN NET — خدمات الاستيراد والتصدير":"© 2025 GOLDEN NET — Import & Export Services"
+"روابط سريعة":"Quick Links",
+"ماذا نقدم؟":"What we offer",
+"الدعم":"Support",
+"الأسئلة الشائعة":"FAQ",
+"شروط الاستخدام":"Terms of Use",
+"سياسة الخصوصية":"Privacy Policy",
+
+"شيبس  MyDays":"MyDays Chips",   // لاحظ المسافة المزدوجة
+"شيبس MyDays":"MyDays Chips",     // ونسخة بمسافة واحدة للاحتياط
+"ايس كريم StrongBoy":"StrongBoy Ice Cream",
+"طلاء داخلي":"Interior Paint",
+"طلاء خارجي":"Exterior Paint",
+"تركيب انترنت":"Internet Installation",
+
+"شركة رائدة في مجال التكنولوجيا والصناعات الغذائية والكيميائية، نقدم منتجات عالية الجودة للأسواق المحلية والإقليمية بمعايير عالمية.":
+"A leading company in technology, food, and chemical industries, delivering high-quality products to local and regional markets to international standards.",
+
+"جميع الحقوق محفوظة ©GOLDEN NET 2025":"All rights reserved © GOLDEN NET 2025",
+"جميع الحقوق محفوظة":"All rights reserved",
+"إنشاء صفحة ويب وتطبيقات":"Web & App Development",
+"استيراد وتصدير وتخليص جمركي":"Import, Export & Customs Clearance",
+
+  
 };
 
 /* قاموس AR → DE (نصوص هذه الصفحة) */
@@ -845,6 +952,12 @@ const AR_TO_DE = {
     " / kg (für leichte/Luft-Sendungen), je nach Ziel & Ware.",
   "تواصل الآن":"Jetzt kontaktieren",
 
+
+"يمكنك تصفّح ملايين المنتجات عبر منصات مثل":"Sie können Millionen von Produkten auf Plattformen wie",
+"، وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", und wir kümmern uns um Ihre Bestellung – von der Kontaktaufnahme mit dem Lieferanten bis zur Lieferung in Syrien.",
+"،\n      وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", und wir kümmern uns um Ihre Bestellung – von der Kontaktaufnahme mit dem Lieferanten bis zur Lieferung in Syrien.",
+
+
   // CTA
   "جاهز لتقدير دقيق؟":"Bereit für ein genaues Angebot?",
   "أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف/صورة للمنتج في حال توفرها SH Code)، ونرجع لك بعرض مفصّل.":
@@ -852,42 +965,30 @@ const AR_TO_DE = {
   "اطلب عرض سعر الآن":"Angebot anfordern",
 
   // الفوتر
-  "© 2025 GOLDEN NET — خدمات الاستيراد والتصدير":"© 2025 GOLDEN NET — Import & Export"
+"روابط سريعة":"Schnellzugriff",
+"ماذا نقدم؟":"Was wir anbieten",
+"الدعم":"Support",
+"الأسئلة الشائعة":"FAQ",
+"شروط الاستخدام":"Nutzungsbedingungen",
+"سياسة الخصوصية":"Datenschutz",
+
+"شيبس  MyDays":"MyDays Chips",
+"شيبس MyDays":"MyDays Chips",
+"ايس كريم StrongBoy":"StrongBoy Eiscreme",
+"طلاء داخلي":"Innenfarbe",
+"طلاء خارجي":"Außenfarbe",
+"تركيب انترنت":"Internetinstallation",
+
+"شركة رائدة في مجال التكنولوجيا والصناعات الغذائية والكيميائية، نقدم منتجات عالية الجودة للأسواق المحلية والإقليمية بمعايير عالمية.":
+"Ein führendes Unternehmen in Technologie-, Lebensmittel- und Chemiebranchen; wir liefern hochwertige Produkte für lokale und regionale Märkte nach internationalen Standards.",
+
+"جميع الحقوق محفوظة ©GOLDEN NET 2025":"Alle Rechte vorbehalten © GOLDEN NET 2025",
+"جميع الحقوق محفوظة":"Alle Rechte vorbehalten",
+"إنشاء صفحة ويب وتطبيقات":"Web- & App-Entwicklung",
+"استيراد وتصدير وتخليص جمركي":"Import, Export & Zollabfertigung",
+
 };
 
-/* إدارة التبديل */
-(function(){
-  const currentLabel = document.getElementById('currentLangLabel');
-  function setLabel(code){ if(currentLabel) currentLabel.textContent = code.toUpperCase(); }
-
-  window.changeLanguage = function(lang){
-    if (lang === 'ar'){
-      document.body.dir = 'rtl';
-      location.reload();
-      return;
-    }
-    if (lang === 'tr'){
-      document.body.dir = 'ltr';
-      if (typeof applyTranslation==='function' && typeof tr!=='undefined'){ applyTranslation(tr); }
-      setLabel('TR'); return;
-    }
-    document.body.dir = 'ltr';
-    const map = (lang==='en') ? AR_TO_EN : AR_TO_DE;
-    replaceTextDeep(document.body, map);
-    setLabel(lang);
-  };
-
-  // ربط أزرار القائمة الحالية (لو ما كانت مربوطة)
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b===btn));
-      changeLanguage(btn.dataset.lang);
-      const menu = document.getElementById('langMenu');
-      const toggle = document.getElementById('langToggle');
-      if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
-    });
-  });
-})();
 </script>
 
 
