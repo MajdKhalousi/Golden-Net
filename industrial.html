@@ -1,238 +1,461 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>شركة غولدن نت للتجارة العامة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root{
-      --primary:#101010;
-      --secondary:#efb730;
-      --light:#f8f9fa;
-      --dark:#34495e;
-      --text:#333;
-      --transition: all .5s cubic-bezier(0.65, 0, 0.35, 1);
-    }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:'Tajawal',system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-    body{background:#f8f9fa;color:var(--text);line-height:1.7}
-
-    /* Header (نفس النمط السابق) */
-    header{background:#fff;box-shadow:0 2px 15px rgba(0,0,0,.08);position:sticky;top:0;z-index:1000;padding:0 5%}
-    .header-container{display:flex;align-items:center;justify-content:flex-start;height:80px;gap:10px;direction:ltr}
-    .menu-toggle{order:1;font-size:1.8rem;color:var(--primary);cursor:pointer;display:flex;align-items:center}
-    .languages{order:2;margin-inline-start:auto;position:relative}
-    .logo{order:3;display:flex;align-items:center;gap:10px}
-    .logo img{height:50px}
-    #companyName{font-size:28px;font-weight:700;color:#000;text-decoration:none}
-    #companyName span{color:var(--secondary)}
-    .lang-toggle{display:flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid #e5e7eb;border-radius:999px;background:#fff;color:var(--primary);font-weight:600;cursor:pointer}
-    .lang-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:160px;background:#fff;border:1px solid #eee;box-shadow:0 10px 25px rgba(0,0,0,.08);border-radius:12px;padding:6px;list-style:none;z-index:1200}
-    .lang-menu[hidden]{display:none}
-    .lang-menu .lang-btn{width:100%;text-align:start;background:transparent;border:0;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:600;color:var(--dark)}
-    .lang-menu .lang-btn:hover,.lang-menu .lang-btn.active{background:#f5f6f7;color:var(--secondary)}
-
-    /* Sidebar */
-    .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:1500;display:block}
-    .sidebar-overlay[hidden]{display:none}
-    .sidebar{position:fixed;top:0;right:-260px;width:260px;height:100%;background:var(--primary);color:#fff;z-index:2000;padding:20px;box-shadow:-2px 0 10px rgba(0,0,0,.2);transition:right .4s ease}
-    .sidebar.open{right:0}
-    .close-btn{position:absolute;top:20px;left:20px;font-size:1.3rem;cursor:pointer}
-    .sidebar ul{list-style:none;margin-top:50px}
-    .sidebar ul li{margin:16px 0}
-    .sidebar ul li a{color:#fff;text-decoration:none;font-weight:600}
-    .sidebar ul li a:hover{color:var(--secondary)}
-    .sidebar .has-sub>a{display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .sub-caret{transition:transform .2s ease;font-size:.9em}
-    .submenu{display:none;margin:8px 0 0;padding:6px 0 0;border-top:1px solid rgba(255,255,255,.14)}
-    .submenu li a{display:block;padding:8px 0;color:rgba(255,255,255,.92)}
-    .submenu li a:hover{color:var(--secondary)}
-    .has-sub:hover>.submenu{display:block}
-    .has-sub:hover>a .sub-caret{transform:rotate(180deg)}
-    .has-sub.open>.submenu{display:block}
-    .has-sub.open>a .sub-caret{transform:rotate(180deg)}
-
-    /* Hero */
-    .hero{position:relative;display:grid;place-items:center;text-align:center;color:#fff;min-height:60vh;margin-bottom:40px;
-      background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('images/shipping-hero.jpg') center/cover no-repeat}
-    .hero h1{font-size:2.6rem;margin-bottom:10px}
-    .hero p{font-size:1.15rem;opacity:.95;max-width:820px;margin:0 auto 16px}
-    .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-    .badge{background:#ffffff22;border:1px solid #ffffff33;color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;backdrop-filter:blur(4px)}
-
-    /* Sections / Cards */
-    .section-title{text-align:center;margin:50px 0 20px}
-    .section-title h2{font-size:2.1rem;color:var(--primary);position:relative;display:inline-block;padding-bottom:10px}
-    .section-title h2::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:4px;background:var(--secondary);border-radius:2px}
-    .paket-section{padding:60px 5%}
-    .paket-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1200px;margin:0 auto}
-    .paket-item{background:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);border:1px solid #eee;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease}
-    .paket-item:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
-    .paket-header{padding:18px 20px 8px}
-    .paket-header h3{font-size:1.35rem;color:var(--primary);margin-bottom:6px}
-    .paket-header p{color:#555}
-    .paket-features{padding:0 20px 16px}
-    .paket-features ul{list-style:none}
-    .paket-features li{margin:10px 0}
-    .paket-features i{width:22px;text-align:center;color:var(--secondary)}
-    .paket-action{padding:16px 20px 22px;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-around}
-
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--secondary);color:#fff;padding:11px 22px;border:none;border-radius:30px;text-decoration:none;font-weight:700;transition:var(--transition);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.15)}
-    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.22)}
-    .price{font-size:1.05rem;font-weight:800;color:#ff2626;margin-top:8px}
-    .muted{color:#777;font-size:.95rem}
-    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
-    .tag.sea{background:#eaf5ff;color:#0b6db7}
-    .tag.air{background:#fff3e6;color:#a35a00}
-    .tag.land{background:#eaf7ee;color:#177d3b}
-
-    /* Details section */
-    .details{max-width:1100px;margin:0 auto;background:#fff;border:1px solid #eee;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:24px}
-    .details h3{color:var(--primary);margin-bottom:10px}
-    .details p{color:#555}
-    .details ul{margin:12px 18px 0}
-    .details li{margin:6px 0}
-
-    footer{background:#111;color:#fff;text-align:center;padding:26px 5%}
-    @media (max-width:768px){
-      .hero h1{font-size:2.2rem}
-      .hero p{font-size:1rem}
-    }
-    a.card{text-decoration:none;color:inherit}
-    a.card:hover,a.card:focus{ text-decoration:none }
-
-    /* الهيدر الموجي */
-.wave-header{
-  position: relative;
-  min-height: 70vh;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  /* استبدل الصورة بما تشاء */
-  background: linear-gradient(60deg, var(--primary) 0%, var(--secondary) 100%);
-  overflow: hidden;
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
 
 
 
 
-.wave-header {
-  
-  position:relative;
-  text-align:center;
-  background: linear-gradient(60deg, var(--primary) 0%, var(--secondary) 100%);
-  color:white;
-  margin-top: 0px;
-}
+        /* أنماط CSS المعدلة */
+        :root {
+            --primary: #101010;
+            --secondary: #efb730;
+            --food-color: #27ae60;
+            --chemical-color: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --text: #333;
+            --transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-}
+        /* الهيدر */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0 5%;
+            transition: var(--transition);
+        }
 
-/* محتوى النص */
-.wave-inner-header{ width:100%; max-width:1100px; padding: 90px 5% 160px; }
-.flex{ display:flex; align-items:center; justify-content:center; }
-.wave-slide-content{ text-align:center; }
-.wave-slide-content h2{ font-size:2.8rem; margin-bottom:10px; }
-.wave-slide-content p{ font-size:1.15rem; opacity:.95; max-width:820px; margin:0 auto 18px; }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            flex-wrap: wrap;
+        }
 
-/* موجات SVG أسفل الهيدر */
-.waves{
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 8vw;           /* متجاوبة */
-  min-height: 80px;
-  max-height: 140px;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-/* حركة موجية لطيفة */
-.parallax > use{
-  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
-}
-.parallax > use:nth-child(1){ animation-delay: -2s;  animation-duration: 7s;  }
-.parallax > use:nth-child(2){ animation-delay: -3s;  animation-duration: 10s; }
-.parallax > use:nth-child(3){ animation-delay: -4s;  animation-duration: 13s; }
-.parallax > use:nth-child(4){ animation-delay: -5s;  animation-duration: 20s; }
+        .logo img {
+            height: 50px;
+            margin-left: 15px;
+        }
 
-@keyframes move-forever{
-  0%   { transform: translate3d(-90px,0,0); }
-  100% { transform: translate3d(85px,0,0); }
-}
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
 
-/* تحسينات صغيرة للجوال */
-@media (max-width:768px){
-  .wave-slide-content h2{ font-size:2.2rem; }
-  .wave-slide-content p{ font-size:1rem; }
-  .wave-inner-header{ padding-bottom: 130px; }
-}
+        .logo span {
+            color: var(--secondary);
+        }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
 
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: var(--transition);
+        }
 
-/* اجعل كل بطاقة عمود Flex */
-.paket-item{
-  display: flex;
-  flex-direction: column;
-}
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
 
-/* اجعل محتوى المزايا يتمدّد ليملأ الفراغ */
-.paket-features{
-  flex: 1;
-}
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
 
-/* ثبّت منطقة الأزرار أسفل البطاقة */
-.paket-action{
-  margin-top: auto;         /* تدفعها لأسفل داخل العمود */
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;  /* رتّب الأزرار بشكل جميل */
-  align-items: center;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-/* تحسينات اختيارية لثبات الشكل */
-.paket-features ul{ margin: 0; }
-.paket-header p{ margin: 0; }
-.paket-action .btn{ min-width: 160px; } /* اختياري: ثبات عرض الأزرار */
+        /* الأقسام الرئيسية */
+        .main-section {
+            padding: 100px 5% 80px;
+        }
 
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-/* ترتيب الرابط + زر السهم أفقيًا */
-.sidebar .has-sub{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding: 15px 0;
+        }
 
-/* اجعل الرابط يتمدّد لملء المساحة */
-.sidebar .has-sub > a{
-  flex: 1;
-}
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
 
-/* زر السهم */
-.sidebar .sub-toggle{
-  background: transparent;
-  border: 0;
-  color: #fff;
-  padding: 8px;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-}
+        /* السلايدر */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('images/5.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
 
-/* دوران السهم عند فتح القائمة */
-.has-sub.open .sub-toggle .sub-caret{
-  transform: rotate(180deg);
-  transition: transform .2s ease;
-}
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
 
-/* على سطح المكتب، نُظهر القائمة بالـ hover كما السابق */
-@media (any-hover: hover){
-  .has-sub:hover > .submenu{ display: block; }
-}
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
 
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
 
+        /* الأزرار */
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-food {
+            background-color: var(--food-color);
+        }
+
+        .btn-chemical {
+            background-color: var(--chemical-color);
+        }
+
+        /* قسم الصناعات الغذائية */
+        .food-section {
+            background-color: white;
+        }
+
+        /* قسم الصناعات الكيميائية */
+        .chemical-section {
+            background-color: #f8f9fa;
+        }
+
+        /* بطاقات المنتجات */
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 350px;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-details h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .food-badge {
+            background-color: var(--food-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .chemical-badge {
+            background-color: var(--chemical-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* قسم من نحن */
+        .about-section {
+            padding: 80px 5%;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .about-img {
+            flex: 1;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* قسم التواصل */
+        .contact-section {
+            padding: 80px 5%;
+            background-color: #f8f9fa;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+
+        .contact-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .contact-details p, .contact-details a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+        }
 
         /* الفوتر */
         footer {
@@ -359,52 +582,396 @@
             transition: var(--transition);
             z-index: 999;
         }
+.soon-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    z-index: 10;
+}
 
-  </style>
+.product-card {
+    position: relative; /* ضروري لظهور الـ badge داخل البطاقة */
+}
+
+        .back-to-top:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* تأثيرات الظهور */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* أنماط متجاوبة */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+               
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .product-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .stat {
+                padding: 15px;
+            }
+
+            .stat h3 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .about-stats {
+                flex-direction: column;
+            }
+        }
+a#companyName{
+ font-size: 28px;
+   text-decoration: none;  /* إزالة الخط */
+  color: black;  
+  font-weight: 700; 
+          /* تغيير اللون إلى أسود */
+
+}
+
+
+
+/* اجعل ترتيب عناصر الهيدر من اليسار لليمين فقط داخل الهيدر */
+header .header-container {
+  direction: ltr;            /* هذا يضمن ظهور أول عنصر يساراً */
+  justify-content: flex-start;  
+   gap: 10px;   
+     display: flex;
+  align-items: center;
+}
+
+/* شكل زر القائمة كما هو */
+.menu-toggle {
+  order: 1; 
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
+.languages{ 
+  order: 2; 
+  margin-inline-start: auto;    /* تدفع اللغات وما بعدها إلى أقصى اليمين */
+}
+/* زر القائمة */
+.menu-toggle {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.logo{ 
+  order: 3;                     /* اللوغو يجي بعد اللغات ليكون أقصى اليمين */
+  display: flex; 
+  align-items: center;
+}
+
+/* القائمة الجانبية */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background-color: var(--primary);
+  color: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  transition: right 0.4s ease;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-top: 50px;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  color: var(--secondary);
+}
+
+/* زر الإغلاق */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+
+
+/* تأثير التمرير على الهيدر */
+header.scrolled {
+  background: #fff;                 /* يثبت الخلفية لو الصفحة شفافة */
+  box-shadow: 0 2px 15px rgba(0,0,0,0.12);
+}
+
+header.scrolled .header-container {
+  height: 64px;                     /* تصغير ارتفاع الهيدر عند التمرير */
+  transition: var(--transition);
+}
+
+header.scrolled .logo img {
+  height: 42px;                     /* تصغير اللوغو بسلاسة */
+  transition: var(--transition);
+}
+
+/* Hover لزر القائمة */
+.menu-toggle:hover {
+  color: var(--secondary);
+  transform: scale(1.06);
+}
+
+/* زر القائمة أصلاً عليه cursor:pointer عندك — ممتاز */
+
+/* تحسين أزرار اللغة + حالة hover/active */
+.languages .lang-btn {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 6px 10px;
+  margin: 0 4px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.languages .lang-btn:hover,
+.languages .lang-btn.active {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: #fff;
+}
+
+/* رابط اسم الشركة في الهيدر (لو حابب تفاعل بسيط) */
+#companyName:hover {
+  color: var(--secondary);
+}
+
+
+
+/* قائمة اللغات المنسدلة داخل الهيدر */
+.languages{ position: relative; }
+.lang-toggle{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 14px; border:1px solid #e5e7eb; border-radius:999px;
+  background:#fff; color:var(--primary); font-weight:600; cursor:pointer;
+}
+.lang-toggle i{ font-size: 0.95rem; }
+
+.lang-menu{
+  position:absolute; top:calc(100% + 8px); right:0;
+  min-width:160px; background:#fff; border:1px solid #eee;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  border-radius:12px; padding:6px; list-style:none; z-index:1200;
+}
+.lang-menu li{ margin:0; }
+.lang-menu .lang-btn{
+  width:100%; text-align:start; background:transparent; border:0;
+  padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600;
+  color:var(--dark);
+}
+.lang-menu .lang-btn:hover, .lang-menu .lang-btn.active{
+  background:#f5f6f7; color:var(--secondary);
+}
+
+.trade-section{ background:#fff; padding:80px 5%; }
+.trade-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:24px; max-width:1200px; margin:0 auto;
+}
+.trade-card{
+  position:relative; overflow:hidden;
+  background:#fff; border:1px solid #eee; border-radius:14px;
+  padding:20px; box-shadow:0 10px 25px rgba(0,0,0,.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.trade-card::before{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, var(--secondary, #efb730) 0%, rgba(239,183,48,.15) 100%);
+  opacity:.07; pointer-events:none;
+}
+.trade-card:hover{ transform: translateY(-6px); box-shadow:0 16px 36px rgba(0,0,0,.12); }
+.trade-card h3{ font-size:1.3rem; margin:0 0 8px; color:var(--primary); display:flex; align-items:center; gap:8px; }
+.trade-card p{ margin:0; color:#555; line-height:1.8; }
+.trade-flag{
+  width:28px; height:28px; border-radius:50%; display:inline-grid; place-items:center;
+  background: linear-gradient(180deg, var(--secondary, #efb730), #ffcc4d); color:#fff; font-weight:700;
+}
+.trade-badges{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.badge-chip{
+  background:#f3f5f7; border:1px solid #e8edf2; color:#3a3f47;
+  border-radius:999px; padding:6px 10px; font-size:.9rem;
+}
+.trade-cta{ margin-top:24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+
+
+
+
+
+/* أساسيات القائمة الفرعية في الشريط الجانبي */
+.sidebar ul { list-style: none; }
+.sidebar .has-sub { position: relative; }
+
+.sidebar .submenu{
+  display: none;
+  margin: 8px 0 0;
+  padding: 6px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.sidebar .submenu li a{
+  display: block;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.sidebar .submenu li a:hover{
+  color: var(--secondary);
+}
+
+/* إظهار القائمة الفرعيّة عند التحويم على العنصر الأب أو على القائمة نفسها */
+.sidebar .has-sub:hover > .submenu{
+  display: block;
+}
+
+/* دعم النقر على الأجهزة اللمسية: عندما تضيف JS صنف .open سنُبقيها مفتوحة */
+.sidebar .has-sub.open > .submenu{
+  display: block;
+}
+
+
+
+    </style>
 </head>
 <body dir="rtl">
+    <!-- زر العودة لأعلى الصفحة -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-<header>
+    <!-- الهيدر -->
+
+<!-- الهيدر الجديد -->
+<header dir="rtl">
   <div class="header-container">
-    <!-- يسار: زر القائمة -->
-    <div class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">
-      <i class="fas fa-bars"></i>
-    </div>
+<div class="languages">
+  <!-- احذف الأزرار القديمة وضع التالي -->
+  <button class="lang-toggle" id="langToggle" aria-haspopup="menu" aria-expanded="false">
+    <i class="fas fa-globe"></i>
+    <span id="currentLangLabel">AR</span>
+    <i class="fas fa-chevron-down"></i>
+  </button>
 
-    <!-- وسط: لغة -->
-    <div class="languages">
-      <button class="lang-toggle" id="langToggle" aria-haspopup="menu" aria-expanded="false">
-        <i class="fas fa-globe"></i>
-        <span id="currentLangLabel">AR</span>
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <ul class="lang-menu" id="langMenu" role="menu" hidden>
-        <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
-        <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
-        <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
-        <li><button class="lang-btn" role="menuitem" data-lang="de">DE</button></li>
+  <ul class="lang-menu" id="langMenu" role="menu" hidden>
+    <li><button class="lang-btn active" role="menuitem" data-lang="ar">AR</button></li>
+    <li><button class="lang-btn" role="menuitem" data-lang="tr">TR</button></li>
+    <li><button class="lang-btn" role="menuitem" data-lang="en">EN</button></li>
+<li><button class="lang-btn" role="menuitem" data-lang="de">DE</button></li>
+
 </ul>
-    </ul>
+</div>
+
+    <!-- اللوغو -->
+    <div class="logo">
+    
+      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
+        <img src="images/LOGOG.png" alt="شعار الشركة">
     </div>
 
-    <!-- يمين: اللوغو -->
-    <div class="logo">
-      <a href="index.html" id="companyName">GOLDEN<span> NET</span></a>
-      <img src="images/LOGOG.png" alt="شعار الشركة">
+    <!-- زر القائمة -->
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
     </div>
   </div>
 </header>
-
 <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
-<nav id="sidebar" class="sidebar" aria-hidden="true">
-  <div class="close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
-  <ul>
-    <li><a href="index.html">الصفحة الرئيسية</a></li>
-    <li class="has-sub">
-      <a href="industrial.html" aria-expanded="false">الخدمات الرئيسية
-        <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
-      </a>
-     <ul class="submenu" id="submenu-services">
+
+<!-- القائمة الجانبية -->
+<nav id="sidebar" class="sidebar">
+  <div class="close-btn" id="closeSidebar">
+    <i class="fas fa-times"></i>
+  </div>
+  <ul><li>
+     <a href="index.html" id="navFaq">الصفحة الرئيسية</a> </li>
+<li class="has-sub">
+  <a href="industrial.html" aria-expanded="false" aria-controls="submenu-services">
+    الخدمات الرئيسية
+    <i class="fas fa-chevron-down sub-caret" aria-hidden="true"></i>
+  </a>
+   <ul class="submenu" id="submenu-services">
  <li><a href="industrial.html">الصناعات الكيميائية</a></li>
     <li><a href="industrial.html">الصناعات الغذائية</a></li>
     <li><a href="net.html">خدمات الانترنت</a></li>
@@ -412,7 +979,7 @@
     <li><a href="imortexport.html">خدمات الاستيراد والتصدير</a></li>
   </ul>
 </li>
- <li><a href="#son">منتجاتنا</a></li>
+ <li><a href="#footerLinks2Title">منتجاتنا</a></li>
     <li><a href="#about">من نحن</a></li>
     <li><a href="#contact">التواصل</a></li>
     <li><a href="#brands">علاماتنا</a></li>
@@ -421,178 +988,333 @@
   </ul>
 </nav>
 
-<!-- هيدر موجي -->
-<div class="wave-header">
-  <div class="wave-inner-header flex">
-    <div class="wave-slide-content">
-    <!-- داخل .wave-slide-content بدل المحتوى القديم -->
-<h1>استيراد وتصدير من وإلى العالم</h1>
-<p>
-  حلول شحن متكاملة: <strong>بحري</strong> و<strong>جوي</strong> و<strong>بري</strong>،
-  مع متابعة تخليص جمركي وخدمة عملاء خطوة بخطوة حتى التسليم.
-</p>
 
-<div class="badges" aria-hidden="true">
-  <span class="badge"><i class="fa-solid fa-ship"></i> بحري</span>
-  <span class="badge"><i class="fa-solid fa-plane-departure"></i> جوي</span>
-  <span class="badge"><i class="fa-solid fa-truck"></i> بري</span>
+
+
+    <!-- قسم الهيرو -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>رواد في الصناعات الغذائية والكيميائية</h1>
+            <p>جودة عالية. ابتكار دائم. التزام بمعايير التصنيع العالمية</p>
+            <a href="#food" class="btn">استكشف منتجاتنا</a>
+        </div>
+    </section>
+
+    <!-- قسم الصناعات الغذائية -->
+    <section id="food" class="main-section food-section">
+        <div class="section-title">
+            <h2>الصناعات الغذائية</h2>
+            <p>منتجات غذائية عالية الجودة تلبي أعلى المعايير الصحية</p>
+        </div>
+        <div class="products-container">
+
+           <!-- منتج 1 -->
+              <div class="product-card">
+                <img src="images/shibs0.png" alt="مقرمشات" class="product-image">
+                <div class="product-details">
+                    <span class="food-badge">صناعات غذائية</span>
+                    
+                     <h3>شيبس بنكهة الديربي</h3>
+                    <p>شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.</p>
+                    
+                    
+                    <a href="https://wa.me/+4917666990043" class="btn btn-food">اطلب الآن</a>
+                </div>
+            </div>
+             <!-- منتج 2 -->
+           <!-- منتج 2 -->
+<div class="product-card">
+    <div class="soon-badge">قريباً</div> <!-- هنا -->
+    <img src="images/jubn0.png" alt="شيبس" class="product-image">
+    <div class="product-details">
+        <span class="food-badge">صناعات غذائية</span>
+        <h3>شيبس بنكهة الجبنة</h3>
+                     <p>  شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.</p>
+        <a href="https://wa.me/+4917666990043" class="btn btn-food">اطلب الآن</a>
+    </div>
 </div>
 
+<!-- منتج 3 -->
+<div class="product-card">
+    <div class="soon-badge">قريباً</div> <!-- هنا -->
+    <img src="images/khal0.png" alt="شيبس بنكهات" class="product-image">
+    <div class="product-details">
+        <span class="food-badge">صناعات غذائية</span>
+       <h3>شيبس بنكهة الخل</h3>
+<p>شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.</p>
+        <a href="https://wa.me/+4917666990043" class="btn btn-food">اطلب الآن</a>
     </div>
-  </div>
-
-  <!-- موجات -->
-  <div>
-    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto" aria-hidden="true">
-      <defs>
-        <path id="gentle-wave"
-              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-      </defs>
-      <g class="parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0"  fill="rgba(255,255,255,0.7)"/>
-        <use xlink:href="#gentle-wave" x="48" y="3"  fill="rgba(255,255,255,0.5)"/>
-        <use xlink:href="#gentle-wave" x="48" y="5"  fill="rgba(255,255,255,0.3)"/>
-        <use xlink:href="#gentle-wave" x="48" y="7"  fill="#fff"/>
-      </g>
-    </svg>
-  </div>
 </div>
 
 
-<!-- البطاقات -->
-<section id="cards" class="paket-section">
-  <div class="section-title"><h2>عروض الشحن الحالية</h2></div>
-  <div class="paket-container">
+            
+          
+        </div>
+    </section>
 
-    <!-- 1 بحري: ألمانيا → سوريا -->
-    <div class="paket-item">
-      <div class="paket-header">
-        <h3>استيراد من ألمانيا إلى سوريا</h3>
-        <p class="muted">كونتينر <strong>20 قدم</strong> — <span class="tag sea"><i class="fa-solid fa-ship"></i> بحري</span></p>
-      </div>
-      <div class="paket-features">
-        <ul>
-          <li><i class="fa-solid fa-box"></i> حمولة مناسبة للبضائع العامة / التجميع</li>
-          <li><i class="fa-solid fa-file-shield"></i> مستندات شحن معتمدة ومتابعة الميناء</li>
-          <li><i class="fa-solid fa-headset"></i> دعم وتحديثات حتى الوصول</li>
-        </ul>
-        <div class="price">سعر تقريبي: <strong>$2600</strong></div>
-      </div>
-      <div class="paket-action">
-        <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B4%D8%AD%D9%86%20%D8%A8%D8%AD%D8%B1%D9%8A%20%D9%85%D9%86%20%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%D8%A7%20%D8%A5%D9%84%D9%89%20%D8%B3%D9%88%D8%B1%D9%8A%D8%A7%20-%2020ft">
-          <i class="fab fa-whatsapp"></i> طلب استفسار
-        </a>
-      </div>
-    </div>
+    <!-- قسم الصناعات الكيميائية -->
+    <section id="chemical" class="main-section chemical-section">
+        <div class="section-title">
+            <h2>الصناعات الكيميائية</h2>
+            <p>منتجات كيميائية عالية الجودة لتلبية احتياجات الصناعة والبناء</p>
+        </div>
+        <div class="products-container">
+            <!-- منتج 1 -->
+            <div class="product-card">
+                <img src="images/8.jpg" alt="طلاء داخلي" class="product-image">
+                <div class="product-details">
+                    <span class="chemical-badge">صناعات كيميائية</span>
+                    <h3>طلاء داخلي عالي الجودة</h3>
+                    <p>طلاء داخلي صديق للبيئة، مقاوم للعفن والعوامل الجوية، متوفر بألوان متعددة</p>
+                   
+                    <a href="https://wa.me/+4917666990043" class="btn btn-chemical">اطلب الآن</a>
+                </div>
+            </div>
 
-    <!-- 2 جوي: الصين → سوريا -->
-    <div class="paket-item">
-      <div class="paket-header">
-        <h3>استيراد جوي من الصين إلى سوريا</h3>
-        <p class="muted"><span class="tag air"><i class="fa-solid fa-plane-departure"></i> جوي</span></p>
-      </div>
-      <div class="paket-features">
-        <ul>
-          <li><i class="fa-solid fa-dollar-sign"></i> أسعار تبدأ من <strong>$10</strong> للكيلو</li>
-          <li><i class="fa-solid fa-bolt"></i> شحن سريع عبر الجو (تقريبًا خلال 15 يوم)</li>
-          <li><i class="fa-solid fa-shield"></i> يشمل إجراءات التخليص الجمركي</li>
-        </ul>
-      </div>
-      <div class="paket-action">
-        <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%A7%D8%B3%D8%AA%D9%8A%D8%B1%D8%A7%D8%AF%20%D8%AC%D9%88%D9%8A%20%D9%85%D9%86%20%D8%A7%D9%84%D8%B5%D9%8A%D9%86%20%D8%A5%D9%84%D9%89%20%D8%B3%D9%88%D8%B1%D9%8A%D8%A7%20-%20$10%2Fkg">
-          <i class="fab fa-whatsapp"></i> طلب استفسار
-        </a>
-      </div>
-    </div>
+            <!-- منتج 2 -->
+            <div class="product-card">
+                <img src="images/9.png" alt="طلاء خارجي" class="product-image">
+                <div class="product-details">
+                    <span class="chemical-badge">صناعات كيميائية</span>
+                    <h3>طلاء خارجي مقاوم</h3>
+                    <p>طلاء خارجي عالي الجودة مقاوم لأشعة الشمس والتغيرات الجوية، يدوم لسنوات</p>
+                    
+                    <a href="https://wa.me/+4917666990043" class="btn btn-chemical">اطلب الآن</a>
+                </div>
+            </div>
 
-    <!-- 3 تخليص داخل سوريا -->
-    <div class="paket-item">
-      <div class="paket-header">
-        <h3>تخليص جمركي شامل داخل سوريا</h3>
-        <p class="muted">خدمة أعمال + أفراد</p>
-      </div>
-      <div class="paket-features">
-        <ul>
-          <li><i class="fa-solid fa-file-invoice"></i> تجهيز البيانات الجمركية ومطابقة الفواتير</li>
-          <li><i class="fa-solid fa-clipboard-check"></i> متابعة التفريغ والفحص ودفع الرسوم</li>
-          <li><i class="fa-solid fa-truck-ramp-box"></i> تسليم حتى المستودع عند الطلب</li>
-        </ul>
-      </div>
-      <div class="paket-action">
-        <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%AA%D8%AE%D9%84%D9%8A%D8%B5%20%D8%AC%D9%85%D8%B1%D9%83%D9%8A%20%D8%AF%D8%A7%D8%AE%D9%84%20%D8%B3%D9%88%D8%B1%D9%8A%D8%A7">
-          <i class="fab fa-whatsapp"></i> اطلب التفاصيل
-        </a>
-      </div>
-    </div>
+            <!-- منتج 3 -->
+            <div class="product-card">
+                <img src="images/8.jpg" alt="مواد كيميائية" class="product-image">
+                <div class="product-details">
+                    <span class="chemical-badge">صناعات كيميائية</span>
+                    <h3>مواد كيميائية للصناعة</h3>
+                    <p>توفير مواد كيميائية عالية الجودة لاستخدامات الصناعات المختلفة</p>
+             
+                    <a href="https://wa.me/+4917666990043" class="btn btn-chemical">اطلب الآن</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- 4 بري: الصين → سوريا -->
-    <div class="paket-item">
-      <div class="paket-header">
-        <h3>شحن بري من الصين إلى سوريا</h3>
-        <p class="muted"><span class="tag land"><i class="fa-solid fa-truck"></i> بري</span></p>
-      </div>
-      <div class="paket-features">
-        <ul>
-          <li><i class="fa-solid fa-boxes-stacked"></i> شحن تجميعي (LCL/LTL) أو شحن كامل</li>
-          <li><i class="fa-solid fa-location-dot"></i> تتبع وتحديثات مستمرة حتى التسليم</li>
-          <li><i class="fa-solid fa-warehouse"></i> إمكانية التخزين المرحلي والتأمين</li>
-        </ul>
-      </div>
-      <div class="paket-action">
-        <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%B7%D9%84%D8%A8%20%D8%B9%D8%B1%D8%B6%20%D8%B3%D8%B9%D8%B1%20%D8%B4%D8%AD%D9%86%20%D8%A8%D8%B1%D9%8A%20%D9%85%D9%86%20%D8%A7%D9%84%D8%B5%D9%8A%D9%86%20%D8%A5%D9%84%D9%89%20%D8%B3%D9%88%D8%B1%D9%8A%D8%A7">
-          اطلب عرض سعر خاص
-        </a>
-      </div>
-    </div>
+    <!-- قسم من نحن -->
+    <section id="about" class="about-section">
+        <div class="section-title">
+            <h2>من نحن</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h2>شركة رائدة في الصناعات الغذائية والكيميائية</h2>
+                <p>تأسست شركة "Golden Net" عام 2015 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.</p>
+                <p>نمتلك مصنعين منفصلين، واحد مخصص للصناعات الغذائية وآخر للصناعات الكيميائية، لضمان عدم وجود أي تداخل أو تلوث بين خطوط الإنتاج.</p>
+                <p>فريقنا من المهندسين والخبراء يعملون بجد لتقديم أفضل المنتجات، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية في مجال الصناعات.</p>
+                
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p>سنوات من الخبرة</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>عميل في الشرق الأوسط</p>
+                    </div>
+                    <div class="stat">
+                        <h3>98%</h3>
+                        <p>رضا العملاء</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img"></div>
+        </div>
+    </section>
 
-  </div>
-</section>
 
-<!-- تفاصيل الوساطة والشراء -->
-<section id="details" class="paket-section">
-  <div class="section-title"><h2>خدمة الوساطة وشراء البضائع من الصين</h2></div>
-  <div class="details">
-    <h3>اختَر المنتج… ونحن ننجز الباقي</h3>
-    <p>
-      يمكنك تصفّح ملايين المنتجات عبر منصات مثل
-      <a href="https://www.alibaba.com" target="_blank" rel="noopener">Alibaba</a>
-      و
-      <a href="https://www.aliexpress.com" target="_blank" rel="noopener">AliExpress</a>،
-      وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.
+
+
+<section id="trade" class="main-section trade-section" lang="ar" dir="rtl">
+  <div class="section-title">
+    <h2>الاستيراد والتصدير إلى كل أنحاء العالم</h2>
+    <p style="max-width:780px;margin:10px auto 0;color:#555">
+      ندير سلاسل التوريد من المصنع حتى باب العميل مع شحن مرن، تخليص جمركي، ووثائق مطابقة للأسواق المستهدفة.
     </p>
+  </div>
 
-    <h3 style="margin-top:14px;">ما الذي نقوم به؟</h3>
-    <ul>
-      <li>طلب البضاعة والتفاوض على السعر والمواصفات والجودة.</li>
-      <li>الدفع الإلكتروني الآمن وتأكيد الشحن مع المورّد.</li>
-      <li>النقل إلى سوريا (جوي/بحري/بري) حسب الأنسب للشحنة.</li>
-      <li>إجراءات التخليص الجمركي والتسليم النهائي.</li>
-    </ul>
+  <div class="trade-grid">
+    <div class="trade-card">
+      <h3><span class="trade-flag">🌍</span> أسواق مستهدفة متعددة</h3>
+      <p>شحن منتظم إلى الشرق الأوسط وأوروبا وشمال أفريقيا مع حلول تعبئة ووسم لكل سوق.</p>
+      <div class="trade-badges">
+        <span class="badge-chip">EU/MEA</span><span class="badge-chip">B2B & B2C</span>
+      </div>
+    </div>
 
-    <p style="margin-top:12px" class="muted">
-      التكاليف التجميعية تبدأ من <strong>$10</strong> لكل كيلو (للشحنات الخفيفة/الجوية)، وتختلف حسب الوجهة ونوع البضاعة.
-    </p>
+    <div class="trade-card">
+      <h3><span class="trade-flag">📦</span> لوجستيات وشحن مرن</h3>
+      <p>بحري/جوي/بري، تتبّع الشحنات، وتغليف ملائم للدهانات والمنتجات الغذائية.</p>
+      <div class="trade-badges">
+        <span class="badge-chip">FCL/LCL</span><span class="badge-chip">Air Cargo</span>
+      </div>
+    </div>
 
-    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-      <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%88%D8%B3%D8%A7%D8%B7%D8%A9%20%D9%84%D8%B4%D8%B1%D8%A7%D8%A1%20%D8%A8%D8%B6%D8%A7%D8%B9%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%B5%D9%8A%D9%86">
-        <i class="fab fa-whatsapp"></i> تواصل الآن
-      </a>
+    <div class="trade-card">
+      <h3><span class="trade-flag">📄</span> مستندات وتخليص</h3>
+      <p>فواتير، شهادة منشأ، MSDS للدهانات، شهادات صحية للمواد الغذائية، وترجمة معتمدة.</p>
+      <div class="trade-badges">
+        <span class="badge-chip">COO</span><span class="badge-chip">MSDS</span><span class="badge-chip">Health Cert</span>
+      </div>
+    </div>
+
+    <div class="trade-card">
+      <h3><span class="trade-flag">✅</span> مطابقة ومعايير</h3>
+      <p>التزام بالمواصفات الفنية ومتطلبات التعبئة والوسم وفق الأسواق المستهدفة.</p>
+      <div class="trade-badges">
+        <span class="badge-chip">Labeling</span><span class="badge-chip">Specs</span>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- CTA بسيط -->
-<section id="contact" class="paket-section" style="padding-top:20px">
-  <div class="details" style="text-align:center">
-    <h3>جاهز لتقدير دقيق؟</h3>
-    <p class="muted">أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف/صورة للمنتج في حال توفرها SH Code)، ونرجع لك بعرض مفصّل.</p>
-    <a class="btn" target="_blank" href="https://wa.me/4917666990043?text=%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D8%B4%D8%AD%D9%86%D8%A9%3A%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A3%2F%D8%A7%D9%84%D9%88%D8%AC%D9%87%D8%A9%2F%D8%A7%D9%84%D9%88%D8%B2%D9%86%2F%D8%A7%D9%84%D8%A3%D8%A8%D8%B9%D8%A7%D8%AF%2F%D9%88%D8%B5%D9%81">
-      اطلب عرض سعر الآن
+  <div class="trade-cta">
+    <a href="https://wa.me/4917666990043?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B9%D8%B1%D8%B6%D8%A7%D9%8B%20%D9%84%D9%84%D8%AA%D8%B5%D8%AF%D9%8A%D8%B1" class="btn" target="_blank">
+      <i class="fab fa-whatsapp"></i> اطلب عرض تصدير
     </a>
+    <a href="industrial.html" class="btn" target="_blank">المواصفات والكتالوجات</a>
   </div>
 </section>
- <!-- الفوتر -->
+
+
+
+
+
+  <section id="contact" class="contact-section">
+    <div class="section-title">
+        <h2 id="contactTitle">التواصل معنا</h2>
+    </div>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2 id="contactSubtitle">ابقى على تواصل</h2>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactAddressTitle">العنوان</h3>
+                    <p id="contactAddress">
+                        <a href="https://maps.app.goo.gl/QLicWEaZZTnChbPH8" target="_blank" class="contact-link map-link">
+                            <span id="addressText">الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.</span>
+                            <i class="fas fa-external-link-alt external-icon"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactPhoneTitle">الهاتف</h3>
+                    <div class="phone-links">
+                        <p id="contactPhone1">
+                            <a href="tel:+905522886112" class="contact-link phone-link">
+                                <span id="phone1Text" dir="ltr">+90 552 288 61 12</span>
+                                <i class="fas fa-phone phone-icon"></i>
+                            </a>
+                            <a href="https://wa.me/905522886112" class="contact-link whatsapp-link" target="_blank">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span class="link-label">خدمات انترنت</span>
+                            </a>
+                        </p>
+                        <p id="contactPhone2">
+                            <a href="tel:+905388899919" class="contact-link phone-link">
+                                <span id="phone2Text" dir="ltr">+4917666990043</span>
+                                <i class="fas fa-phone phone-icon"></i>
+                            </a>
+                            <a href="https://wa.me/4917666990043" class="contact-link whatsapp-link" target="_blank">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span class="link-label">خدمات عامة</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactEmailTitle">البريد الإلكتروني</h3>
+                    <p id="contactEmail1">
+                        <a href="mailto:info@golde-net.com" class="contact-link email-link">
+                            <span>info@golde-net.com</span>
+                            <i class="fas fa-envelope email-icon"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-details">
+                    <h3 id="contactHoursTitle">ساعات العمل</h3>
+                    <p id="contactHours1">الأثنين - السبت: 10 صباحاً - 6 مساءً</p>
+                    <p id="contactHours2">الأحد: إجازة</p>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+
+    <div class="contact-form">
+            <h3 id="contactFormTitle">أرسل لنا رسالة</h3>
+<form id="messageForm"
+      action="https://formspree.io/f/mjkebzpz" 
+      method="POST"
+      accept-charset="UTF-8">
+
+  <div class="form-group">
+    <label for="name" id="formNameLabel">الاسم الكامل</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="email" id="formEmailLabel">البريد الإلكتروني</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+
+  <div class="form-group">
+    <label for="phone" id="formPhoneLabel">رقم الهاتف</label>
+    <input type="tel" id="phone" name="phone">
+  </div>
+
+  <div class="form-group">
+    <label for="message" id="formMessageLabel">الرسالة</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+
+  <!-- عنوان البريد -->
+  <input type="hidden" name="subject" value="رسالة جديدة من موقع Golden Net">
+
+  <!-- حقل honeypot لمكافحة السبام (اختياري) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit" class="btn" id="formSubmitBtn">
+    <span>إرسال الرسالة</span>
+    <i class="fas fa-paper-plane"></i>
+  </button>
+</form>    
+        </div>
+    </div>
+    </section>
+
+
+    <!-- الفوتر -->
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
@@ -617,7 +1339,7 @@
                 </ul>
             </div>
             
-            <div class="footer-links" id="son">
+            <div class="footer-links">
                 <h4>ماذا نقدم؟</h4>
                 <ul>
                     <li><a href="industrial.html">شيبس  MyDays</a></li>
@@ -645,225 +1367,248 @@
             <p>جميع الحقوق محفوظة &copy;GOLDEN NET 2025</p>
         </div>
     </footer>
-<!-- Scripts البسيطة: القائمة/اللغة -->
-<script>
-  // Sidebar
-  const sidebar  = document.getElementById('sidebar');
-  const overlay  = document.getElementById('sidebarOverlay');
-  const menuBtn  = document.getElementById('menuToggle');
-  const closeBtn = document.getElementById('closeSidebar');
-  function openSidebar(){ sidebar.classList.add('open'); overlay.hidden=false; menuBtn.setAttribute('aria-expanded','true'); sidebar.setAttribute('aria-hidden','false');}
-  function closeSidebar(){ sidebar.classList.remove('open'); overlay.hidden=true; menuBtn.setAttribute('aria-expanded','false'); sidebar.setAttribute('aria-hidden','true');}
-  menuBtn?.addEventListener('click', openSidebar);
-  closeBtn?.addEventListener('click', closeSidebar);
-  overlay?.addEventListener('click', closeSidebar);
-  sidebar?.querySelectorAll('a').forEach(a=> a.addEventListener('click', closeSidebar));
 
-  // Language dropdown (يتكامل مع نظامك إن وجد)
-  const languagesBox = document.querySelector('.languages');
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // كود JavaScript
+        document.addEventListener("DOMContentLoaded", () => {
+            // تأثير التمرير السلس
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // زر العودة لأعلى الصفحة
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // تأثير الهيدر عند التمرير
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // تأثير الظهور عند التمرير
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+          sections.forEach(section => {
+observer.observe(section);
+});
+
+  // تغيير اللغة (وظيفة أساسية)
+       const languagesBox = document.querySelector('.languages');
   const langToggle   = document.getElementById('langToggle');
   const langMenu     = document.getElementById('langMenu');
   const currentLabel = document.getElementById('currentLangLabel');
-  const openMenu  = ()=>{ langMenu.hidden=false; langToggle.setAttribute('aria-expanded','true'); };
-  const closeMenu = ()=>{ langMenu.hidden=true;  langToggle.setAttribute('aria-expanded','false'); };
-  langToggle.addEventListener('click', (e)=>{ e.stopPropagation(); langMenu.hidden ? openMenu() : closeMenu(); });
-  document.addEventListener('click', (e)=>{ if(!languagesBox.contains(e.target)) closeMenu(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
+
+  const openMenu  = () => { langMenu.hidden = false; langToggle.setAttribute('aria-expanded','true'); };
+  const closeMenu = () => { langMenu.hidden = true;  langToggle.setAttribute('aria-expanded','false'); };
+
+  langToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langMenu.hidden ? openMenu() : closeMenu();
+  });
+
+  // إغلاق عند الضغط خارج/على Escape
+  document.addEventListener('click', (e) => {
+    if (!languagesBox.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // وظيفة اختيار اللغة (نفس منطقك السابق + إغلاق وتحديث اللابل)
+  document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', function(){
-      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.remove('active'));
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
+
       const lang = this.dataset.lang;
-      currentLabel.textContent = this.textContent.trim();
+      currentLabel.textContent = this.textContent.trim(); // AR/TR/EN
       closeMenu();
-      if (typeof loadLanguage==='function'){ loadLanguage(lang); }
-      else if (typeof changeLanguage==='function'){ changeLanguage(lang); }
-      document.body.dir = (lang==='ar') ? 'rtl' : 'ltr';
+
+      // TODO: هنا ضع منطق الترجمة الفعلي (تحميل ملفات/تبديل نصوص حسب lang)
+      console.log('تم اختيار اللغة:', lang);
     });
   });
 
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const id = a.getAttribute('href').slice(1);
-      const el = document.getElementById(id);
-      if(el){ e.preventDefault(); window.scrollTo({top:el.offsetTop-70,behavior:'smooth'}); }
+
+// القائمة الجانبية
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+const closeSidebar = document.getElementById("closeSidebar");
+
+menuToggle.addEventListener("click", () => {
+  sidebar.style.right = "0";
+});
+
+closeSidebar.addEventListener("click", () => {
+  sidebar.style.right = "-260px";
+});
+
+
+    // تأثيرات إضافية للبطاقات عند التحويم
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+             element.style.transform = 'translateY(-3px) scale(1.05)';
+        element.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+    });
+    
+    element.addEventListener('mousemove', () => {
+        element.style.transform = '';
+        element.style.boxShadow = '';
+    });
+    });
+    });
+
+</script>
+
+<script>
+  // تأثيرات إضافية للبطاقات عند التحويم (تصحيح)
+  document.querySelectorAll('.product-card').forEach((card) => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-6px) scale(1.03)';
+      card.style.boxShadow = '0 16px 36px rgba(0,0,0,0.15)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
     });
   });
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
-/* ====== قاعدة: خزن النص العربي الأصلي، ثم ارجع له قبل كل ترجمة ====== */
-(function(){
-  const ORIG_TEXT = new WeakMap();
+// 0) لازم نضمن وجود كائن الترجمات قبل استخدامه
+window.translations = window.translations || {};
 
-  function shouldSkip(node){
-    const p = node.parentNode;
-    if(!p) return true;
-    const tag = p.nodeName;
-    return tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT' ||
-           tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'IFRAME' ||
-           p.isContentEditable;
-  }
+// 1) ترجمات العناصر التي لها IDs
+window.translations.en = {
+  contactTitle:"Contact Us", contactSubtitle:"Stay in touch",
+  contactAddressTitle:"Address", contactPhoneTitle:"Phone",
+  contactEmailTitle:"Email", contactHoursTitle:"Business Hours",
+  contactHours1:"Mon – Sat: 10:00 AM – 6:00 PM", contactHours2:"Sunday: Closed",
+  contactFormTitle:"Send us a message", formNameLabel:"Full name",
+  formEmailLabel:"Email", formPhoneLabel:"Phone number", formMessageLabel:"Message"
+};
 
-  function indexOriginalText(root){
-    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
-    while (tw.nextNode()){
-      const n = tw.currentNode;
-      if (shouldSkip(n)) continue;
-      if (!ORIG_TEXT.has(n)) ORIG_TEXT.set(n, n.nodeValue);
-    }
-  }
+window.translations.de = {
+  contactTitle:"Kontakt", contactSubtitle:"Bleiben Sie in Verbindung",
+  contactAddressTitle:"Adresse", contactPhoneTitle:"Telefon",
+  contactEmailTitle:"E-Mail", contactHoursTitle:"Öffnungszeiten",
+  contactHours1:"Mo – Sa: 10:00 – 18:00", contactHours2:"Sonntag: Geschlossen",
+  contactFormTitle:"Schreiben Sie uns", formNameLabel:"Vollständiger Name",
+  formEmailLabel:"E-Mail", formPhoneLabel:"Telefonnummer", formMessageLabel:"Nachricht"
+};
 
-  function restoreArabicBase(root){
-    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
-    while (tw.nextNode()){
-      const n = tw.currentNode;
-      if (shouldSkip(n)) continue;
-      const orig = ORIG_TEXT.get(n);
-      if (typeof orig === 'string') n.nodeValue = orig;
-    }
-  }
-
-  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-  function replaceTextDeep(root, map){
-    const keys = Object.keys(map);
-    if(!keys.length) return;
-    keys.sort((a,b)=> b.length - a.length); // أطول أولاً
-    const re = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
-
-    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
-    while (tw.nextNode()){
-      const n = tw.currentNode;
-      if (shouldSkip(n) || !n.nodeValue) continue;
-      n.nodeValue = n.nodeValue.replace(re, m => map[m] ?? m);
-    }
-  }
-
-  // خزن النسخة العربية الأصلية بمجرد جاهزية الـ DOM
-  document.addEventListener('DOMContentLoaded', ()=> indexOriginalText(document.body));
-
-  const currentLabel = document.getElementById('currentLangLabel');
-
-  // استبدل changeLanguage لديك بهذه
-  window.changeLanguage = function(lang){
-    // التقط أي عقد نصية جديدة ظهرت بعد التحميل
-    indexOriginalText(document.body);
-
-    if (lang === 'ar'){
-      restoreArabicBase(document.body);
-      document.body.dir = 'rtl';
-      if (currentLabel) currentLabel.textContent = 'AR';
-      return;
-    }
-
-    // ارجع دائماً إلى العربية أولاً، ثم طبّق القاموس
-    restoreArabicBase(document.body);
-    document.body.dir = 'ltr';
-
-    if (lang === 'en'){
-      replaceTextDeep(document.body, AR_TO_EN);
-    } else if (lang === 'de'){
-      replaceTextDeep(document.body, AR_TO_DE);
-    } else if (lang === 'tr'){
-      // لو عندك نظام ترجمة تركي عبر applyTranslation(tr)
-      if (typeof applyTranslation === 'function' && typeof tr !== 'undefined'){
-        applyTranslation(tr);
-      }
-    }
-
-    if (currentLabel) currentLabel.textContent = lang.toUpperCase();
-
-    // إغلاق قائمة اللغات إن وُجدت
-    const menu = document.getElementById('langMenu');
-    const toggle = document.getElementById('langToggle');
-    if(menu && toggle){ menu.hidden = true; toggle.setAttribute('aria-expanded','false'); }
-  };
-
-  // اربط الأزرار إن لم تكن مربوطة
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b===btn));
-      changeLanguage(btn.dataset.lang);
-    });
-  });
-
-})();
-
-
-/* قاموس AR → EN (نصوص هذه الصفحة) */
-const AR_TO_EN = {
-  // الهيدر والقائمة
+// 2) الخرائط العامة (بدون IDs) — خَلِّها على window (لا تستخدم const بنفس الاسم داخل IIFE)
+window.COMMON_EN = {
   "الصفحة الرئيسية":"Home","الخدمات الرئيسية":"Main Services","الصناعات الكيميائية":"Chemical Industries",
   "الصناعات الغذائية":"Food Industries","خدمات الانترنت":"Internet Services","خدمات برمجية":"Software Services",
   "خدمات الاستيراد والتصدير":"Import & Export Services","منتجاتنا":"Our Products","من نحن":"About Us",
   "التواصل":"Contact","علاماتنا":"Our Brands",
+  "رواد في الصناعات الغذائية والكيميائية":"Leaders in Food & Chemical Industries",
+  "جودة عالية. ابتكار دائم. التزام بمعايير التصنيع العالمية":"High quality. Constant innovation. Committed to global manufacturing standards",
+  "استكشف منتجاتنا":"Explore our products",
+  "الصناعات الغذائية":"Food Industries",
+  "منتجات غذائية عالية الجودة تلبي أعلى المعايير الصحية":"High-quality food products that meet the highest health standards",
+  "الصناعات الكيميائية":"Chemical Industries",
+  "منتجات كيميائية عالية الجودة لتلبية احتياجات الصناعة والبناء":"High-quality chemical products for industry and construction",
+  "صناعات غذائية":"Food Industry",
+  "شيبس بنكهة الديربي":"Derby-flavored Chips",
+  "شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.":"Tasty chips with a distinctive Derby flavor for classic-taste lovers.",
+  "شيبس بنكهة الجبنة":"Cheese-flavored Chips",
+  "شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.":"Crispy chips from quality potatoes, rich cheese flavor—perfect for family snacks.",
+  "شيبس بنكهة الخل":"Vinegar-flavored Chips",
+  "شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.":"Crispy, zesty vinegar chips crafted for bold-flavor fans.",
+  "اطلب الآن":"Order now","قريباً":"Coming soon",
+  "صناعات كيميائية":"Chemical Industry",
+  "طلاء داخلي عالي الجودة":"Premium Interior Paint",
+  "طلاء داخلي صديق للبيئة، مقاوم للعفن والعوامل الجوية، متوفر بألوان متعددة":"Eco-friendly interior paint, mold/weather resistant, multi-color options",
+  "طلاء خارجي مقاوم":"Durable Exterior Paint",
+  "طلاء خارجي عالي الجودة مقاوم لأشعة الشمس والتغيرات الجوية، يدوم لسنوات":"High-grade exterior paint, UV & weather resistant, long-lasting",
+  "مواد كيميائية للصناعة":"Industrial Chemicals",
+  "توفير مواد كيميائية عالية الجودة لاستخدامات الصناعات المختلفة":"Supplying high-quality chemicals for diverse industrial uses",
+  "من نحن":"About Us",
+  "شركة رائدة في الصناعات الغذائية والكيميائية":"A leading company in food & chemical industries",
+  "تأسست شركة \"Golden Net\" عام 2015 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.":"Founded in 2015, Golden Net delivers high-quality food & chemical products to local and regional markets. We believe quality and innovation are the key to industrial success.",
+  "نمتلك مصنعين منفصلين، واحد مخصص للصناعات الغذائية وآخر للصناعات الكيميائية، لضمان عدم وجود أي تداخل أو تلوث بين خطوط الإنتاج.":"We operate two separate plants—food and chemical—to ensure zero cross-contamination.",
+  "فريقنا من المهندسين والخبراء يعملون بجد لتقديم أفضل المنتجات، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية في مجال الصناعات.":"Our engineers and experts focus on innovation and continuous development to offer cutting-edge solutions.",
+  "سنوات من الخبرة":"Years of experience","عميل في الشرق الأوسط":"Clients in the Middle East","رضا العملاء":"Customer satisfaction",
+  "الاستيراد والتصدير إلى كل أنحاء العالم":"Import & Export worldwide",
+  "ندير سلاسل التوريد من المصنع حتى باب العميل مع شحن مرن، تخليص جمركي، ووثائق مطابقة للأسواق المستهدفة.":"We manage the supply chain end-to-end with flexible shipping, customs clearance, and market-compliant documentation.",
+  "أسواق مستهدفة متعددة":"Multiple target markets",
+  "شحن منتظم إلى الشرق الأوسط وأوروبا وشمال أفريقيا مع حلول تعبئة ووسم لكل سوق.":"Regular shipping to MENA, EU, North Africa with tailored packaging & labeling.",
+  "لوجستيات وشحن مرن":"Flexible logistics & shipping",
+  "بحري/جوي/بري، تتبّع الشحنات، وتغليف ملائم للدهانات والمنتجات الغذائية.":"Sea/Air/Land, tracking, and packaging suitable for paints & foods.",
+  "مستندات وتخليص":"Documentation & clearance",
+  "فواتير، شهادة منشأ، MSDS للدهانات، شهادات صحية للمواد الغذائية، وترجمة معتمدة.":"Invoices, COO, MSDS for paints, health certs for foods, certified translations.",
+  "مطابقة ومعايير":"Compliance & standards",
+  "التزام بالمواصفات الفنية ومتطلبات التعبئة والوسم وفق الأسواق المستهدفة.":"Compliance with technical specs and labeling for target markets.",
+  "اطلب عرض تصدير":"Request export quote","المواصفات والكتالوجات":"Specs & Catalogs",
+  "التواصل معنا":"Contact Us","ابقى على تواصل":"Stay in touch","العنوان":"Address","الهاتف":"Phone","البريد الإلكتروني":"Email",
+  "ساعات العمل":"Business Hours","الأثنين - السبت: 10 صباحاً - 6 مساءً":"Mon – Sat: 10:00 AM – 6:00 PM","الأحد: إجازة":"Sunday: Closed",
+  "أرسل لنا رسالة":"Send us a message","الاسم الكامل":"Full name","رقم الهاتف":"Phone number","الرسالة":"Message","إرسال الرسالة":"Send Message",
+  "خدمات انترنت":"Internet Services","خدمات عامة":"General Services",
+  "روابط سريعة":"Quick Links","ماذا نقدم؟":"What we offer","الدعم":"Support",
+  "الأسئلة الشائعة":"FAQ","شروط الاستخدام":"Terms of Use","سياسة الخصوصية":"Privacy Policy","جميع الحقوق محفوظة":"All rights reserved",
 
-  // الهيرو
-  "استيراد وتصدير من وإلى العالم":"Import & Export Worldwide",
-  "حلول شحن متكاملة: ":"Integrated shipping solutions: ",
-  "بحري":"Sea","جوي":"Air","بري":"Road",
-  "،\n  مع متابعة تخليص جمركي وخدمة عملاء خطوة بخطوة حتى التسليم.":", with customs clearance follow-up and step-by-step customer service until delivery.",
-  "عروض الشحن الحالية":"Current Shipping Offers",
-
-  // البطاقة 1
-  "استيراد من ألمانيا إلى سوريا":"Import from Germany to Syria",
-  "كونتينر ":"Container ","20 قدم":"20ft",
-  " — ":" — ",
-  "حمولة مناسبة للبضائع العامة / التجميع":"Suitable capacity for general/consolidated cargo",
-  "مستندات شحن معتمدة ومتابعة الميناء":"Certified shipping documents & port follow-up",
-  "دعم وتحديثات حتى الوصول":"Support & updates until arrival",
-  "سعر تقريبي: ":"Approx. price: ",
-  "طلب استفسار":"Request Info",
-
-  // البطاقة 2
-  "استيراد جوي من الصين إلى سوريا":"Air import from China to Syria",
-  "أسعار تبدأ من ":"Prices start from ",
-  " للكيلو":" per kg",
-  "شحن سريع عبر الجو (تقريبًا خلال 15 يوم)":"Fast air shipping (~15 days)",
-  "يشمل إجراءات التخليص الجمركي":"Includes customs clearance",
-
-  // البطاقة 3
-  "تخليص جمركي شامل داخل سوريا":"Comprehensive customs clearance in Syria",
-  "خدمة أعمال + أفراد":"Business & Individuals",
-  "تجهيز البيانات الجمركية ومطابقة الفواتير":"Prepare customs data & match invoices",
-  "متابعة التفريغ والفحص ودفع الرسوم":"Oversee unloading, inspection & duties",
-  "تسليم حتى المستودع عند الطلب":"Delivery to warehouse on request",
-  "اطلب التفاصيل":"Get Details",
-
-  // البطاقة 4
-  "شحن بري من الصين إلى سوريا":"Road freight from China to Syria",
-  "شحن تجميعي (LCL/LTL) أو شحن كامل":"Consolidated (LCL/LTL) or full truck",
-  "تتبع وتحديثات مستمرة حتى التسليم":"Tracking & continuous updates to delivery",
-  "إمكانية التخزين المرحلي والتأمين":"Staging storage & insurance available",
-  "اطلب عرض سعر خاص":"Request a Special Quote",
-
-  // التفاصيل
-  "خدمة الوساطة وشراء البضائع من الصين":"Sourcing & Purchasing from China",
-  "اختَر المنتج… ونحن ننجز الباقي":"Pick the product… we’ll handle the rest",
-  "ما الذي نقوم به؟":"What do we do?",
-  "طلب البضاعة والتفاوض على السعر والمواصفات والجودة.":"Place orders and negotiate price, specs, and quality.",
-  "الدفع الإلكتروني الآمن وتأكيد الشحن مع المورّد.":"Secure e-payment and shipment confirmation with the supplier.",
-  "النقل إلى سوريا (جوي/بحري/بري) حسب الأنسب للشحنة.":"Transport to Syria (air/sea/road) as appropriate.",
-  "إجراءات التخليص الجمركي والتسليم النهائي.":"Customs clearance procedures and final delivery.",
-  "التكاليف التجميعية تبدأ من ":"Consolidated rates start from ",
-  " لكل كيلو (للشحنات الخفيفة/الجوية)، وتختلف حسب الوجهة ونوع البضاعة.":" per kg (for light/air shipments), varying by destination & goods.",
-  "تواصل الآن":"Contact Now",
-
-
-"يمكنك تصفّح ملايين المنتجات عبر منصات مثل":"You can browse millions of products on platforms like",
-"، وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", and we will handle your order—from contacting the supplier to delivery in Syria.",
-"،\n      وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", and we will handle your order—from contacting the supplier to delivery in Syria.",
-
-
-
-  "يمكنك تصفّح ملايين المنتجات عبر منصات مثل Alibaba و AliExpress، وسنقوم بمتابعة الطلب من Contact مع المورّد حتى التسليم في سوريا.":"You can browse millions of products on platforms like Alibaba and AliExpress, and we will handle your order—from contacting the supplier to delivery in Syria.",
-
-  // CTA
-  "جاهز لتقدير دقيق؟":"Ready for an accurate quote?",
-  "أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف/صورة للمنتج في حال توفرها SH Code)، ونرجع لك بعرض مفصّل.":
-    "Send shipment details (origin/destination/weight/dimensions/description/product photo if available, HS code) and we’ll reply with a detailed offer.",
-  "اطلب عرض سعر الآن":"Request a Quote Now",
 
   // الفوتر
 "روابط سريعة":"Quick Links",
@@ -887,110 +1632,214 @@ const AR_TO_EN = {
 "جميع الحقوق محفوظة":"All rights reserved",
 "إنشاء صفحة ويب وتطبيقات":"Web & App Development",
 "استيراد وتصدير وتخليص جمركي":"Import, Export & Customs Clearance",
+"خدمات عامة":"General Services",
+"الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.":"Reyhanlı, Hatay — Main Avenue after Al-Shawk Roundabout, opposite Domino’s Pizza.",
 
-  
 };
-
-/* قاموس AR → DE (نصوص هذه الصفحة) */
-const AR_TO_DE = {
-  // الهيدر
-  "الصفحة الرئيسية":"Startseite","الخدمات الرئيسية":"Hauptleistungen","الصناعات الكيميائية":"Chemische Industrie",
-  "الصناعات الغذائية":"Lebensmittelindustrie","خدمات الانترنت":"Internetdienste","خدمات برمجية":"Software-Dienste",
-  "خدمات الاستيراد والتصدير":"Import & Export","منتجاتنا":"Produkte","من نحن":"Über uns","التواصل":"Kontakt",
+window.COMMON_DE = {
+  "الصفحة الرئيسية":"Startseite",
+  "الخدمات الرئيسية":"Hauptleistungen",
+  "الصناعات الكيميائية":"Chemische Industrie",
+  "الصناعات الغذائية":"Lebensmittelindustrie",
+  "خدمات الانترنت":"Internetdienste",
+  "خدمات برمجية":"Software-Dienste",
+  "خدمات الاستيراد والتصدير":"Import & Export",
+  "منتجاتنا":"Produkte",
+  "من نحن":"Über uns",
+  "التواصل":"Kontakt",
   "علاماتنا":"Marken",
-"يمكنك تصفّح ملايين المنتجات عبر منصات مثل Alibaba و AliExpress، وسنقوم بمتابعة الطلب من Contact مع المورّد حتى التسليم في سوريا.":"Sie können Millionen von Produkten auf Plattformen wie Alibaba und AliExpress durchsuchen; wir kümmern uns um Ihre Bestellung – von der Kontaktaufnahme mit dem Lieferanten bis zur Lieferung in Syrien.",
 
-  // الهيرو
-  "استيراد وتصدير من وإلى العالم":"Import & Export weltweit",
-  "حلول شحن متكاملة: ":"Integrierte Versandlösungen: ",
-  "بحري":"See","جوي":"Luft","بري":"Straße",
-  "،\n  مع متابعة تخليص جمركي وخدمة عملاء خطوة بخطوة حتى التسليم.":", mit Zollabwicklung und Betreuung bis zur Lieferung.",
-  "عروض الشحن الحالية":"Aktuelle Versandangebote",
+  "رواد في الصناعات الغذائية والكيميائية":"Branchenführer für Lebensmittel & Chemie",
+  "جودة عالية. ابتكار دائم. التزام بمعايير التصنيع العالمية":"Hohe Qualität. Ständige Innovation. Verpflichtung zu internationalen Standards",
+  "استكشف منتجاتنا":"Produkte entdecken",
 
-  // البطاقة 1
-  "استيراد من ألمانيا إلى سوريا":"Import von Deutschland nach Syrien",
-  "كونتينر ":"Container ","20 قدم":"20 Fuß",
-  " — ":" — ",
-  "حمولة مناسبة للبضائع العامة / التجميع":"Geeignet für allgemeine/gebündelte Waren",
-  "مستندات شحن معتمدة ومتابعة الميناء":"Zertifizierte Dokumente & Hafenbetreuung",
-  "دعم وتحديثات حتى الوصول":"Support & Updates bis zur Ankunft",
-  "سعر تقريبي: ":"Ungefährer Preis: ",
-  "طلب استفسار":"Anfrage senden",
+  "الصناعات الغذائية":"Lebensmittelindustrie",
+  "منتجات غذائية عالية الجودة تلبي أعلى المعايير الصحية":"Hochwertige Lebensmittel nach höchsten Gesundheitsstandards",
 
-  // البطاقة 2
-  "استيراد جوي من الصين إلى سوريا":"Luftfracht aus China nach Syrien",
-  "أسعار تبدأ من ":"Preise ab ",
-  " للكيلو":" / kg",
-  "شحن سريع عبر الجو (تقريبًا خلال 15 يوم)":"Schnelle Luftfracht (~15 Tage)",
-  "يشمل إجراءات التخليص الجمركي":"Inklusive Zollabfertigung",
+  "الصناعات الكيميائية":"Chemische Industrie",
+  "منتجات كيميائية عالية الجودة لتلبية احتياجات الصناعة والبناء":"Hochwertige Chemieprodukte für Industrie und Bau",
 
-  // البطاقة 3
-  "تخليص جمركي شامل داخل سوريا":"Umfassende Zollabfertigung in Syrien",
-  "خدمة أعمال + أفراد":"Für Unternehmen & Privat",
-  "تجهيز البيانات الجمركية ومطابقة الفواتير":"Zolldaten & Rechnungsabgleich",
-  "متابعة التفريغ والفحص ودفع الرسوم":"Entladung, Prüfung & Abgaben",
-  "تسليم حتى المستودع عند الطلب":"Lieferung bis Lager auf Wunsch",
-  "اطلب التفاصيل":"Details anfordern",
+  "صناعات غذائية":"Lebensmittel-Industrie",
+  "شيبس بنكهة الديربي":"Chips mit Derby-Geschmack",
+  "شيبس شهي بنكهة الديربي المميزة، بطعم لذيذ يعكس تجربة فريدة لعشاق النكهات الكلاسيكية.":"Leckere Chips mit markantem Derby-Aroma für Liebhaber klassischer Geschmäcker.",
+  "شيبس بنكهة الجبنة":"Chips mit Käse-Geschmack",
+  "شيبس مقرمش مصنوع من أفضل البطاطس الطبيعية، غني بنكهة الجبنة الأصلية اللذيذة. مثالي للوجبات الخفيفة مع العائلة.":"Knusprige Chips aus besten Kartoffeln, reich an Käsegeschmack – ideal für die Familie.",
+  "شيبس بنكهة الخل":"Chips mit Essig-Geschmack",
+  "شيبس بطعم الخل المنعش والمقرمش، مصنوع بعناية ليمنحك تجربة مختلفة لعشاق النكهات الجريئة.":"Knusprige, erfrischende Essig-Chips – für mutige Geschmäcker.",
+  "اطلب الآن":"Jetzt bestellen",
+  "قريباً":"Bald",
 
-  // البطاقة 4
-  "شحن بري من الصين إلى سوريا":"Straßentransport aus China nach Syrien",
-  "شحن تجميعي (LCL/LTL) أو شحن كامل":"Sammelladung (LCL/LTL) oder Komplett",
-  "تتبع وتحديثات مستمرة حتى التسليم":"Tracking & Updates bis zur Lieferung",
-  "إمكانية التخزين المرحلي والتأمين":"Zwischenlagerung & Versicherung möglich",
-  "اطلب عرض سعر خاص":"Sonderangebot anfordern",
+  "صناعات كيميائية":"Chemische Industrie",
+  "طلاء داخلي عالي الجودة":"Hochwertige Innenfarbe",
+  "طلاء داخلي صديق للبيئة، مقاوم للعفن والعوامل الجوية، متوفر بألوان متعددة":"Umweltfreundliche Innenfarbe, schimmel- & wetterbeständig, viele Farben",
+  "طلاء خارجي مقاوم":"Widerstandsfähige Außenfarbe",
+  "طلاء خارجي عالي الجودة مقاوم لأشعة الشمس والتغيرات الجوية، يدوم لسنوات":"Hochwertige Außenfarbe, UV- & witterungsbeständig, sehr langlebig",
+  "مواد كيميائية للصناعة":"Industriechemikalien",
+  "توفير مواد كيميائية عالية الجودة لاستخدامات الصناعات المختلفة":"Hochwertige Chemikalien für vielfältige Industrie-Anwendungen",
 
-  // التفاصيل
-  "خدمة الوساطة وشراء البضائع من الصين":"Vermittlung & Einkauf aus China",
-  "اختَر المنتج… ونحن ننجز الباقي":"Wählen Sie das Produkt – wir erledigen den Rest",
-  "ما الذي نقوم به؟":"Was wir tun",
-  "طلب البضاعة والتفاوض على السعر والمواصفات والجودة.":"Bestellung & Verhandlung zu Preis, Spezifikation & Qualität.",
-  "الدفع الإلكتروني الآمن وتأكيد الشحن مع المورّد.":"Sichere E-Zahlung & Versandbestätigung mit dem Lieferanten.",
-  "النقل إلى سوريا (جوي/بحري/بري) حسب الأنسب للشحنة.":"Transport nach Syrien (Luft/See/Straße) je nach Sendung.",
-  "إجراءات التخليص الجمركي والتسليم النهائي.":"Zollabfertigung & Endauslieferung.",
-  "التكاليف التجميعية تبدأ من ":"Sammelpreise ab ",
-  " لكل كيلو (للشحنات الخفيفة/الجوية)، وتختلف حسب الوجهة ونوع البضاعة.":
-    " / kg (für leichte/Luft-Sendungen), je nach Ziel & Ware.",
-  "تواصل الآن":"Jetzt kontaktieren",
+  "شركة رائدة في الصناعات الغذائية والكيميائية":"Führendes Unternehmen in Lebensmittel & Chemie",
+  "تأسست شركة \"Golden Net\" عام 2015 بهدف تقديم منتجات عالية الجودة في مجال الصناعات الغذائية والكيميائية للأسواق المحلية والإقليمية. نؤمن بأن الجودة والابتكار هما أساس النجاح في عالم الصناعات.":
+    "Golden Net wurde 2015 gegründet, um hochwertige Produkte in den Bereichen Lebensmittel- und Chemieindustrie für lokale und regionale Märkte bereitzustellen. Wir glauben, dass Qualität und Innovation die Grundlage für Erfolg in der Industrie sind.",
+  "نمتلك مصنعين منفصلين، واحد مخصص للصناعات الغذائية وآخر للصناعات الكيميائية، لضمان عدم وجود أي تداخل أو تلوث بين خطوط الإنتاج.":
+    "Wir betreiben zwei getrennte Werke – eines für Lebensmittel, eines für Chemie –, um jegliche Überschneidung oder Kontamination der Produktionslinien auszuschließen.",
+  "فريقنا من المهندسين والخبراء يعملون بجد لتقديم أفضل المنتجات، مع التركيز على الابتكار والتطوير المستمر لتقديم أحدث الحلول التقنية في مجال الصناعات.":
+    "Unser Team aus Ingenieur:innen und Expert:innen liefert stetig Innovation und modernste Lösungen, um die besten Produkte zu bieten.",
 
+  "سنوات من الخبرة":"Jahre Erfahrung",
+  "عميل في الشرق الأوسط":"Kunden im Nahen Osten",
+  "رضا العملاء":"Kundenzufriedenheit",
 
-"يمكنك تصفّح ملايين المنتجات عبر منصات مثل":"Sie können Millionen von Produkten auf Plattformen wie",
-"، وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", und wir kümmern uns um Ihre Bestellung – von der Kontaktaufnahme mit dem Lieferanten bis zur Lieferung in Syrien.",
-"،\n      وسنقوم بمتابعة الطلب من التواصل مع المورّد حتى التسليم في سوريا.":", und wir kümmern uns um Ihre Bestellung – von der Kontaktaufnahme mit dem Lieferanten bis zur Lieferung in Syrien.",
+  "الاستيراد والتصدير إلى كل أنحاء العالم":"Import & Export weltweit",
+  "ندير سلاسل التوريد من المصنع حتى باب العميل مع شحن مرن، تخليص جمركي، ووثائق مطابقة للأسواق المستهدفة.":
+    "End-to-End-Supply-Chain vom Werk bis zur Haustür: flexibler Versand, Zollabfertigung und marktgerechte Dokumente.",
+  "أسواق مستهدفة متعددة":"Mehrere Zielmärkte",
+  "شحن منتظم إلى الشرق الأوسط وأوروبا وشمال أفريقيا مع حلول تعبئة ووسم لكل سوق.":
+    "Regelmäßiger Versand in MENA, EU und Nordafrika mit maßgeschneiderten Verpackungs- und Etikettierungslösungen je Markt.",
+  "لوجستيات وشحن مرن":"Flexible Logistik & Versand",
+  "بحري/جوي/بري، تتبّع الشحنات، وتغليف ملائم للدهانات والمنتجات الغذائية.":
+    "See/Luft/Land, Sendungsverfolgung und geeignete Verpackung für Farben und Lebensmittel.",
+  "مستندات وتخليص":"Dokumente & Zoll",
+  "فواتير، شهادة منشأ، MSDS للدهانات، شهادات صحية للمواد الغذائية، وترجمة معتمدة.":
+    "Rechnungen, Ursprungszeugnis, MSDS für Farben, Gesundheitszeugnisse für Lebensmittel sowie beglaubigte Übersetzungen.",
+  "مطابقة ومعايير":"Konformität & Standards",
+  "التزام بالمواصفات الفنية ومتطلبات التعبئة والوسم وفق الأسواق المستهدفة.":
+    "Einhaltung technischer Spezifikationen sowie der Anforderungen an Verpackung und Etikettierung für die Zielmärkte.",
+  "اطلب عرض تصدير":"Export-Angebot anfordern",
+  "المواصفات والكتالوجات":"Spezifikationen & Kataloge",
 
+  "التواصل معنا":"Kontakt",
+  "ابقى على تواصل":"Bleiben Sie in Verbindung",
+  "العنوان":"Adresse",
+  "الهاتف":"Telefon",
+  "البريد الإلكتروني":"E-Mail",
+  "ساعات العمل":"Öffnungszeiten",
+  "الأثنين - السبت: 10 صباحاً - 6 مساءً":"Mo – Sa: 10:00 – 18:00",
+  "الأحد: إجازة":"Sonntag: Geschlossen",
+  "أرسل لنا رسالة":"Schreiben Sie uns",
+  "الاسم الكامل":"Vollständiger Name",
+  "رقم الهاتف":"Telefonnummer",
+  "الرسالة":"Nachricht",
+  "إرسال الرسالة":"Nachricht senden",
 
-  // CTA
-  "جاهز لتقدير دقيق؟":"Bereit für ein genaues Angebot?",
-  "أرسل تفاصيل الشحنة (المنشأ/الوجهة/الوزن/الأبعاد/الوصف/صورة للمنتج في حال توفرها SH Code)، ونرجع لك بعرض مفصّل.":
-    "Senden Sie Details (Ursprung/Ziel/Gewicht/Abmessungen/Beschreibung/Produktfoto, HS-Code), wir melden uns mit einem detaillierten Angebot.",
-  "اطلب عرض سعر الآن":"Angebot anfordern",
+  "خدمات انترنت":"Internetdienste",
+  "خدمات عامة":"Allgemeine Dienste",
 
-  // الفوتر
-"روابط سريعة":"Schnellzugriff",
-"ماذا نقدم؟":"Was wir anbieten",
-"الدعم":"Support",
-"الأسئلة الشائعة":"FAQ",
-"شروط الاستخدام":"Nutzungsbedingungen",
-"سياسة الخصوصية":"Datenschutz",
+  "روابط سريعة":"Schnellzugriff",
+  "ماذا نقدم؟":"Was wir anbieten",
+  "الدعم":"Support",
+  "الأسئلة الشائعة":"FAQ",
+  "شروط الاستخدام":"Nutzungsbedingungen",
+  "سياسة الخصوصية":"Datenschutz",
+  "جميع الحقوق محفوظة":"Alle Rechte vorbehalten",
 
-"شيبس  MyDays":"MyDays Chips",
-"شيبس MyDays":"MyDays Chips",
-"ايس كريم StrongBoy":"StrongBoy Eiscreme",
-"طلاء داخلي":"Innenfarbe",
-"طلاء خارجي":"Außenfarbe",
-"تركيب انترنت":"Internetinstallation",
+  // الفوتر (نفس عبارات القسم العلوي مكررة عندك — إبقائها لا يضر)
+  "شيبس  MyDays":"MyDays Chips",
+  "شيبس MyDays":"MyDays Chips",
+  "ايس كريم StrongBoy":"StrongBoy Eiscreme",
+  "طلاء داخلي":"Innenfarbe",
+  "طلاء خارجي":"Außenfarbe",
+  "تركيب انترنت":"Internetinstallation",
 
-"شركة رائدة في مجال التكنولوجيا والصناعات الغذائية والكيميائية، نقدم منتجات عالية الجودة للأسواق المحلية والإقليمية بمعايير عالمية.":
-"Ein führendes Unternehmen in Technologie-, Lebensmittel- und Chemiebranchen; wir liefern hochwertige Produkte für lokale und regionale Märkte nach internationalen Standards.",
+  "شركة رائدة في مجال التكنولوجيا والصناعات الغذائية والكيميائية، نقدم منتجات عالية الجودة للأسواق المحلية والإقليمية بمعايير عالمية.":
+    "Ein führendes Unternehmen in Technologie-, Lebensmittel- und Chemiebranchen; wir liefern hochwertige Produkte für lokale und regionale Märkte nach internationalen Standards.",
 
-"جميع الحقوق محفوظة ©GOLDEN NET 2025":"Alle Rechte vorbehalten © GOLDEN NET 2025",
-"جميع الحقوق محفوظة":"Alle Rechte vorbehalten",
-"إنشاء صفحة ويب وتطبيقات":"Web- & App-Entwicklung",
-"استيراد وتصدير وتخليص جمركي":"Import, Export & Zollabfertigung",
+  "جميع الحقوق محفوظة ©GOLDEN NET 2025":"Alle Rechte vorbehalten © GOLDEN NET 2025",
 
+  "إنشاء صفحة ويب وتطبيقات":"Web- & App-Entwicklung",
+  "استيراد وتصدير وتخليص جمركي":"Import, Export & Zollabfertigung",
+"خدمات عامة":"Allgemeine Dienste",
+  "الريحانية, هاتاي ,الجادة الرئيسية بعد دوار الشوك مقابل الدومينوس بيتزا.":
+    "Reyhanlı, Hatay — Hauptstraße nach dem Al-Shawk-Kreisverkehr, gegenüber Domino’s Pizza."
 };
 
+// 3) محرّك التبديل (مع حفظ النسخة العربية الأصلية)
+(function(){
+  const T = window.translations;
+  const COMMON_EN_MAP = window.COMMON_EN || {};
+  const COMMON_DE_MAP = window.COMMON_DE || {};
+  const ORIG_TEXT = new WeakMap();
+
+  function shouldSkip(node){
+    const p = node.parentNode; if(!p) return true;
+    const tag = p.nodeName;
+    return tag==='SCRIPT'||tag==='STYLE'||tag==='NOSCRIPT'||tag==='TEXTAREA'||tag==='INPUT'||tag==='IFRAME'||p.isContentEditable;
+  }
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function indexOriginalText(root){
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while(tw.nextNode()){
+      const n = tw.currentNode; if(shouldSkip(n)) continue;
+      if(!ORIG_TEXT.has(n)) ORIG_TEXT.set(n, n.nodeValue);
+    }
+  }
+  function restoreArabicBase(root){
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while(tw.nextNode()){
+      const n = tw.currentNode; if(shouldSkip(n)) continue;
+      const orig = ORIG_TEXT.get(n); if(typeof orig==='string') n.nodeValue = orig;
+    }
+  }
+  function replaceTextDeep(root, map){
+    const keys = Object.keys(map); if(!keys.length) return;
+    keys.sort((a,b)=> b.length - a.length);
+    const re = new RegExp(keys.map(escapeRegExp).join('|'),'g');
+    const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    while(tw.nextNode()){
+      const n = tw.currentNode; if(shouldSkip(n)||!n.nodeValue) continue;
+      n.nodeValue = n.nodeValue.replace(re, m=> map[m] ?? m);
+    }
+  }
+  function setActiveLangButton(code){
+    document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===code));
+    const lbl=document.getElementById('currentLangLabel'); if(lbl) lbl.textContent = code.toUpperCase();
+  }
+  function applyIdTranslations(lang){
+    const dict = (T && T[lang]) ? T[lang] : {};
+    Object.keys(dict).forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.textContent = dict[id];
+    });
+  }
+
+  window.changeLanguage = function(lang){
+    indexOriginalText(document.body);   // التقط أي عقد جديدة
+    restoreArabicBase(document.body);   // ارجع دائمًا للأصل العربي
+
+    if(lang==='ar'){ document.body.dir='rtl'; setActiveLangButton('ar'); localStorage.setItem('lang','ar'); return; }
+
+    document.body.dir='ltr';
+    if(lang==='en'){ applyIdTranslations('en'); replaceTextDeep(document.body, COMMON_EN_MAP); }
+    else if(lang==='de'){ applyIdTranslations('de'); replaceTextDeep(document.body, COMMON_DE_MAP); }
+    else if(lang==='tr'){ /* أدرج منطق التركية إن وجد */ }
+
+    setActiveLangButton(lang);
+    localStorage.setItem('lang', lang);
+
+    const menu=document.getElementById('langMenu'), toggle=document.getElementById('langToggle');
+    if(menu&&toggle){ menu.hidden=true; toggle.setAttribute('aria-expanded','false'); }
+  };
+
+  // ربط الأزرار
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> changeLanguage(btn.dataset.lang), {capture:true});
+  });
+
+  // جهّز الأساس العربي واحترم اللغة المحفوظة
+  document.addEventListener('DOMContentLoaded', ()=>{
+    indexOriginalText(document.body);
+    const saved = localStorage.getItem('lang') || 'ar';
+    changeLanguage(saved);
+  });
+})();
 </script>
+
+
+
 
 
 </body>
 </html>
+
+
+
+
